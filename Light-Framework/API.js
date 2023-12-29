@@ -9,6 +9,7 @@ Github: ${info.github}
 
 // API
 export default class {
+  static get Animation () {return Animation}
   static get createElement () {return createElement}
   static get createSvgImage () {return createSvgImage}
 
@@ -33,4 +34,5 @@ export default class {
 
 import createSvgImage from './Modules/CreateSvgImage.js'
 import createElement from './Modules/CreateElement.js'
+import Animation from './Modules/Animation.js'
 import Core from './Modules/Core.js'

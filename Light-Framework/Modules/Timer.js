@@ -87,7 +87,7 @@ export default class {
   }
 
   // Delete All Timers
-  stopTimers () {
+  deleteAllTimers () {
     clearInterval(this.#interval)
 
     this.#timers = {}

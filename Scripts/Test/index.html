@@ -11,6 +11,7 @@
 
     let app = new Light(document.body)
 
-    app.root.appendChild(Light.createElement('div', { style: { backgroundColor: 'black', width: '50px', height: '50px' }}))
+    let div = app.root.appendChild(Light.createElement('div', { style: { backgroundColor: 'black', width: '50px', height: '50px' }}))
+    Light.Animation.transform(div, { 'style.width': ['0px', '100px'] })
   </script>
 </html>

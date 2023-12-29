@@ -35,7 +35,10 @@ export default class {
 
   // Remove 
   remove () {
+    this.#root.remove()
 
+    this.EventManager.clear()
+    this.Timer.deleteAllTimers()
   }
 }
 
