@@ -35,6 +35,39 @@ export default {
     }, end, options))
 
     return target
+  },
+
+  // Keyframe
+  keyframe: (target, keyframes, options) => {
+    if (!Array.isArray(target) && !(target instanceof HTMLElement)) throw new Error('Parameter "target" Must Be A <array> Or An Instance Of HTMLElement')
+
+    checkParameters({
+      keyframes: { type: ['array'] },
+      options: { type: ['undefined', 'object'] }
+    }, { keyframes, options })
+
+    let states = {}
+
+    Object.keys(keyframes[0]).forEach((path) => states[path] = keyframes[0][path])
+
+    options = Object.assign({
+      easing: 'easeInOutCubic',
+      duration: 1000
+    }, (options === undefined) ? {} : options)
+
+    animejs(Object.assign({
+      targets: states,
+
+      keyframes,
+
+      change: () => {
+        Object.keys(states).forEach((path) => {
+          if (Array.isArray(target)) target.forEach((element) => setValue(element, path, states[path]))
+          else setValue(target, path, states[path])
+        })
+      }
+    }, options))
+
   }
 }
 

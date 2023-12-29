@@ -42,7 +42,6 @@ export default class {
   }
 }
 
-import checkParameters from './Tools/CheckParameters.js'
 import parseStyleValue from './Tools/ParseStyleValue.js'
 
 import AttributeManager from './AttributeManager.js'
