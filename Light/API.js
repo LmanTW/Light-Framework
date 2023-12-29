@@ -1,0 +1,27 @@
+// API
+export default class {
+  static get createElement () {return createElement}
+  static get createSvgImage () {return createSvgImage}
+
+  #Core
+
+  constructor (selector) {
+    this.#Core = new Core(selector)
+
+    this.Event = this.#Core.EventManager
+    this.Timer = this.#Core.Timer
+
+    this.Unit = this.#Core.UnitManager
+  }
+
+  get root () {return this.#Core.root}
+
+  // Use Plugin
+  use (Plugin) {
+    return new Plugin(this.#Core)
+  }
+}
+
+import createSvgImage from './Modules/CreateSvgImage.js'
+import createElement from './Modules/CreateElement.js'
+import Core from './Modules/Core.js'
