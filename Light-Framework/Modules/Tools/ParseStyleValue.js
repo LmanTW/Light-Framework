@@ -16,7 +16,7 @@ export default (value, units) => {
         if (chunk[0] === '$') value = value.replaceAll(`[${chunk}]`, `var(--${chunk.substring(1, chunk.length)})`)
         else {
           for (let unit of unitList) {
-            if (chunk.substring(chunk.length-unit.length, chunk.length) === unit) value = value.replaceAll(`[${chunk}]`, units[unit](chunk))
+            if (chunk.substring(chunk.length-unit.length, chunk.length) === unit) value = value.replaceAll(`[${chunk}]`, units[unit](chunk.substring(0, chunk.length-unit.length)))
           }
         }
       }
