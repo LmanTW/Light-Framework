@@ -1,3 +1,12 @@
+import info from './Info.json' assert { type: 'json' }
+
+console.log(`[ Light-Framework ]
+
+Version: v${info.version}
+
+Github: ${info.github}
+`)
+
 // API
 export default class {
   static get createElement () {return createElement}

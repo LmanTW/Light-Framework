@@ -2,9 +2,8 @@ const tsup = require('tsup')
 const path = require('path')
 
 tsup.build({
-  entry: [path.resolve(__dirname, '../../Light/API.js')],
+  entry: [path.resolve(__dirname, '../../Light-Framework/API.js')],
 
-  //target: 'es6',
   format: 'esm',
   minify: true,
 
