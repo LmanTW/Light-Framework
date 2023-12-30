@@ -33,6 +33,10 @@ class CustomElement extends HTMLElement {
 
     const svgImage = createElemnet('div', { innerHTML: cache[this.getAttribute('src')] }).children[0]
 
+    this.getAttributeNames().forEach((name) => {
+      if (name !== 'src') svgImage.setAttribute(name, this.getAttribute(name))
+    })
+
     this.outerHTML = svgImage.outerHTML
   }
 }
