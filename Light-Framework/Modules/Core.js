@@ -20,19 +20,26 @@ export default class {
     this.StyleManager = new StyleManager(this)
     this.UnitManager = new UnitManager(this)
 
-    this.AttributeManager.createAttribute('style', (element, value) => element.setAttribute('style', parseStyleValue(parseObjectToCss(applyStyle(parseCssToObject(value))), this.UnitManager.units)))
-    this.AttributeManager.createAttribute('style:hover', (element, value) => {
-      let classList = element.getAttribute('class')
+    this.AttributeManager.createAttribute('style', (element, value) => {
+      let styles = applyStyle(parseCssToObject(parseStyleValue(value, this.UnitManager.units)))
 
-      if (classList === null) classList = []
-      else classList = classList.split(' ')
+      let lateStyles = {}
 
-      let className = this.StyleManager.createHoverStyle(parseStyleValue(value, this.UnitManager.units))
+      Object.keys(styles).forEach((name) => {
+        if (['transition', 'transitionDuration'].includes(name)) {
+          lateStyles[name] = styles[name]
 
-      if (!classList.includes(className)) classList.push(className)
+          delete styles[name]
+        }
+      })
 
-      element.setAttribute('class', classList.join(' '))
+      element.setAttribute('class', Array.from(element.classList).filter((className) => !className.includes('style-')).join(' '))
+
+      addClass(element, this.StyleManager.createStyle(parseObjectToCss(styles)))
+
+      window.requestAnimationFrame(() => Object.keys(lateStyles).forEach((name) => element.style[name] = lateStyles[name]), 50)
     })
+    this.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, this.StyleManager.createHoverStyle(parseStyleValue(value, this.UnitManager.units))))
     this.AttributeManager.createAttribute('trigger', (element, value) => this.EventManager.listen(element, 'click', () => {
       if (value[0] === '/') window.location.href = value
       else if (value.substring(0, 7) === 'http://' || value.substring(0, 8) === 'https://') window.open(value)
@@ -53,6 +60,18 @@ export default class {
     this.EventManager.clear()
     this.Timer.deleteAllTimers()
   }
+}
+
+// Add Class To Element
+function addClass (element, className) {
+  let classList = element.getAttribute('class')
+
+  if (classList === null) classList = []
+  else classList = classList.split(' ')
+
+  if (!classList.includes(className)) classList.push(className)
+
+  element.setAttribute('class', classList.join(' '))
 }
 
 import parseCssToObject from './Tools/ParseCssToObject.js'

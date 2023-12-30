@@ -1,13 +1,29 @@
 const style = document.head.appendChild(document.createElement('style'))
 
 let styles = {
+  style: {},
   hover: {}
 }
 
 // Style Manager
 export default class {
-  #styles = {
-    hover: []
+  // Create Style
+  createStyle (style) {
+    checkParameters({
+      style: { type: ['string'] }
+    }, { style })
+ 
+    for (let id of Object.keys(styles.style)) {
+      if (styles.style[id] === style) return id
+    }
+
+    let id = `style-${generateID(5, Object.keys(styles.hover))}`
+
+    styles.style[id] = style
+
+    compileStyle()
+
+    return id
   }
 
   // Create Hover Style
@@ -23,7 +39,6 @@ export default class {
     let id = `hover-${generateID(5, Object.keys(styles.hover))}`
 
     styles.hover[id] = style
-    this.#styles.hover.push(id)
 
     compileStyle()
 
@@ -33,13 +48,12 @@ export default class {
 
 // Set Style
 function compileStyle () {
-  let lines = []
+  let chunks = []
 
-  Object.keys(styles.hover).forEach((id) => {
-    lines.push(`.${id}:hover {${styles.hover[id]}}`)
-  })
+  Object.keys(styles.style).forEach((id) => chunks.push(`.${id} {${styles.style[id]}}`))
+  Object.keys(styles.hover).forEach((id) => chunks.push(`.${id}:hover {${styles.hover[id]}}`))
 
-  style.innerHTML = lines.join('\n')
+  style.textContent = chunks.join('')
 }
 
 import checkParameters from './Tools/CheckParameters.js'
