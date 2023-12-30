@@ -11,10 +11,11 @@ export default (tagName, options, children) => {
   if (options !== undefined) {
     if (options.class !== undefined) options.classList = options.class
 
-    options.style = applyStyle(options.style)
+    if (options.style !== undefined) options.style = applyStyle(options.style)
 
     Object.keys(options).forEach((key) => {
-      if (key === 'style') element.setAttribute('light:style', parseStyleValue(parseObjectToCss(options[key])))
+      if (key === 'innerHTML') element.innerHTML = options[key]
+      else if (key === 'style') element.setAttribute('light:style', parseStyleValue(parseObjectToCss(options[key])))
       else element.setAttribute(key, options[key])
     })
   }

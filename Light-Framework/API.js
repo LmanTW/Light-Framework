@@ -11,7 +11,7 @@ Github: ${info.github}
 export default class {
   static get Animation () {return Animation}
   static get createElement () {return createElement}
-  static get createSvgImage () {return createSvgImage}
+  static get createSvgElement () {return createSvgElement}
 
   #Core
 
@@ -32,7 +32,7 @@ export default class {
   }
 }
 
-import createSvgImage from './Modules/CreateSvgImage.js'
+import createSvgElement from './Modules/CreateSvgElement.js'
 import createElement from './Modules/CreateElement.js'
 import Animation from './Modules/Animation.js'
 import Core from './Modules/Core.js'
