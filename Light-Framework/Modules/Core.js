@@ -33,7 +33,7 @@ export default class {
     })
     this.AttributeManager.createAttribute('trigger', (element, value) => this.EventManager.listen(element, 'click', () => {
       if (value[0] === '/') window.location.href = value
-      else if (value.substring(0, 7) === 'http://' || value.substring(0, 8) === 'https://') window.location.replace(value)
+      else if (value.substring(0, 7) === 'http://' || value.substring(0, 8) === 'https://') window.open(value)
       else {
         document.head.appendChild(createElement('script', { innerHTML: value })).remove()
       }
