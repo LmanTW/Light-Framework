@@ -27,7 +27,9 @@ export default class {
       if (classList === null) classList = []
       else classList = classList.split(' ')
 
-      classList.push(this.StyleManager.createHoverStyle(parseStyleValue(value, this.UnitManager.units)))
+      let className = this.StyleManager.createHoverStyle(parseStyleValue(value, this.UnitManager.units))
+
+      if (!classList.includes(className)) classList.push(className)
 
       element.setAttribute('class', classList.join(' '))
     })
