@@ -31,6 +31,13 @@ export default class {
 
       element.setAttribute('class', classList.join(' '))
     })
+    this.AttributeManager.createAttribute('trigger', (element, value) => this.EventManager.listen(element, 'click', () => {
+      if (value[0] === '/') window.location.href = value
+      else if (value.substring(0, 7) === 'http://' || value.substring(0, 8) === 'https://') window.location.replace(value)
+      else {
+        document.head.appendChild(createElement('script', { innerHTML: value })).remove()
+      }
+    }))
 
     this.UnitManager.createUnit('ps', (value) => `calc(calc(calc(100vw + 100vh) / 100) * ${value})`)
   }
@@ -52,9 +59,9 @@ import parseStyleValue from './Tools/ParseStyleValue.js'
 import applyStyle from './Tools/ApplyStyle.js'
 
 import AttributeManager from './AttributeManager.js'
+import createElement from './CreateElement.js'
 import StyleManager from './StyleManager.js'
 import EventManager from './EventManager.js'
 import UnitManager from './UnitManager.js'
 import Observer from './Observer.js'
 import Timer from './Timer.js'
-
