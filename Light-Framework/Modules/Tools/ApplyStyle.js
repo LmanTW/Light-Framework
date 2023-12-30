@@ -14,6 +14,8 @@ export default (style) => {
       if (style.flexDirection === 'column') style.justifyContent = 'center'
       else style.alignItems = 'center'
     }
+
+    delete style.center
   }
 
   return style
