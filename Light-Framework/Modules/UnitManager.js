@@ -21,6 +21,7 @@ export default class {
 
     this.#units[name] = callback
 
+    this.#Core.Observer.checkAttribute(this.#Core.root)
     this.#Core.Observer.checkChildren(this.#Core.root)
   }
 
@@ -34,6 +35,7 @@ export default class {
 
     delete this.#units[name]
 
+    this.#Core.Observer.checkAttribute(this.#Core.root)
     this.#Core.Observer.checkChildren(this.#Core.root)
   }
 }

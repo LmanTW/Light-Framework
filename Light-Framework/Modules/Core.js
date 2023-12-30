@@ -7,6 +7,10 @@ export default class {
 
     this.#root = (typeof target === 'string') ? document.querySelector(target) : target
 
+    if (this.#root === null) throw new Error(`Target Not Found: ${target}`)
+
+    this.#root.setAttribute('light', '')
+
     this.EventManager = new EventManager()
     this.Timer = new Timer()
 
@@ -16,7 +20,7 @@ export default class {
     this.StyleManager = new StyleManager(this)
     this.UnitManager = new UnitManager(this)
 
-    this.AttributeManager.createAttribute('style', (element, value) => element.setAttribute('style', parseStyleValue(value, this.UnitManager.units)))
+    this.AttributeManager.createAttribute('style', (element, value) => element.setAttribute('style', parseStyleValue(parseObjectToCss(applyStyle(parseCssToObject(value))), this.UnitManager.units)))
     this.AttributeManager.createAttribute('style:hover', (element, value) => {
       let classList = element.getAttribute('class')
 
@@ -42,7 +46,10 @@ export default class {
   }
 }
 
+import parseCssToObject from './Tools/ParseCssToObject.js'
+import parseObjectToCss from './Tools/ParseObjectToCss.js'
 import parseStyleValue from './Tools/ParseStyleValue.js'
+import applyStyle from './Tools/ApplyStyle.js'
 
 import AttributeManager from './AttributeManager.js'
 import StyleManager from './StyleManager.js'
@@ -50,3 +57,4 @@ import EventManager from './EventManager.js'
 import UnitManager from './UnitManager.js'
 import Observer from './Observer.js'
 import Timer from './Timer.js'
+

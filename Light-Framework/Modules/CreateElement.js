@@ -11,26 +11,10 @@ export default (tagName, options, children) => {
   if (options !== undefined) {
     if (options.class !== undefined) options.classList = options.class
 
-    if (options.style !== undefined) {
-      if (options.style.center !== undefined) {
-        let types = options.style.center.split(' ')
-
-        options.style.display = 'flex'
-
-        if (types.includes('row')) {
-          if (options.style.flexDirection === 'column') options.style.alignItems = 'center'
-          else options.style.justifyContent = 'center'
-        }
-
-        if (types.includes('column')) {
-          if (options.style.flexDirection === 'column') options.style.justifyContent = 'center'
-          else options.style.alignItems = 'center'
-        }
-      }
-    }
+    options.style = applyStyle(options.style)
 
     Object.keys(options).forEach((key) => {
-      if (key === 'style') element.setAttribute('light:style', parseObjectToCss(options[key]))
+      if (key === 'style') element.setAttribute('light:style', parseStyleValue(parseObjectToCss(options[key])))
       else element.setAttribute(key, options[key])
     })
   }
@@ -44,3 +28,4 @@ import checkParameters from './Tools/CheckParameters.js'
 
 import parseObjectToCss from './Tools/ParseObjectToCss.js'
 import parseStyleValue from './Tools/ParseStyleValue.js'
+import applyStyle from './Tools/ApplyStyle.js'

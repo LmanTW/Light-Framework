@@ -22,7 +22,7 @@ export default class {
     Array.from(parent.children).forEach((child) => {
       this.checkAttribute(child)
 
-      if (child.children.length > 0) this.checkChildren(child)
+      if (child.getAttribute('light') === null && child.children.length > 0) this.checkChildren(child)
     })
   }
 
