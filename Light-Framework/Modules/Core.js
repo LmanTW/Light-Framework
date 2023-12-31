@@ -40,8 +40,6 @@ export default class {
 
       addClass(element, this.StyleManager.createStyle(parseObjectToCss(styles)))
 
-      element.setAttribute('light-element', '')
-
       window.requestAnimationFrame(() => Object.keys(lateStyles).forEach((name) => element.style[name] = lateStyles[name]), 50)
     })
     this.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, this.StyleManager.createHoverStyle(parseStyleValue(value, this.UnitManager.units))))

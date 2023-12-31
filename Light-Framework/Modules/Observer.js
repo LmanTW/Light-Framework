@@ -9,7 +9,10 @@ export default class {
 
     this.#observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') Array.from(mutation.addedNodes).forEach((element) => this.checkAttribute(element))
+        if (mutation.type === 'childList') Array.from(mutation.addedNodes).forEach((element) => {
+          this.checkAttribute(element)
+          this.checkChildren(element)
+        })
         else if (mutation.type === 'attributes' && mutation.attributeName.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[mutation.attributeName.substring(6, mutation.attributeName.length)] !== undefined) this.checkAttribute(mutation.target)
       })
     })
