@@ -13,7 +13,7 @@ export default class {
           this.checkAttribute(element)
           this.checkChildren(element)
         })
-        else if (mutation.type === 'attributes' && mutation.attributeName.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[mutation.attributeName.substring(6, mutation.attributeName.length)] !== undefined) this.checkAttribute(mutation.target)
+        else if (mutation.type === 'attributes' && mutation.attributeName.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[mutation.attributeName.substring(6, mutation.attributeName.length)] !== undefined) this.checkAttribute(mutation.target, mutation.attributeName.substring(6, mutation.attributeName.length))
       })
     })
 
@@ -30,9 +30,7 @@ export default class {
   }
 
   // Check Attribute
-  checkAttribute (element) {
-    element.getAttributeNames().forEach((name) => {
-      if (name.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[name.substring(6, name.length)] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(name))
-    })
+  checkAttribute (element, attributeName) {
+    if (this.#Core.AttributeManager.attributes[attributeName] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(attributeName))
   }
 }
