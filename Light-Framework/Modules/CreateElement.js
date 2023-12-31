@@ -28,5 +28,4 @@ export default (tagName, options, children) => {
 import checkParameters from './Tools/CheckParameters.js'
 
 import parseObjectToCss from './Tools/ParseObjectToCss.js'
-import parseStyleValue from './Tools/ParseStyleValue.js'
 import applyStyle from './Tools/ApplyStyle.js'

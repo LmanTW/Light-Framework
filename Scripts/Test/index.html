@@ -9,7 +9,7 @@
   </style>
 
   <body>
-    <h1 light:style="background-color: var(--color); font-size: [2ps]; opacity: 0.5; transition-duration: 0.5s" light:style:hover="opacity: 0">Hi</h1>
+
   </body>
 
   <script type="module">
@@ -17,6 +17,6 @@
 
     let app = new Light(document.body)
 
-        console.log(Light.createElement('div', { id: 'pageContent', style: { width: '100vw', height: 'calc(100vh - [3ps])' }}))
+    let div = document.body.appendChild(Light.createElement('div', { id: 'pageContent', style: { backgroundColor: '[$color]', width: '100vw', height: 'calc(100vh - [3ps])' }}))
   </script>
 </html>

@@ -33,7 +33,10 @@ export default class {
         }
       })
 
-      element.setAttribute('class', Array.from(element.classList).filter((className) => !className.includes('style-')).join(' '))
+      let classList = Array.from(element.classList).filter((className) => !className.includes('style-'))
+      
+      if (classList.length > 0) element.setAttribute('class', classList.join(' '))
+      else element.removeAttribute('class')
 
       addClass(element, this.StyleManager.createStyle(parseObjectToCss(styles)))
 

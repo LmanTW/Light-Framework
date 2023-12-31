@@ -10,7 +10,7 @@ export default class {
     this.#observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'childList') Array.from(mutation.addedNodes).forEach((element) => this.checkAttribute(element))
-        else if (mutation.type === 'attributes' && mutation.attributeName === '@style') child.setAttribute('style', parseStyleValue(child.getAttribute('@style'), this.#Core.UnitManager.units))
+        else if (mutation.type === 'attributes' && mutation.attributeName.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[mutation.attributeName.substring(6, mutation.attributeName.length)] !== undefined) this.checkAttribute(mutation.target)
       })
     })
 
@@ -33,5 +33,3 @@ export default class {
     })
   }
 }
-
-import parseStyleValue from './Tools/ParseStyleValue.js'
