@@ -24,5 +24,5 @@ export default class {
   }
 }
 
-import checkParameters from './Tools/CheckParameters.js'
-import generateID from './Tools/GenerateID.js'
+import checkParameters from '../Tools/CheckParameters.js'
+import generateID from '../Tools/GenerateID.js'

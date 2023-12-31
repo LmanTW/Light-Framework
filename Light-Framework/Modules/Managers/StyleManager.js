@@ -56,5 +56,5 @@ function compileStyle () {
   style.textContent = chunks.join('')
 }
 
-import checkParameters from './Tools/CheckParameters.js'
-import generateID from './Tools/GenerateID.js'
+import checkParameters from '../Tools/CheckParameters.js'
+import generateID from '../Tools/GenerateID.js'

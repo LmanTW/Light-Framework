@@ -15,7 +15,7 @@ export default (tagName, options, children) => {
 
     Object.keys(options).forEach((key) => {
       if (key === 'innerHTML') element.innerHTML = options[key]
-      else if (key === 'style') element.setAttribute('light:style', parseStyleValue(parseObjectToCss(options[key])))
+      else if (key === 'style') element.setAttribute('light:style', parseObjectToCss(options[key]))
       else element.setAttribute(key, options[key])
     })
   }
