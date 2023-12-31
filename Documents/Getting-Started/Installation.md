@@ -5,4 +5,5 @@ You can install Light-Framework in several ways, but we suggest you to just impo
 ```js
 import Light from '<url>'
 ```
-* Import from `framework.light.tw` | https://framework.light.tw/API.mjs
+* `framework.light.tw` | https://framework.light.tw/API.mjs
+* jsDelivr | https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/API.mjs
