@@ -1,7 +1,8 @@
 # Installation
+You can install Light-Framework in several ways, but we suggest you to just import it from `framework.light.tw`.
 
-To install Light-Framework, you can import it from `https://framework.light.tw/API.mjs` or [download](https://raw.githubusercontent.com/LmanTW/Light-Framework/main/Assets/API.mjs) the builted file.
-
+## Import
 ```js
-import Light from 'https://framework.light.tw/API.mjs'
+import Light from '<url>'
 ```
+* Import from `framework.light.tw` | https://framework.light.tw/API.mjs
