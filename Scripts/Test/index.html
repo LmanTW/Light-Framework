@@ -4,12 +4,16 @@
 
   <style>
     :root {
-      color: green
+      colora: green
     }
   </style>
 
   <body>
-
+    <div>
+      <div>
+        <div id="div"></div>
+      </div>
+    </div>
   </body>
 
   <script type="module">
@@ -17,6 +21,6 @@
 
     let app = new Light(document.body)
 
-    let div = document.body.appendChild(Light.createElement('div', { id: 'pageContent', style: { backgroundColor: '[$color]', width: '100vw', height: 'calc(100vh - [3ps])' }}))
+    document.getElementById('div').appendChild(Light.createElement('h1', { style: { color: '[$colora]' }}))
   </script>
 </html>
