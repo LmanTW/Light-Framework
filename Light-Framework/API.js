@@ -30,6 +30,11 @@ export default class {
   use (Plugin) {
     return new Plugin(this.#Core)
   }
+
+  // Remove
+  remove () {
+    this.#Core.remove()
+  }
 }
 
 import createSvgElement from './Modules/CreateSvgElement.js'
