@@ -47,7 +47,7 @@ export default class {
       if (value[0] === '/') window.location.href = value
       else if (value.substring(0, 7) === 'http://' || value.substring(0, 8) === 'https://') window.open(value)
       else {
-        document.head.appendChild(createElement('script', { innerHTML: value })).remove()
+        document.head.appendChild(createElement('script', { type: 'module', innerHTML: value })).remove()
       }
     }))
 
