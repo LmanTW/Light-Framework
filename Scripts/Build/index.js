@@ -1,13 +1,29 @@
 const tsup = require('tsup')
 const path = require('path')
+const fs = require('fs')
 
-tsup.build({
-  entry: [path.resolve(__dirname, '../../Light-Framework/API.js')],
+fs.readdirSync(path.resolve(__dirname, '../../Assets')).forEach((file) => fs.unlinkSync(path.resolve(__dirname, `../../Assets/${file}`)))
 
-  keepNames: true,
+// Build
+async function build (entry, outputFileName, options) {
+  await tsup.build(Object.assign({
+    name: 'Light-Framework',
+    entry: [entry],
 
-  format: 'esm',
-  minify: true,
+    format: 'esm',
+    minify: true,
 
-  outDir: path.resolve(__dirname, '../../Assets/'),
-})
+    outDir: path.resolve(__dirname, '../../Assets/'),
+  }, (options === undefined) ? {} : options))
+
+  if (options !== undefined && options.format === 'iife') fs.renameSync(path.resolve(__dirname, '../../Assets/API.global.js'), path.resolve(__dirname, `../../Assets/${outputFileName}.global.js`))
+  else fs.renameSync(path.resolve(__dirname, '../../Assets/API.mjs'), path.resolve(__dirname, `../../Assets/${outputFileName}.mjs`))
+}
+
+// Start
+async function start () {
+  await build(path.resolve(__dirname, '../../Light-Framework/API.js'), 'Light')
+  await build(path.resolve(__dirname, '../../Light-Framework/API.js'), 'Light', { format: 'iife', globalName: 'Light' })
+}
+
+start()

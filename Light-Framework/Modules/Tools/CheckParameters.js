@@ -6,10 +6,7 @@ function checkParameters (conditions, parameters) {
     if (conditions[name] === undefined) throw new Error(`Cannot Found Condition For "${name}"`)
 
     if (conditions[name].type !== undefined) {
-      let type
-      
-      if (Array.isArray(parameters[name])) type = 'array'
-      else type = typeof parameters[name]
+      let type = (Array.isArray(parameters[name])) ? 'array' : typeof parameters[name]
 
       if (!conditions[name].type.includes(type)) throw new Error(`Parameter "${name}" Must Be ${(conditions[name].type.length > 1) ? conditions[name].type.map((typeName) => `<${typeName}>`).join(' Or ') : `A <${conditions[name].type[0]}>`}`)
     }

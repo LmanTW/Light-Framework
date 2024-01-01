@@ -4,8 +4,7 @@ console.log(`[ Light-Framework ]
 
 Version: v${info.version}
 
-Github: ${info.github}
-`)
+Github: ${info.github}`)
 
 // API
 export default class {

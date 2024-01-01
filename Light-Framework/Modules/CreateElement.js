@@ -10,7 +10,6 @@ export default (tagName, options, children) => {
 
   if (options !== undefined) {
     if (options.class !== undefined) options.classList = options.class
-
     if (options.style !== undefined) options.style = applyStyle(options.style)
 
     Object.keys(options).forEach((key) => {

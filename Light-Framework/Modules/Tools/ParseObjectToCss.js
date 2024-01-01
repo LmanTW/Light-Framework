@@ -19,5 +19,3 @@ export default (object) => {
 }
 
 const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-import parseStyleValue from './ParseStyleValue.js'

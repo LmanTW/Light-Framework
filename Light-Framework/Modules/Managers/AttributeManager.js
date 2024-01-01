@@ -21,8 +21,7 @@ export default class {
 
     this.#attributes[name] = callback
 
-    this.#Core.Observer.checkAttribute(this.#Core.root)
-    this.#Core.Observer.checkChildren(this.#Core.root)
+    this.#Core.Observer.checkChildren(this.#Core.root, true)
   }
 
   // Delete Attribute
@@ -35,8 +34,7 @@ export default class {
 
     delete this.#attributes[name]
 
-    this.#Core.Observer.checkAttribute(this.#Core.root)
-    this.#Core.Observer.checkChildren(this.#Core.root)
+    this.#Core.Observer.checkChildren(this.#Core.root, true)
   }
 }
 
