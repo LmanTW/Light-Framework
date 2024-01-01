@@ -51,7 +51,7 @@ export default class {
       }
     }))
 
-    this.UnitManager.createUnit('ps', (value) => `calc(calc(calc(100vw + 100vh) / 100) * ${value})`)
+    this.UnitManager.createUnit('ps', (value) => `calc(calc(1vw + 1vh)* ${value})`)
   }
 
   get root () {return this.#root}
