@@ -38,6 +38,6 @@ export default class {
           if (name.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[name.substring(6, name.length)] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(name))
         })
       } else if (this.#Core.AttributeManager.attributes[attributeName] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(attributeName))
-    } else console.log(element)
+    }
   }
 }
