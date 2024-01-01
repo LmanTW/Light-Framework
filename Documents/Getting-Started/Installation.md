@@ -21,7 +21,3 @@ If fetching files from another server is too slow for you, you can also host the
 
 * [ESM](https://raw.githubusercontent.com/LmanTW/Light-Framework/main/Assets/Light.mjs)
 * [UMD](https://raw.githubusercontent.com/LmanTW/Light-Framework/main/Assets/Light.global.mjs)
-
-# H1
-## H2
-### H3
