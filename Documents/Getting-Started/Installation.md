@@ -16,3 +16,4 @@ import Light from 'https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/Lig
 
 <script type="module" src="https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/Light.global.mjs"></script>
 ```
+## Download
