@@ -19,18 +19,20 @@ export default class {
 
   // Check Children
   checkChildren (parent, checkParent) {
-    if (checkParent) this.checkAttribute(parent)
+    if (parent.tagName !== undefined) {
+      if (checkParent) this.checkAttribute(parent)
 
-    Array.from(parent.children).forEach((child) => {
-      this.checkAttribute(child)
+      Array.from(parent.children).forEach((child) => {
+        this.checkAttribute(child)
 
-      if (child.getAttribute('light') === null && child.children.length > 0) this.checkChildren(child)
-    })
+        if (child.getAttribute('light') === null && child.children.length > 0) this.checkChildren(child)
+      })
+    }
   }
 
   // Check Attribute
   checkAttribute (element, attributeName) {
-    if (typeof element.getAttributeNames === 'function') {
+    if (element.tagName !== undefined) {
       if (attributeName === undefined) {
         element.getAttributeNames().forEach((name) => {
           if (name.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[name.substring(6, name.length)] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(name))
