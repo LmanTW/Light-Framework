@@ -17,3 +17,7 @@ import Light from 'https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/Lig
 <script type="module" src="https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/Light.global.mjs"></script>
 ```
 ## Download
+If fetching files from another server is too slow for you, you can also host the built files yourself.
+
+* [ESM](https://raw.githubusercontent.com/LmanTW/Light-Framework/main/Assets/Light.mjs)
+* [UMD](https://raw.githubusercontent.com/LmanTW/Light-Framework/main/Assets/Light.global.mjs)
