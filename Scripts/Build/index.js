@@ -16,7 +16,7 @@ async function build (entry, outputFileName, options) {
     outDir: path.resolve(__dirname, '../../Assets/'),
   }, (options === undefined) ? {} : options))
 
-  if (options !== undefined && options.format === 'iife') fs.renameSync(path.resolve(__dirname, '../../Assets/API.global.js'), path.resolve(__dirname, `../../Assets/${outputFileName}.global.js`))
+  if (options !== undefined && options.format === 'iife') fs.renameSync(path.resolve(__dirname, '../../Assets/API.global.js'), path.resolve(__dirname, `../../Assets/${outputFileName}.global.mjs`))
   else fs.renameSync(path.resolve(__dirname, '../../Assets/API.mjs'), path.resolve(__dirname, `../../Assets/${outputFileName}.mjs`))
 }
 
