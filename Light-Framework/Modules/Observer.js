@@ -30,11 +30,12 @@ export default class {
 
   // Check Attribute
   checkAttribute (element, attributeName) {
-    if (typeof element.getAttribute !== 'function') console.log('getAttribute Not Found', element)
-    if (attributeName === undefined) {
-      element.getAttributeNames().forEach((name) => {
-        if (name.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[name.substring(6, name.length)] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(name))
-      })
-    } else if (this.#Core.AttributeManager.attributes[attributeName] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(attributeName))
+    if (typeof element.getAttribute !== 'function') {
+      if (attributeName === undefined) {
+        element.getAttributeNames().forEach((name) => {
+          if (name.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[name.substring(6, name.length)] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(name))
+        })
+      } else if (this.#Core.AttributeManager.attributes[attributeName] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(attributeName))
+    }
   }
 }
