@@ -30,7 +30,7 @@ export default class {
 
   // Check Attribute
   checkAttribute (element, attributeName) {
-    if (typeof element.getAttribute !== 'function') {
+    if (typeof element.getAttributeNames === 'function') {
       if (attributeName === undefined) {
         element.getAttributeNames().forEach((name) => {
           if (name.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[name.substring(6, name.length)] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(name))
