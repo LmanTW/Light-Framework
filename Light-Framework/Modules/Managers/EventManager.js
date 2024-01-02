@@ -16,11 +16,14 @@ export default class {
     target.addEventListener(name, callback)
   }
 
-  // Clear All Listener
-  clear () {
-    Object.keys(this.#events).forEach((id) => {
-      this.#events[id].target.removeEventListener(this.#events[id].name, this.#events[id].callback)
-    })
+  // Clear Listener(s)
+  clear (id) {
+    checkParameters({
+      id: { type: ['undefined', 'string'] }
+    }, { id })
+
+    if (id === undefined) Object.keys(this.#events).forEach((id) => this.#events[id].target.removeEventListener(this.#events[id].name, this.#events[id].callback))
+    else this.#events[id].target.removeEventListener(this.#events[id].name, this.#events[id].callback)
   }
 }
 

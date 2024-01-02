@@ -9,18 +9,20 @@ export default class {
       let time = performance.now()
 
       Object.keys(this.#timers).forEach((id) => {
-        if (time-this.#timers[id].lastUpdateTime >= this.#timers[id].interval) {
-          this.#timers[id].callback(this.#timers[id].count)
+        let timer = this.#timers[id]
 
-          this.#timers[id].lastUpdateTime = time
+        if (time-timer.lastUpdateTime >= timer.interval) {
+          timer.callback(timer.count)
 
-          if (this.#timers[id].times !== Infinity) {
-            this.#timers[id].count++
+          timer.lastUpdateTime = time
 
-            if (this.#timers[id].count >= this.#timers[id].times) {
-              if (this.#timers[id].callback2 !== undefined) this.#timers[id].callback2()
+          if (timer.times !== Infinity) {
+            timer.count++
 
-              delete this.#timers[id]
+            if (timer.count >= timer.times) {
+              if (timer.callback2 !== undefined) timer.callback2()
+
+              delete timer[id]
             }
           }
         }

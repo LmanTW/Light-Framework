@@ -12,7 +12,7 @@ export default class {
     if (this.#root.getAttribute('light') !== null) throw new Error('Target Is Already A Light Component')
 
     this.#id = createComponent(api)
-    this.#root.setAttribute('light')
+    this.#root.setAttribute('light', this.#id)
 
     this.EventManager = new EventManager()
     this.Timer = new Timer()
@@ -49,9 +49,7 @@ export default class {
     this.AttributeManager.createAttribute('trigger', (element, value) => this.EventManager.listen(element, 'click', () => {
       if (value[0] === '/') window.location.href = value
       else if (value.substring(0, 7) === 'http://' || value.substring(0, 8) === 'https://') window.open(value)
-      else {
-        document.head.appendChild(createElement('script', { type: 'module', innerHTML: value })).remove()
-      }
+      else document.head.appendChild(createElement('script', { type: 'module', innerHTML: value })).remove()
     }))
 
     this.UnitManager.createUnit('ps', (value) => `calc(calc(1vw + 1vh)* ${value})`)
@@ -115,4 +113,3 @@ import UnitManager from './Managers/UnitManager.js'
 import createElement from './CreateElement.js'
 import Observer from './Observer.js'
 import Timer from './Timer.js'
-

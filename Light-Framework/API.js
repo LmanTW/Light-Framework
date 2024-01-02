@@ -6,6 +6,8 @@ Version: v${info.version}
 
 Github: ${info.github}`)
 
+checkEnvironment()
+
 // API
 export default class {
   static get Animation () {return Animation}
@@ -51,8 +53,8 @@ export default class {
 }
 
 import { getComponentIdFromParent, getComponent } from './Modules/Components.js'
+import checkEnvironment from './Modules/CheckEnvironment.js'
 import createSvgElement from './Modules/CreateSvgElement.js'
 import createElement from './Modules/CreateElement.js'
 import Animation from './Modules/Animation.js'
 import Core from './Modules/Core.js'
-
