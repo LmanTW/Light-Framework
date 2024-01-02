@@ -15,6 +15,9 @@ server.listen(8080)
 ```
 
 ## Create The "Frame"
+Everytime the user first loads this application, we need a 'frame' to load all the components.
+
+* Create a file called `index.html`
 ```html
 <html>
   <body style="margin: 0px">
@@ -43,3 +46,5 @@ server.listen(8080)
   </script>
 </html>
 ```
+
+## Create Pages
