@@ -1,11 +1,11 @@
-## Example
+# Example
 An example to build a simple [SPA (Single-Page Application)](https://en.wikipedia.org/wiki/Single-page_application), which refreshs a component every time user click the "Reload" button.
 
-**File Tree**<br>
+## File Tree
 | `index.html`<br>
 | `page.html`
 
-**index.html**
+## index.html
 ```html
 <html>
   <body style="margin: 0px"></body>
@@ -20,7 +20,8 @@ An example to build a simple [SPA (Single-Page Application)](https://en.wikipedi
   </script>
 </html>
 ```
-**page.html**
+
+## page.html
 ```html
 <div id="background" light:style="display: flex; center: row column; width: 100vw; height: 100vh">
   <h1 id="button_reload" light:style="font-size: [2ps]; cursor: pointer">Reload</h1>
