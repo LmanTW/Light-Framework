@@ -1,0 +1,12 @@
+<h1>This is page 1</h1>
+<button id="button_load">Load page 2</button>
+
+<script type="module">
+  import Light from 'https://framework.light.tw/Asset/Light.mjs'
+
+  let component = Light.getComponent()
+
+  component.Event.listen(document.getElementById('button_load'), 'click', () => {
+    console.log(true)
+  })
+</script>
