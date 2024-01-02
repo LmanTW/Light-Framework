@@ -1,7 +1,8 @@
 # Special HTML Attributes
 Light-Framework adds special attributes to [HTML](https://en.wikipedia.org/wiki/HTML). These attributes all start with `light:` and can be added through plugins.
 
-## Built In Attributes
+## Built-In Attributes
+Light-Framework has several built-in attributes that provide some useful functionality.
 
 ### light:style
 It's like the `style` attribute, but with extra functionality like: `custom unit`, `webkit compatibility`, and some special property.
