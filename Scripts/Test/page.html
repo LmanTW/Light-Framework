@@ -1,5 +1,5 @@
-<div>
-  <h1 light:style="h">Reload</h1>
+<div id="background" light:style="display: flex; center: row column; width: 100vw; height: 100vh">
+  <h1 id="button_reload" light:style="font-size: [2ps]; cursor: pointer">Reload</h1>
 </div>
 
 <script type="module">
@@ -7,5 +7,15 @@
 
   let component = Light.getComponent('div')
 
-  console.log(component)
+  const background = document.getElementById('background')
+  const button_reload = document.getElementById('button_reload')
+
+  background.style.backgroundColor = `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`
+
+  component.Event.listen(button_reload, 'click', async () => {
+    component.remove()
+
+    new Light(document.body.appendChild(Light.createElement('div')))
+      .load(await (await fetch('./page.html')).text())
+  })
 </script>

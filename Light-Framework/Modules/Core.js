@@ -63,6 +63,13 @@ export default class {
       html: { type: ['string'] }
     }, { html })
 
+    this.#root.remove()
+
+    this.EventManager.clear()
+    this.Timer.deleteAllTimers()
+
+    while (this.#root.firstChild) this.#root.firstChild.remove()  
+
     Array.from(createElement('div', { innerHTML: html }).children).forEach((child) => {
       if (child.tagName === 'SCRIPT') {
         let options = { type: child.getAttribute('type'), src: child.getAttribute('src'), innerHTML: child.innerHTML }

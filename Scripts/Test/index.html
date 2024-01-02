@@ -1,19 +1,13 @@
 <html>
-  <body></body>
+  <body style="margin: 0px">
+    <div id="navbar"></div>
+    <div id="pageContent"></div>
+  </body>
  
   <script type="module">
     import Light from 'https://framework.light.tw/Asset/Light.mjs'
 
-    let contentComponent
-
-    var reloadPageContent = async () => {
-      if (contentComponent !== undefined) contentComponent.remove()
-
-      contentComponent = new Light(document.body.appendChild(Light.createElement('div')))
-
-      contentComponent.load(await (await fetch('./page.html')).text())
-    }
-
-    reloadPageContent()
+    new Light(document.body.appendChild(Light.createElement('div')))
+      .load(await (await fetch('./page.html')).text())
   </script>
 </html>
