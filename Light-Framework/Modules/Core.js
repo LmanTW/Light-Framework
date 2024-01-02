@@ -1,15 +1,18 @@
 // Core
 export default class {
   #root
+  #id
 
-  constructor (target) {
+  constructor (target, api) {
     if (typeof target !== 'string' && !(target instanceof HTMLElement)) throw new Error('Parameter "target" Must Be A <string> Or An Instance Of HTMLElement')
 
     this.#root = (typeof target === 'string') ? document.querySelector(target) : target
 
     if (this.#root === null) throw new Error(`Target Not Found: ${target}`)
+    if (this.#root.getAttribute('light') !== null) throw new Error('Target Is Already A Light Component')
 
-    this.#root.setAttribute('light', '')
+    this.#id = createComponent(api)
+    this.#root.setAttribute('light')
 
     this.EventManager = new EventManager()
     this.Timer = new Timer()
@@ -56,8 +59,29 @@ export default class {
 
   get root () {return this.#root}
 
+  // Load
+  load (html) {
+    checkParameters({
+      html: { type: ['string'] }
+    }, { html })
+
+    Array.from(createElement('div', { innerHTML: html }).children).forEach((child) => {
+      if (child.tagName === 'SCRIPT') {
+        let options = { type: child.getAttribute('type'), src: child.getAttribute('src'), innerHTML: child.innerHTML }
+    
+        Object.keys(options).forEach((key) => {
+          if (options[key] === null) delete options[key]
+        })
+
+        this.#root.appendChild(createElement('script', options))
+      } else this.#root.appendChild(child)
+    })
+  }
+
   // Remove 
   remove () {
+    deleteComponent(this.#id)
+
     this.#root.remove()
 
     this.EventManager.clear()
@@ -79,9 +103,11 @@ function addClass (element, className) {
 
 import parseCssToObject from './Tools/ParseCssToObject.js'
 import parseObjectToCss from './Tools/ParseObjectToCss.js'
+import checkParameters from './Tools/CheckParameters.js'
 import parseStyleValue from './Tools/ParseStyleValue.js'
 import applyStyle from './Tools/ApplyStyle.js'
 
+import { createComponent, deleteComponent } from './Components.js'
 import AttributeManager from './Managers/AttributeManager.js'
 import StyleManager from './Managers/StyleManager.js'
 import EventManager from './Managers/EventManager.js'
@@ -89,3 +115,4 @@ import UnitManager from './Managers/UnitManager.js'
 import createElement from './CreateElement.js'
 import Observer from './Observer.js'
 import Timer from './Timer.js'
+

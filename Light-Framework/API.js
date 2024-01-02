@@ -12,10 +12,19 @@ export default class {
   static get createElement () {return createElement}
   static get createSvgElement () {return createSvgElement}
 
+  // Get Component
+  static getComponent () {
+    let scripts = document.querySelectorAll('script[type="module"]')
+
+    let id = getComponentIdFromParent(scripts[scripts.length-1])
+
+    return getComponent(id)
+  }
+
   #Core
 
   constructor (selector) {
-    this.#Core = new Core(selector)
+    this.#Core = new Core(selector, this)
 
     this.Event = this.#Core.EventManager
     this.Timer = this.#Core.Timer
@@ -27,7 +36,12 @@ export default class {
 
   // Use Plugin
   use (Plugin) {
-    return new Plugin(this.#Core)
+    return new Plugin(this.#Core, this)
+  }
+
+  // Load
+  load (html) {
+    this.#Core.load(html)
   }
 
   // Remove
@@ -36,7 +50,9 @@ export default class {
   }
 }
 
+import { getComponentIdFromParent, getComponent } from './Modules/Components.js'
 import createSvgElement from './Modules/CreateSvgElement.js'
 import createElement from './Modules/CreateElement.js'
 import Animation from './Modules/Animation.js'
 import Core from './Modules/Core.js'
+
