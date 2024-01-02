@@ -1,12 +1,12 @@
 <h1>This is page 1</h1>
 <button id="button_load">Load page 2</button>
 
-<script type="module">
-  import Light from 'https://framework.light.tw/Asset/Light.mjs'
+<script id="script_page1" type="module">
+  import Light from '../../Light-Framework/API.js'
 
-  let component = Light.getComponent()
+  let component = Light.getComponent(document.getElementById('script_page1'))
 
-  component.Event.listen(document.getElementById('button_load'), 'click', () => {
-    console.log(true)
+  component.Event.listen(document.getElementById('button_load'), 'click', async () => {
+    component.load(await (await fetch('./page2.html')).text())
   })
 </script>

@@ -12,11 +12,11 @@ function checkParameters (conditions, parameters) {
     }
     if (conditions[name].value !== undefined && !conditions[name].value.includes(parameters[name])) throw new Error(`Parameter "${name}" Must Be ${conditions[name].value.join(' Or ')}`)
     if (conditions[name].instance !== undefined) {
-      for (let constructor in conditions[name].instance) {
+      for (let constructor of conditions[name].instance) {
         if (parameters[name] instanceof constructor) return true
       }
 
-      throw new Error(`Parameter "${name}" Must Be An Instance Of ${conditions[name].instance.join(' Or ')}`)
+      throw new Error(`Parameter "${name}" Must Be An Instance Of ${conditions[name].instance.map((constructor) => constructor.name).join(' Or ')}`)
     }
   })
 

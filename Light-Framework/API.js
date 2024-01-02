@@ -13,10 +13,13 @@ export default class {
   static get createSvgElement () {return createSvgElement}
 
   // Get Component
-  static getComponent () {
-    let scripts = document.querySelectorAll('script[type="module"]')
+  static getComponent (element) {
+    console.log(element instanceof HTMLElement)
+    checkParameters({
+      element: { instance: [HTMLElement] }
+    }, { element })
 
-    let id = getComponentIdFromParent(scripts[scripts.length-1])
+    let id = getComponentIdFromParent(element)
 
     return getComponent(id)
   }
@@ -51,6 +54,7 @@ export default class {
 }
 
 import { getComponentIdFromParent, getComponent } from './Modules/Components.js'
+import checkParameters from './Modules/Tools/CheckParameters.js'
 import createSvgElement from './Modules/CreateSvgElement.js'
 import createElement from './Modules/CreateElement.js'
 import Animation from './Modules/Animation.js'
