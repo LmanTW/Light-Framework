@@ -70,7 +70,7 @@ export default class {
 
     Array.from(createElement('div', { innerHTML: html }).children).forEach((child) => {
       if (child.tagName === 'SCRIPT') {
-        let options = { type: child.getAttribute('type'), src: child.getAttribute('src'), innerHTML: child.innerHTML }
+        let options = { id: child.getAttribute('id'), type: child.getAttribute('type'), src: child.getAttribute('src'), innerHTML: child.innerHTML }
     
         Object.keys(options).forEach((key) => {
           if (options[key] === null) delete options[key]

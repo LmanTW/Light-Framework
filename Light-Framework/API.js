@@ -14,7 +14,6 @@ export default class {
 
   // Get Component
   static getComponent (element) {
-    console.log(element instanceof HTMLElement)
     checkParameters({
       element: { instance: [HTMLElement] }
     }, { element })
