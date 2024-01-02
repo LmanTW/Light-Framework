@@ -1,5 +1,5 @@
 # Create An Simple Application
-Let's build an simple application with Light-Framework that contains two main components.
+Let's build an simple application with Light-Framework that contains two main components (`navbar` and `pageContent`).
 
 ## Create A HTTP Server
 If you don't know how to create a http server, here's an example using [node.js](https://nodejs.org/en) and [express](https://expressjs.com/).
