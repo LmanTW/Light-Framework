@@ -48,3 +48,37 @@ Everytime the user first loads this application, we need a 'frame' to load all t
 ```
 
 ## Create Pages
+* Create a file called `page1.html`
+```html
+<h1>This is page 1</h1>
+<button id="button_load">Load page 2</button>
+
+<script id="script_page1" type="module">
+  import Light from '../../Light-Framework/API.js'
+
+  // Get the component, this funciton will search upward along parentElement to find component root and return the Light instance
+  let component = Light.getComponent(document.getElementById('script_page1'))
+
+  // Listen to button click event (Using .Event.Listen so that everytime the component gets removed or loaded, the listener will be removed)
+  component.Event.listen(document.getElementById('button_load'), 'click', async () => {
+    component.load(await (await fetch('./page2.html')).text())
+  })
+</script>
+```
+* Create a file called `page2.html`
+```html
+<h1>This is page 2</h1>
+<button id="button_load">Load page 1</button>
+
+<script id="script_page1" type="module">
+  import Light from '../../Light-Framework/API.js'
+
+  // Pretty much the same as page 1
+
+  let component = Light.getComponent(document.getElementById('script_page1'))
+
+  component.Event.listen(document.getElementById('button_load'), 'click', async () => {
+    component.load(await (await fetch('./page1.html')).text())
+  })
+</script>
+```
