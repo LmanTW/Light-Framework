@@ -1,11 +1,11 @@
-<body>
-  <div light:style="background-color: black; width: [10ps]; height: [10ps]"></div>
-</body>
+<div>
+  <h1 light:style="h">Reload</h1>
+</div>
 
 <script type="module">
-  import Light from '../../Light-Framework/API.js'
+  import Light from 'https://framework.light.tw/Asset/Light.mjs'
 
-  let component = Light.getComponent(document.currentScript)
+  let component = Light.getComponent('div')
 
   console.log(component)
 </script>

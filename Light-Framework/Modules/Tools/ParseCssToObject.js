@@ -5,6 +5,8 @@ export default (style) => {
   style.split(';').forEach((chunk) => {
     let [name, value] = chunk.split(':')
 
+    if (value === undefined) return
+
     name = name.replaceAll(' ', '').split('')
 
     while (name.includes('-')) {

@@ -1,13 +1,19 @@
 <html>
-  <body>
-    
-  </body>
-
+  <body></body>
+ 
   <script type="module">
-    import Light from '../../Light-Framework/API.js'
+    import Light from 'https://framework.light.tw/Asset/Light.mjs'
 
-    let app = new Light(document.body)
+    let contentComponent
 
-    app.load(await (await fetch('./page.html')).text())
+    var reloadPageContent = async () => {
+      if (contentComponent !== undefined) contentComponent.remove()
+
+      contentComponent = new Light(document.body.appendChild(Light.createElement('div')))
+
+      contentComponent.load(await (await fetch('./page.html')).text())
+    }
+
+    reloadPageContent()
   </script>
 </html>
