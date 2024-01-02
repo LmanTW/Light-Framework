@@ -1,5 +1,5 @@
-# Create An Application
-Let's build an application with Light-Framework that contains two main components.
+# Create An Simple Application
+Let's build an simple application with Light-Framework that contains two main components.
 
 ## Create A HTTP Server
 If you don't know how to create a http server, here's an example using [node.js](https://nodejs.org/en) and [express](https://expressjs.com/).
@@ -82,3 +82,7 @@ Everytime the user first loads this application, we need a 'frame' to load all t
   })
 </script>
 ```
+
+## Check Your Application
+You just made a SPA with  
+Use you browser to enter `http://localhost:8080` to check your application
