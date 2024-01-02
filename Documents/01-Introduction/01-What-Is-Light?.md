@@ -1,4 +1,4 @@
-# What Is Light?
+# What Is Light
 Light-Framework is a really simple framework for building [SPA (Single-Page Application)](https://en.wikipedia.org/wiki/Single-page_application). It provides APIs to both Javascript and HTML, and also allow developers to easily build plugins to extend the framework.
 
 ## Keep things simple
