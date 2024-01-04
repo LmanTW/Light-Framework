@@ -4,6 +4,11 @@
   * [createElement()](#createelement)
   * [createSvgElement()](#createsvgelement)
 * [Light()](#light2)
+  * [Event](#event)
+    * [listen()](#listen)
+  * [Timer](#timer)
+  * [load()](#load)
+  * [remove()](#remove)
 
 # Light
 ```js
@@ -50,3 +55,9 @@ Light.createSvgElement(src, options) // Create Svg Element
 * `options <undefined || object>` | Attribute to the element
 
 # Light()
+```js
+new Light(<target>) // Create a component
+```
+* `target <string || HTMLElement>` | The root of the component
+
+## load()
