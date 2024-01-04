@@ -30,7 +30,7 @@ Light.createElement(tagName, options, children) // Create Element
 > return `<HTMLElement>`
 
 You can also use certain [Special HTML Attributes](/document?page=02-Get-Started%2F03-Special-HTML-Attribute.md) in options, like:
-* `style` as `light:style` | A object of styles, the name is same as the dom (like: `backgroundColor` instead of `background-color`)
+* `style` as `light:style` | A object of styles, the name matches the styles in the DOM (like: `backgroundColor` instead of `background-color`)
 * `hover` as `light:style:hover` | A object of styles, like `style`
 * `trigger` as `light:trigger` | Same as the [Special HTML Attribute](/document?page=02-Get-Started%2F03-Special-HTML-Attribute.md&header=lighttrigger) of `light:trigger`
 
@@ -41,5 +41,12 @@ document.body.appendChild(Light.createElement('div', { style: { backgroundColor:
   Light.createElement('div')
 ]))
 ```
+
+## createSvgElement()
+```js
+Light.createSvgElement(src, options) // Create Svg Element
+```
+* `src <string>` | The source of the svg image (a link or path)
+* `options <undefined || object>` | Attribute to the element
 
 # Light()
