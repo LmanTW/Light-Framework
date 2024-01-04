@@ -10,11 +10,11 @@ export default (tagName, options, children) => {
 
   if (options !== undefined) {
     if (options.class !== undefined) options.classList = options.class
-    if (options.style !== undefined) options.style = Tools.applyStyle(options.style)
+    if (options.style !== undefined) options.style = Tools.parseObjectToCss(Tools.applyStyle(options.style))
 
     Object.keys(options).forEach((key) => {
       if (key === 'innerHTML') element.innerHTML = options[key]
-      else if (key === 'style') element.setAttribute('light:style', Tools.parseObjectToCss(options[key]))
+      else if (specialAttributes[key] !== undefined) element.setAttribute(specialAttributes[key], options[key])
       else element.setAttribute(key, options[key])
     })
   }
@@ -25,3 +25,9 @@ export default (tagName, options, children) => {
 }
 
 import Tools from './Tools.js'
+
+const specialAttributes = {
+  style: 'light:style',
+  hover: 'light:style:hover',
+  trigger: 'light:trigger'
+}
