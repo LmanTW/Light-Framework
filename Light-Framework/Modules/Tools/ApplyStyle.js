@@ -18,11 +18,7 @@ export default (style) => {
     delete style.center
   }
 
-  webkit.forEach((name) => {
-    if (style[name] !== undefined) style[`-webkit-${name}`] = style[name]
-  })
+  Object.keys((name) => style[`-webkit-${name}`] = style[name])
 
   return style
 }
-
-const webkit = ['backdropFilter']
