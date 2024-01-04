@@ -54,6 +54,8 @@ Light.createSvgElement(src, options) // Create Svg Element
 * `src <string>` | The source of the svg image (a link or path)
 * `options <undefined || object>` | Attribute to the element
 
+> return `<HTMLElement>`
+
 # Light()
 ```js
 new Light(<target>) // Create a component
@@ -61,3 +63,17 @@ new Light(<target>) // Create a component
 * `target <string || HTMLElement>` | The root of the component
 
 ## load()
+```js
+.load(html) // Load the component from html
+```
+* `html <string>` | [HTML](https://zh.wikipedia.org/zh-tw/HTML) code
+
+> return `<undefined>`
+
+## remove()
+```js
+.remove() // Remove the component
+```
+This will also remove the root element of the component
+
+> return `<undefined>`
