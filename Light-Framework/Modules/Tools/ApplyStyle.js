@@ -25,4 +25,4 @@ export default (style) => {
   return style
 }
 
-const webkit = ['backdrop-filter']
+const webkit = ['backdropFilter']
