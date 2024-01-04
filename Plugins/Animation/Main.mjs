@@ -4,13 +4,13 @@ import animejs from 'https://unpkg.com/animejs@3.2.2/lib/anime.es.js'
 export default {
   id: 'Animation',
 
-  register: (API) => {
+  register: (API, Tools) => {
     API.Animation = {
       // Transform
       transform: (target, transforms, options) => {
         if (!Array.isArray(target) && !(target instanceof HTMLElement)) throw new Error('Parameter "target" Must Be A <array> Or An Instance Of HTMLElement')
 
-        checkParameters({
+        Tools.checkParameters({
           transforms: { type: ['object'] },
           options: { type: ['undefined', 'object'] }
         }, { transforms, options })
@@ -45,7 +45,7 @@ export default {
       keyframe: (target, keyframes, options) => {
         if (!Array.isArray(target) && !(target instanceof HTMLElement)) throw new Error('Parameter "target" Must Be A <array> Or An Instance Of HTMLElement')
 
-        checkParameters({
+        Tools.checkParameters({
           keyframes: { type: ['array'] },
           options: { type: ['undefined', 'object'] }
         }, { keyframes, options })
