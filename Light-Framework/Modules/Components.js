@@ -1,12 +1,12 @@
 export { createComponent, deleteComponent, getComponentIdFromParent, getComponent }
 
-import generateID from './Tools/GenerateID.js'
+import Tools from './Tools.js'
 
 let components = {}
 
 // Create Component
 function createComponent (component) {
-  let id = generateID(5, Object.keys(components))
+  let id = Tools.generateID(5, Object.keys(components))
 
   components[id] = component
   

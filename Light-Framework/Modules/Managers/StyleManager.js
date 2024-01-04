@@ -9,7 +9,7 @@ let styles = {
 export default class {
   // Create Style
   createStyle (style) {
-    checkParameters({
+    Tools.checkParameters({
       style: { type: ['string'] }
     }, { style })
  
@@ -17,7 +17,7 @@ export default class {
       if (styles.style[id] === style) return id
     }
 
-    let id = `style-${generateID(5, Object.keys(styles.hover))}`
+    let id = `style-${Tools.generateID(5, Object.keys(styles.hover))}`
 
     styles.style[id] = style
 
@@ -28,7 +28,7 @@ export default class {
 
   // Create Hover Style
   createHoverStyle (style) {
-    checkParameters({
+    Tools.checkParameters({
       style: { type: ['string'] }
     }, { style })
 
@@ -36,7 +36,7 @@ export default class {
       if (styles.hover[id] === style) return id
     }
 
-    let id = `hover-${generateID(5, Object.keys(styles.hover))}`
+    let id = `hover-${Tools.generateID(5, Object.keys(styles.hover))}`
 
     styles.hover[id] = style
 
@@ -56,5 +56,4 @@ function compileStyle () {
   style.textContent = chunks.join('')
 }
 
-import checkParameters from '../Tools/CheckParameters.js'
-import generateID from '../Tools/GenerateID.js'
+import Tools from '../Tools.js'

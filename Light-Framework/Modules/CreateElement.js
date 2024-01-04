@@ -1,6 +1,6 @@
 // Create Element
 export default (tagName, options, children) => {
-  checkParameters({
+  Tools.checkParameters({
     tagName: { type: ['string'] },
     options: { type: ['undefined', 'object'] },
     children: { type: ['undefined', 'array'] }
@@ -10,11 +10,11 @@ export default (tagName, options, children) => {
 
   if (options !== undefined) {
     if (options.class !== undefined) options.classList = options.class
-    if (options.style !== undefined) options.style = applyStyle(options.style)
+    if (options.style !== undefined) options.style = Tools.applyStyle(options.style)
 
     Object.keys(options).forEach((key) => {
       if (key === 'innerHTML') element.innerHTML = options[key]
-      else if (key === 'style') element.setAttribute('light:style', parseObjectToCss(options[key]))
+      else if (key === 'style') element.setAttribute('light:style', Tools.parseObjectToCss(options[key]))
       else element.setAttribute(key, options[key])
     })
   }
@@ -24,7 +24,4 @@ export default (tagName, options, children) => {
   return element
 }
 
-import checkParameters from './Tools/CheckParameters.js'
-
-import parseObjectToCss from './Tools/ParseObjectToCss.js'
-import applyStyle from './Tools/ApplyStyle.js'
+import Tools from './Tools.js'

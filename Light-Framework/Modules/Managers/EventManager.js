@@ -4,12 +4,12 @@ export default class {
 
   // Listen
   listen (target, name, callback) {
-    checkParameters({
+    Tools.checkParameters({
       name: { type: ['string'] },
       callback: { type: ['function'] }
     }, { name, callback })
 
-    let id = generateID(5, Object.keys(this.#events))
+    let id = Tools.generateID(5, Object.keys(this.#events))
 
     this.#events[id] = { target, name, callback }
 
@@ -18,7 +18,7 @@ export default class {
 
   // Clear Listener(s)
   clear (id) {
-    checkParameters({
+    Tools.checkParameters({
       id: { type: ['undefined', 'string'] }
     }, { id })
 
@@ -27,5 +27,4 @@ export default class {
   }
 }
 
-import checkParameters from '../Tools/CheckParameters.js'
-import generateID from '../Tools/GenerateID.js'
+import Tools from '../Tools.js'

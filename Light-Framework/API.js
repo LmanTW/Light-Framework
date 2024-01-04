@@ -7,14 +7,15 @@ Version: v${info.version}
 Github: ${info.github}`)
 
 // API
-export default class {
-  static get Animation () {return Animation}
+class API { 
+  static get use () {return PluginManager.use}
+
   static get createElement () {return createElement}
   static get createSvgElement () {return createSvgElement}
 
   // Get Component
   static getComponent (element) {
-    checkParameters({
+    Tools.checkParameters({
       element: { instance: [HTMLElement] }
     }, { element })
 
@@ -52,9 +53,12 @@ export default class {
   }
 }
 
+export default API
+
 import { getComponentIdFromParent, getComponent } from './Modules/Components.js'
-import checkParameters from './Modules/Tools/CheckParameters.js'
+import PluginManager from './Modules/Managers/PluginManager.js'
 import createSvgElement from './Modules/CreateSvgElement.js'
 import createElement from './Modules/CreateElement.js'
-import Animation from './Modules/Animation.js'
+import Tools from './Modules/Tools.js'
 import Core from './Modules/Core.js'
+

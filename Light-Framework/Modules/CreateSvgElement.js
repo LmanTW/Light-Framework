@@ -41,4 +41,4 @@ class CustomElement extends HTMLElement {
   }
 }
 
-customElements.define('light-svg', CustomElement)
+if (customElements.get('light-svg') !== undefined) customElements.define('light-svg', CustomElement)

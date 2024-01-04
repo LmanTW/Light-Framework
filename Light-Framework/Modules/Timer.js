@@ -32,12 +32,12 @@ export default class {
 
   // Create Interval
   createInterval (interval, callback) {
-    checkParameters({
+    Tools.checkParameters({
       interval: { type: ['number'] },
       callback: { type: ['function'] }
     }, { interval, callback })
 
-    let id = generateID(5, Object.keys(this.#timers))
+    let id = Tools.generateID(5, Object.keys(this.#timers))
 
     this.#timers[id] = {
       interval,
@@ -54,14 +54,14 @@ export default class {
 
   // Create Loop
   createLoop (interval, times, callback, callback2) {
-    checkParameters({
+    Tools.checkParameters({
       interval: { type: ['number'] },
       times: { type: ['number'] },
       callback: { type: ['function'] },
       callback2: { type: ['undefined', 'function'] }
     }, { interval, times, callback, callback2 })
 
-    let id = generateID(5, Object.keys(this.#timers))
+    let id = Tools.generateID(5, Object.keys(this.#timers))
 
     this.#timers[id] = {
       interval,
@@ -79,7 +79,7 @@ export default class {
 
   // Delete Timer
   deleteTimer (id) {
-    checkParameters({
+    Tools.checkParameters({
       id: { type: ['string'] }
     }, { id })
 
@@ -96,5 +96,4 @@ export default class {
   }
 }
 
-import checkParameters from './Tools/CheckParameters.js'
-import generateID from './Tools/GenerateID.js'
+import Tools from './Tools.js'

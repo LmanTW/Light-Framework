@@ -1,20 +1,15 @@
 <html>
-  <body style="margin: 0px">
-    <div id="navbar" light:style="display: flex; center: column; background-color: green; width: 100vw; height: [3ps]"></div>
-    <div id="pageContent" light:style="display: flex; flex-direction: column; center: row column; width: 100vw; height: calc(100vh - [3ps])"></div>
+  <body>
+
   </body>
  
   <script type="module">
     import Light from '../../Light-Framework/API.js'
 
+    import Animation from '../../Plugins/Animation.js'
+
+    Light.use(Animation)
+
     new Light(document.body)
-
-    new Light('#navbar')
-      .load(await (await fetch('./navbar.html')).text())
-
-    new Light('#pageContent')
-      .load(await (await fetch('./page1.html')).text())
-
-      document.querySelector('#pageContent')
   </script>
 </html>

@@ -24,7 +24,7 @@ export default class {
     this.UnitManager = new UnitManager(this)
 
     this.AttributeManager.createAttribute('style', (element, value) => {
-      let styles = applyStyle(parseCssToObject(parseStyleValue(value, this.UnitManager.units)))
+      let styles = Tools.applyStyle(Tools.parseCssToObject(Tools.parseStyleValue(value, this.UnitManager.units)))
 
       let lateStyles = {}
 
@@ -41,11 +41,11 @@ export default class {
       if (classList.length > 0) element.setAttribute('class', classList.join(' '))
       else element.removeAttribute('class')
 
-      addClass(element, this.StyleManager.createStyle(parseObjectToCss(styles)))
+      addClass(element, this.StyleManager.createStyle(Tools.parseObjectToCss(styles)))
 
       window.requestAnimationFrame(() => Object.keys(lateStyles).forEach((name) => element.style[name] = lateStyles[name]), 50)
     })
-    this.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, this.StyleManager.createHoverStyle(parseStyleValue(value, this.UnitManager.units))))
+    this.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, this.StyleManager.createHoverStyle(Tools.parseStyleValue(value, this.UnitManager.units))))
     this.AttributeManager.createAttribute('trigger', (element, value) => this.EventManager.listen(element, 'click', () => {
       if (value[0] === '/') window.location.href = value
       else if (value.substring(0, 7) === 'http://' || value.substring(0, 8) === 'https://') window.open(value)
@@ -53,13 +53,15 @@ export default class {
     }))
 
     this.UnitManager.createUnit('ps', (value) => `calc(calc(1vw + 1vh)* ${value})`)
+
+    PluginManager.initializePlugins(this)
   }
 
   get root () {return this.#root}
 
   // Load
   load (html) {
-    checkParameters({
+    Tools.checkParameters({
       html: { type: ['string'] }
     }, { html })
 
@@ -104,17 +106,13 @@ function addClass (element, className) {
   element.setAttribute('class', classList.join(' '))
 }
 
-import parseCssToObject from './Tools/ParseCssToObject.js'
-import parseObjectToCss from './Tools/ParseObjectToCss.js'
-import checkParameters from './Tools/CheckParameters.js'
-import parseStyleValue from './Tools/ParseStyleValue.js'
-import applyStyle from './Tools/ApplyStyle.js'
-
 import { createComponent, deleteComponent } from './Components.js'
 import AttributeManager from './Managers/AttributeManager.js'
+import PluginManager from './Managers/PluginManager.js'
 import StyleManager from './Managers/StyleManager.js'
 import EventManager from './Managers/EventManager.js'
 import UnitManager from './Managers/UnitManager.js'
 import createElement from './CreateElement.js'
 import Observer from './Observer.js'
 import Timer from './Timer.js'
+import Tools from './Tools.js'

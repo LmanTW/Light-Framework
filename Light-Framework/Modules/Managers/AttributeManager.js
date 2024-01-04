@@ -12,7 +12,7 @@ export default class {
 
   // Create Attribute
   createAttribute (name, callback) {
-    checkParameters({
+    Tools.checkParameters({
       name: { type: ['string'] },
       callback: { type: ['function'] }
     }, { name, callback })
@@ -26,7 +26,7 @@ export default class {
 
   // Delete Attribute
   deleteAttribute (name) {
-    checkParameters({
+    Tools.checkParameters({
       name: { type: ['string'] }
     }, { name })
 
@@ -38,4 +38,4 @@ export default class {
   }
 }
 
-import checkParameters from '../Tools/CheckParameters.js'
+import Tools from '../Tools.js'
