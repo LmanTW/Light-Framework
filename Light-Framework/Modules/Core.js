@@ -75,10 +75,10 @@ export default class {
     console.log(newRoot.children)
 
     Array.from(createElement('div', { innerHTML: html }).children).forEach((child) => {
-      if (child.tagName !== 'SCRIPT') newRoot.appendChild(options)
+      if (child.tagName !== 'SCRIPT') newRoot.appendChild(child)
     })
 
-    this.#root.replaceWith(newRoow)
+    this.#root.replaceWith(newRoot)
 
     this.#root = newRoot
 
