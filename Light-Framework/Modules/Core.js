@@ -68,11 +68,9 @@ export default class {
     this.EventManager.clear()
     this.Timer.deleteAllTimers()
 
-    //while (this.#root.firstChild) this.#root.firstChild.remove()
-
     let newRoot = this.#root.cloneNode(true)
 
-    console.log(newRoot.children)
+    while (newRoot.firstChild) newRoot.firstChild.remove()
 
     Array.from(createElement('div', { innerHTML: html }).children).forEach((child) => {
       if (child.tagName !== 'SCRIPT') newRoot.appendChild(child)
