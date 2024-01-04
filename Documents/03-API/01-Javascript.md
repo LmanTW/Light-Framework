@@ -1,5 +1,5 @@
 # Javascript API
-* [Light](#Light)
+* [Light](#light)
   * [use()](#use)
   * [createElement()](#createelement)
   * [createSvgElement()](#createsvgelement)
