@@ -6,10 +6,12 @@
   <script type="module">
     import Light from '../../Light-Framework/API.js'
 
-    import Animation from '../../Plugins/Animation.js'
+    import Animation from '../../Plugins/Animation/Main.mjs'
 
     Light.use(Animation)
 
     new Light(document.body)
+
+    document.body.appendChild(Light.createElement('div', { style: { backgroundColor: 'green', width: '[10ps]', height: '[10ps]', opacity: 0.5, transitionDuration: '0.5s' }, hover: { opacity: 1 }}))
   </script>
 </html>
