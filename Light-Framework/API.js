@@ -37,11 +37,6 @@ class API {
 
   get root () {return this.#Core.root}
 
-  // Use Plugin
-  use (Plugin) {
-    return new Plugin(this.#Core, this)
-  }
-
   // Load
   load (html) {
     this.#Core.load(html)
