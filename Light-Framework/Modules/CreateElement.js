@@ -10,11 +10,10 @@ export default (tagName, options, children) => {
 
   if (options !== undefined) {
     if (options.class !== undefined) options.classList = options.class
-    if (options.style !== undefined) options.style = Tools.parseObjectToCss(Tools.applyStyle(options.style))
 
     Object.keys(options).forEach((key) => {
       if (key === 'innerHTML') element.innerHTML = options[key]
-      else if (specialAttributes[key] !== undefined) element.setAttribute(specialAttributes[key], options[key])
+      else if (specialAttributes[key] !== undefined) element.setAttribute(specialAttributes[key], (['style', 'hover'].includes(key)) ? Tools.parseObjectToCss(Tools.applyStyle(options[key])) : options[key])
       else element.setAttribute(key, options[key])
     })
   }

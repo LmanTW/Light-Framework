@@ -68,7 +68,19 @@ export default class {
     this.EventManager.clear()
     this.Timer.deleteAllTimers()
 
-    while (this.#root.firstChild) this.#root.firstChild.remove()
+    //while (this.#root.firstChild) this.#root.firstChild.remove()
+
+    let newRoot = this.#root.cloneNode(true)
+
+    console.log(newRoot.children)
+
+    Array.from(createElement('div', { innerHTML: html }).children).forEach((child) => {
+      if (child.tagName !== 'SCRIPT') newRoot.appendChild(options)
+    })
+
+    this.#root.replaceWith(newRoow)
+
+    this.#root = newRoot
 
     Array.from(createElement('div', { innerHTML: html }).children).forEach((child) => {
       if (child.tagName === 'SCRIPT') {
@@ -79,7 +91,7 @@ export default class {
         })
 
         this.#root.appendChild(createElement('script', options))
-      } else this.#root.appendChild(child)
+      }
     })
   }
 
