@@ -26,8 +26,8 @@ class API {
 
   #Core
 
-  constructor (selector) {
-    this.#Core = new Core(selector, this)
+  constructor (target) {
+    this.#Core = new Core(target, this)
 
     this.Event = this.#Core.EventManager
     this.Timer = this.#Core.Timer
