@@ -6,7 +6,7 @@
 * [Light()](#light2)
   * [Event](#event)
     * [listen()](#listen)
-    * [clear()](#clear)
+    * [remove()](#remove)
   * [Timer](#timer)
     * [createInterval()](#createinterval)
     * [createLoop()](#createloop)
@@ -130,9 +130,9 @@ We recommend you to use this when you're trying to listen to an event, because t
 
 > return `id <string>`
 
-## clear()
+## remove()
 ```js
-.clear(<id>) // Remove listener
+.remove(<id>) // Remove listener
 ```
 * `id <undefined || string>` | The ID of the listener (if the ID is <undefined>, then it will simply remove all the listeners under this component).
 
@@ -162,6 +162,12 @@ We recommend you to use this when you're trying to create interval or timeout, b
 * `callback <function>` | A function that you want to execute
 * `callback2 <undefined || function>` | A function that you want to execute when the loop is finished
 
+> return `id <string>`
+
 ## deleteTimer()
 ```js
+.deleteTimer(<id>) // Delete timer
 ```
+* `id <string>` | The id of the timer that you want to delete
+
+> return `undefined`
