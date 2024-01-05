@@ -6,19 +6,20 @@
 * [Light()](#light2)
   * [Event](#event)
     * [listen()](#listen)
+    * [clear()](#clear)
   * [Timer](#timer)
   * [load()](#load)
   * [remove()](#remove)
 
 # Light
 ```js
-import Light from '<url>'
+import Light from '<url>' // Import Light-Framework
 ```
 * [Installation](/document?page=02-Get-Started%2F01-Installation.md)
 
 ## use()
 ```js
-Light.use(plugin) // Use plugin
+Light.use(plugin) // Use a plugin
 ```
 * `plugin <object>` | A plugin
 
@@ -35,7 +36,7 @@ Light.createElement(tagName, options, children) // Create Element
 > return `<HTMLElement>`
 
 You can also use certain [Special HTML Attributes](/document?page=02-Get-Started%2F03-Special-HTML-Attribute.md) in options, like:
-* `style` as `light:style` | A object of styles, the name matches the styles in the DOM (like: `backgroundColor` instead of `background-color`)
+* `style` as `light:style` | A object of styles, the name can be like `backgroundColor` or `background-color`
 * `hover` as `light:style:hover` | A object of styles, like `style`
 * `trigger` as `light:trigger` | Same as the [Special HTML Attribute](/document?page=02-Get-Started%2F03-Special-HTML-Attribute.md&header=lighttrigger) of `light:trigger`
 
@@ -111,11 +112,29 @@ This will also remove the root element of the component
 > return `<undefined>`
 
 # Event
+```js
+new Light(<target>).Event // The event manager for this component
 ```
-new Light(<target>).Event
+
+## listen()
+```js
+.listen(<target>, <name>, <callback>) // Listen to event
 ```
+* `target <HTMLElement>` | The target that you want to listen on
+* `name <string>` | The name of the event
+* `callback <function>` | A function that is triggered when the event is called
+
+> return `id <string>`
+
+## clear()
+```js
+.clear(<id>) // Remove listener
+```
+* `id <undefined || string>` | The ID of the listener (if the ID is <undefined>, then it will simply remove all the listeners under this component).
+
+> return `<undefined>`
 
 # Timer
 ```
-new Light(<target>).Timer
+new Light(<target>).Timer // The tiemr for this component
 ```
