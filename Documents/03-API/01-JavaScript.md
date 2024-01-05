@@ -1,4 +1,4 @@
-# Javascript API
+# JavaScript API
 * [Light](#light)
   * [use()](#use)
   * [createElement()](#createelement)
