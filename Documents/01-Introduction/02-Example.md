@@ -1,5 +1,5 @@
 # Example
-An example to build a simple [SPA (Single-Page Application)](https://en.wikipedia.org/wiki/Single-page_application), which refreshs a component every time user click the "Reload" button.
+An example to build a simple [SPA (Single Page Application)](https://en.wikipedia.org/wiki/Single-page_application), which refreshs a component every time user click the "Reload" button.
 
 ## File Tree
 | `index.html`<br>
