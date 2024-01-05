@@ -88,11 +88,17 @@ new Light(<target>) // Create a component
 * component.html
 ```html
 <div>
-  <h1>Hello</h1>
+  <button id="button">Click Me</button>
 </div>
 
-<script>
+<script id="script_component" type="module>
   // All the script tags should be in the outermost layer
+
+  import Light from 'https://framework.light.tw/Asset/Light.mjs'
+
+  let component = Light.getComponent(document.getElementById('script_component'))
+
+  component.Event.listen(document.getElementById('button'), 'click', () => console.log('You just clicked the button'))
 </script>
 ```
 
