@@ -39,7 +39,7 @@ Light.createElement(tagName, options, children) // Create Element
 > return `<HTMLElement>`
 
 You can also use certain [Special HTML Attributes](/document?page=02-Get-Started%2F03-Special-HTML-Attribute.md) in options, like:
-* `style` as `light:style` | A object of styles, the name can be like `backgroundColor` or `background-color`
+* `style` as `light:style` | A object of styles, the property name can either be like `backgroundColor` or `background-color`
 * `hover` as `light:style:hover` | A object of styles, like `style`
 * `trigger` as `light:trigger` | Same as the [Special HTML Attribute](/document?page=02-Get-Started%2F03-Special-HTML-Attribute.md&header=lighttrigger) of `light:trigger`
 
@@ -118,6 +118,7 @@ This will also remove the root element of the component
 ```js
 new Light(<target>).Event // The event manager for this component
 ```
+We recommend you to use this when you're trying to listen to an event, because this module removes all the listeners when the component is removed or reloaded. This ensures that you won't have unnecessary listeners.
 
 ## listen()
 ```js
@@ -140,4 +141,10 @@ new Light(<target>).Event // The event manager for this component
 # Timer
 ```
 new Light(<target>).Timer // The tiemr for this component
+```
+We recommend you to use this when you're trying to create interval or timeout, because this module removes all the timers when the component is removed or reloaded. This ensures that you won't have timers that are not suppose to trigger after the component is removed or reloaded.
+
+## createInterval()
+```
+.createInterval()
 ```
