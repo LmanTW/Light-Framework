@@ -65,8 +65,8 @@ export default class {
       html: { type: ['string'] }
     }, { html })
 
-    this.EventManager.clear()
-    this.Timer.deleteAllTimers()
+    this.EventManager.remove()
+    this.Timer.deleteTimer()
 
     let newRoot = this.#root.cloneNode(true)
 
@@ -99,8 +99,8 @@ export default class {
 
     this.#root.remove()
 
-    this.EventManager.clear()
-    this.Timer.deleteAllTimers()
+    this.EventManager.remove()
+    this.Timer.deleteTimer()
   }
 }
 
