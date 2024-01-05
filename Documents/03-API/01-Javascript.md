@@ -91,7 +91,7 @@ new Light(<target>) // Create a component
   <button id="button">Click Me</button>
 </div>
 
-<script id="script_component" type="module>
+<script id="script_component" type="module">
   // All the script tags should be in the outermost layer
 
   import Light from 'https://framework.light.tw/Asset/Light.mjs'
@@ -109,3 +109,13 @@ new Light(<target>) // Create a component
 This will also remove the root element of the component
 
 > return `<undefined>`
+
+# Event
+```
+new Light(<target>).Event
+```
+
+# Timer
+```
+new Light(<target>).Timer
+```
