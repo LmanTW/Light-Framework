@@ -9,7 +9,7 @@ It's like the `style` attribute, but with extra functionality like: `custom unit
 
 * Short CSS Variable | You can use this by using `[$<name>]` (Same as `var(--<name>)`).
 * Custom Unit | You can use this by using `[<number><unitName>]`.
-* Special Property
+* Special CSS Property
   * `center` | You can use the `center` property to center the content in the element, the value can be `row`, `column`, or both (with a space between two value)
 
 ### light:style:hover
