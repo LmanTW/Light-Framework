@@ -17,7 +17,7 @@ export default class {
   }
 
   // Clear Listener(s)
-  clear (id) {
+  remove (id) {
     Tools.checkParameters({
       id: { type: ['undefined', 'string'] }
     }, { id })

@@ -80,19 +80,18 @@ export default class {
   // Delete Timer
   deleteTimer (id) {
     Tools.checkParameters({
-      id: { type: ['string'] }
+      id: { type: ['undefined', 'string'] }
     }, { id })
 
-    if (this.#timers[id] === undefined) throw new Error(`Timer Not Found: ${id}`)
+    if (id === undefined) {
+      clearInterval(this.#interval)
 
-    delete this.#timers[id]
-  }
+      this.#timers = {}
+    } else {
+      if (this.#timers[id] === undefined) throw new Error(`Timer Not Found: ${id}`)
 
-  // Delete All Timers
-  deleteAllTimers () {
-    clearInterval(this.#interval)
-
-    this.#timers = {}
+      delete this.#timers[id]
+    }
   }
 }
 
