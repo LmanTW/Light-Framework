@@ -70,6 +70,32 @@ new Light(<target>) // Create a component
 
 > return `<undefined>`
 
+### Example
+* index.html
+```html
+<html>
+  <body></body>
+
+  <script type="module">
+    import Light from 'https://framework.light.tw/Asset/Light.mjs'
+
+    let component = new Light(document.body)
+
+    component.load(await (fetch('./component.html')).text())
+  </script>
+</html>
+```
+* component.html
+```html
+<div>
+  <h1>Hello</h1>
+</div>
+
+<script>
+  // All the script tags should be in the outermost layer
+</script>
+```
+
 ## remove()
 ```js
 .remove() // Remove the component
