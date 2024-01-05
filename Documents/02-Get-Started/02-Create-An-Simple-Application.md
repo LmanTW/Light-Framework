@@ -84,4 +84,4 @@ Everytime the user first loads this application, we need a 'frame' to load all t
 ```
 
 ## Check Your Application
-Congrats! You just made a [SPA (Single-Page Application)](https://en.wikipedia.org/wiki/Single-page_application) with Light-Framework, enter `http://localhost:8080` in your browser to check your application!
+Congrats! You just made a [SPA (Single Page Application)](https://en.wikipedia.org/wiki/Single-page_application) with Light-Framework, enter `http://localhost:8080` in your browser to check your application!
