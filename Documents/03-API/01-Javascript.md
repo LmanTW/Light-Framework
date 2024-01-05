@@ -8,6 +8,9 @@
     * [listen()](#listen)
     * [clear()](#clear)
   * [Timer](#timer)
+    * [createInterval()](#createinterval)
+    * [createLoop()](#createloop)
+    * [deleteTimer()](#deletetimer)
   * [load()](#load)
   * [remove()](#remove)
 
@@ -65,7 +68,7 @@ new Light(<target>) // Create a component
 
 ## load()
 ```js
-.load(html) // Load the component from html
+.load(html) // Load the component from html code
 ```
 * `html <string>` | [HTML](https://zh.wikipedia.org/zh-tw/HTML) code
 
