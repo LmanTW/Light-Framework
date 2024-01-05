@@ -139,12 +139,29 @@ We recommend you to use this when you're trying to listen to an event, because t
 > return `<undefined>`
 
 # Timer
-```
+```js
 new Light(<target>).Timer // The tiemr for this component
 ```
 We recommend you to use this when you're trying to create interval or timeout, because this module removes all the timers when the component is removed or reloaded. This ensures that you won't have timers that are not suppose to trigger after the component is removed or reloaded.
 
 ## createInterval()
+```js
+.createInterval(<interval>, <callback>) // Create Interval
 ```
-.createInterval()
+* `interval <number>` | Time between each interval (ms)
+* `callback <function>` | A function that you want to execute
+
+> return `id <string>`
+
+## createLoop()
+```js
+.createLoop(<interval>, <times>, <callback>, <callback2>) // Create a loop with interval
+```
+* `interval <number>` | Time between each execution (ms)
+* `times <number>` | The times you want to loop
+* `callback <function>` | A function that you want to execute
+* `callback2 <undefined || function>` | A function that you want to execute when the loop is finished
+
+## deleteTimer()
+```js
 ```
