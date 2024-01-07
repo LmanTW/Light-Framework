@@ -8,3 +8,7 @@ import Animation from 'https://framework.light.tw/Asset/Plugin/Animation.mjs'
 
 Light.use(Animation)
 ```
+[[JavaScript API](/document?page=03-API%2F01-JavaScript.md&header=use)]
+
+## Official Plugins
+* [Animation](/document?page=99-Plugins%2FAnimation) | Provides functionality for creating transformations and keyframes
