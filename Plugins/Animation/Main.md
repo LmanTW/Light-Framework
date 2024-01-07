@@ -1,7 +1,7 @@
 # Animation
 Provides functionality for creating transformations and keyframes
 
-* This plugin uses [animejs](https://animejs.com/)
+* This plugin uses [animejs](https://animejs.com/), which is absolutely amazing!
 
 ## Installation
 ```js
