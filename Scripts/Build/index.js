@@ -11,7 +11,7 @@ async function build (entry, outputFileName, options) {
     entry: [entry],
 
     format: 'esm',
-    minify: true,
+    minify: 'terser',
 
     outDir: path.resolve(__dirname, '../../Assets/'),
   }, (options === undefined) ? {} : options))
