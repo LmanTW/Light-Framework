@@ -24,7 +24,7 @@ function getComponentIdFromParent (element) {
     console.log(element, element.parentNode)
 
     if (element.parentNode === undefined) return
-    else return getComponentIdFromelement(parent.parentNode)
+    else return getComponentIdFromParent(parent.parentNode)
   } else return element.getAttribute('light')
 }
 
