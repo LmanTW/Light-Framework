@@ -1,10 +1,14 @@
 import info from './Info.json' assert { type: 'json' }
 
-console.log(`[ Light-Framework ]
+if (window.light === undefined) {
+  console.log(`[ Light-Framework ]
 
-Version: v${info.version}
+  Version: v${info.version}
 
-Github: ${info.github}`)
+  Github: ${info.github}`)
+}
+
+window.light = true
 
 // API
 class API { 
