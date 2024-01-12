@@ -21,10 +21,8 @@ function deleteComponent (id) {
 // Get Component ID From element
 function getComponentIdFromParent (element) {
   if (element.getAttribute('light') === null) {
-    console.log(element, element.parentNode)
-
     if (element.parentNode === undefined) return
-    else return getComponentIdFromParent(parent.parentNode)
+    else return getComponentIdFromParent(element.parentNode)
   } else return element.getAttribute('light')
 }
 
