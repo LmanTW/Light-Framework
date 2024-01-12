@@ -8,8 +8,6 @@ if (window.light === undefined) {
   Github: ${info.github}`)
 }
 
-window.light = true
-
 // API
 class API { 
   static get use () {return PluginManager.use}
@@ -63,3 +61,5 @@ import createSvgElement from './Modules/CreateSvgElement.js'
 import createElement from './Modules/CreateElement.js'
 import setStyle from './Modules/SetStyle.js'
 import Core from './Modules/Core.js'
+
+window.light = true
