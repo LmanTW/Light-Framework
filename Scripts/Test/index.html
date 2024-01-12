@@ -13,6 +13,8 @@
 
     new Light(document.body)
 
-    document.body.appendChild(Light.createElement('div', { style: { backgroundColor: 'green', width: '[10ps]', height: '[10ps]', opacity: 0.5, transitionDuration: '0.5s' }, hover: { opacity: 1 }}))
+    let element = document.body.appendChild(Light.createElement('div', { style: { backgroundColor: 'green', width: '[10ps]', height: '[10ps]', opacity: 0.5, transitionDuration: '0.5s' }, hover: { opacity: 1 }}))
+
+    Light.setStyle(element, 'width', '[20ps]')
   </script>
 </html>

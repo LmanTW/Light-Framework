@@ -10,7 +10,7 @@ export default class {
     this.#observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.type === 'childList') Array.from(mutation.addedNodes).forEach((element) => this.checkChildren(element, true))
-        else if (mutation.type === 'attributes' && mutation.attributeName.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[mutation.attributeName.substring(6, mutation.attributeName.length)] !== undefined) this.setAttribute(mutation.target, mutation.attributeName.substring(6, mutation.attributeName.length))
+        else if (mutation.type === 'attributes' && mutation.attributeName.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[mutation.attributeName.substring(6, mutation.attributeName.length)] !== undefined) this.checkAttribute(mutation.target, mutation.attributeName.substring(6, mutation.attributeName.length))
       })
     })
 
@@ -37,7 +37,9 @@ export default class {
         element.getAttributeNames().forEach((name) => {
           if (name.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[name.substring(6, name.length)] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(name))
         })
-      } else if (this.#Core.AttributeManager.attributes[attributeName] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(attributeName))
+      } else if (this.#Core.AttributeManager.attributes[attributeName] !== undefined) {
+        this.#Core.AttributeManager.attributes[attributeName](element, element.getAttribute(`light:${attributeName}`))
+      }
     }
   }
 }

@@ -16,6 +16,7 @@ class API {
 
   static get createElement () {return createElement}
   static get createSvgElement () {return createSvgElement}
+  static get setStyle () {return setStyle}
 
   // Get Component
   static getComponent (element) {
@@ -54,10 +55,11 @@ class API {
 
 export default API
 
+import Tools from './Modules/Tools.js'
+
 import { getComponentIdFromParent, getComponent } from './Modules/Components.js'
 import PluginManager from './Modules/Managers/PluginManager.js'
 import createSvgElement from './Modules/CreateSvgElement.js'
 import createElement from './Modules/CreateElement.js'
-import Tools from './Modules/Tools.js'
+import setStyle from './Modules/SetStyle.js'
 import Core from './Modules/Core.js'
-

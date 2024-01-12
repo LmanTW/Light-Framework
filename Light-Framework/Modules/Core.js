@@ -116,6 +116,8 @@ function addClass (element, className) {
   element.setAttribute('class', classList.join(' '))
 }
 
+import Tools from './Tools.js'
+
 import { createComponent, deleteComponent } from './Components.js'
 import AttributeManager from './Managers/AttributeManager.js'
 import PluginManager from './Managers/PluginManager.js'
@@ -125,4 +127,3 @@ import UnitManager from './Managers/UnitManager.js'
 import createElement from './CreateElement.js'
 import Observer from './Observer.js'
 import Timer from './Timer.js'
-import Tools from './Tools.js'
