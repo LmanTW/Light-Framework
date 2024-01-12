@@ -8,9 +8,9 @@ export default (element, name, value) => {
 
   let component = getComponent(getComponentIdFromParent(element))
 
-  if (element.getAttribute('light:style') === null || component === undefined) return
+  if (component === undefined) throw new Error('Cannot Find Component')
 
-  let styles = Tools.parseCssToObject(element.getAttribute('light:style'))
+  let styles = Tools.parseCssToObject((element.getAttribute('light:style') === null) ? '' : element.getAttribute('light:style'))
 
   if (value === undefined) delete styles[name]
   else styles[name] = value
