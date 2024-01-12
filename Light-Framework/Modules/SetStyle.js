@@ -3,7 +3,7 @@ export default (element, name, value) => {
   Tools.checkParameters({
     element: { instance: [HTMLElement] },
     name: { type: ['string'] },
-    value: { type: ['string', 'number'] }
+    value: { type: ['undefined', 'string', 'number'] }
   }, { element, name, value })
 
   let component = getComponent(getComponentIdFromParent(element))
@@ -12,7 +12,8 @@ export default (element, name, value) => {
 
   let styles = Tools.parseCssToObject(element.getAttribute('light:style'))
 
-  styles[name] = value
+  if (value === undefined) delete styles[name]
+  else styles[name] = value
 
   element.setAttribute('light:style', Tools.parseObjectToCss(styles))
 }
