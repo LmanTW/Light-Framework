@@ -8,8 +8,6 @@ export default (element, name, value) => {
 
   let component = getComponent(getComponentIdFromParent(element))
 
-  console.log(getComponentIdFromParent(element))
-
   if (component === undefined) throw new Error('Cannot Find Component')
 
   let styles = Tools.parseCssToObject((element.getAttribute('light:style') === null) ? '' : element.getAttribute('light:style'))
