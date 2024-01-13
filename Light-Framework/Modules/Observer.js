@@ -25,9 +25,8 @@ export default class {
       Array.from(parent.children).forEach((child) => {
         this.checkAttribute(child)
 
-        if (child.tagName === 'LIGHT-STYLE') {
-          child.outerHTML = `<style>${Tools.parseStyleValue(child.innerHTML, this.#Core.UnitManager.units)}<\style>`
-        } else if (child.getAttribute('light') === null && child.children.length > 0) this.checkChildren(child)
+        if (child.tagName === 'LIGHT-STYLE' || (child.tagName === 'STYLE' && child.getAttribute('light-style') !== null)) child.outerHTML = `<style light-style="">${Tools.parseStyleValue(child.innerHTML, this.#Core.UnitManager.units)}<\style>`
+        else if (child.getAttribute('light') === null && child.children.length > 0) this.checkChildren(child)
       })
     }
   }
