@@ -25,7 +25,9 @@ export default class {
       Array.from(parent.children).forEach((child) => {
         this.checkAttribute(child)
 
-        if (child.getAttribute('light') === null && child.children.length > 0) this.checkChildren(child)
+        if (child.tagName === 'LIGHT-STYLE') {
+          child.outerHTML = `<style>${Tools.parseStyleValue(child.innerHTML, this.#Core.UnitManager.units)}<\style>`
+        } else if (child.getAttribute('light') === null && child.children.length > 0) this.checkChildren(child)
       })
     }
   }
@@ -43,3 +45,5 @@ export default class {
     }
   }
 }
+
+import Tools from './Tools.js'

@@ -6,6 +6,8 @@ if (window.light === undefined) {
   Version: v${info.version}
 
   Github: ${info.github}`)
+
+  createSpecialTags()
 }
 
 // API
@@ -58,6 +60,7 @@ import Tools from './Modules/Tools.js'
 import { getComponentIdFromParent, getComponent } from './Modules/Components.js'
 import PluginManager from './Modules/Managers/PluginManager.js'
 import createSvgElement from './Modules/CreateSvgElement.js'
+import createSpecialTags from './Modules/SpecialTag.js'
 import createElement from './Modules/CreateElement.js'
 import setStyle from './Modules/SetStyle.js'
 import Core from './Modules/Core.js'

@@ -28,7 +28,5 @@ function getComponentIdFromParent (element) {
 
 // Get Component
 function getComponent (id) {
-  console.log(components)
-
   return components[id]
 }
