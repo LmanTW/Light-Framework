@@ -5,6 +5,11 @@ export default class {
   #timers = {}
 
   constructor () {
+    this.startTimer()
+  }
+
+  // Start Timer
+  startTimer () {
     this.#interval = setInterval(() => {
       let time = performance.now()
 
@@ -74,6 +79,8 @@ export default class {
       lastUpdateTime: performance.now()-interval
     }
 
+    if (this.#interval === undefined) this.startTimer()
+
     return id
   }
 
@@ -83,14 +90,17 @@ export default class {
       id: { type: ['undefined', 'string'] }
     }, { id })
 
-    if (id === undefined) {
-      clearInterval(this.#interval)
-
-      this.#timers = {}
-    } else {
+    if (id === undefined) Object.keys(this.#timers).forEach((id) => this.deleteTimer(id))
+    else {
       if (this.#timers[id] === undefined) throw new Error(`Timer Not Found: ${id}`)
 
       delete this.#timers[id]
+
+      if (Object.keys(this.#timers).length < 1) {
+        clearInterval(this.#interval)
+
+        this.#interval = undefined
+      }
     }
   }
 }
