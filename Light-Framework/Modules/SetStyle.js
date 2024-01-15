@@ -10,6 +10,7 @@ export default (element, name, value) => {
 
   if (component === undefined) throw new Error('Cannot Find Component')
 
+  console.log(element.getAttribute('light:style'))
   let styles = Tools.parseCssToObject((element.getAttribute('light:style') === null) ? '' : element.getAttribute('light:style'))
 
   if (value === undefined) delete styles[name]
