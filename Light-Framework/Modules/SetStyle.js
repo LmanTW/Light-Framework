@@ -1,21 +1,21 @@
 // Set Style
-export default (element, name, value) => {
+export default (target, name, value) => {
   Tools.checkParameters({
-    element: { instance: [HTMLElement] },
+    target: { instance: [HTMLElement] },
     name: { type: ['string'] },
     value: { type: ['undefined', 'string', 'number'] }
-  }, { element, name, value })
+  }, { target, name, value })
 
-  let component = getComponent(getComponentIdFromParent(element))
+  let component = getComponent(getComponentIdFromParent(target))
 
   if (component === undefined) throw new Error('Cannot Find Component')
 
-  let styles = Tools.parseCssToObject((element.getAttribute('light:style') === null) ? '' : element.getAttribute('light:style'))
+  let styles = Tools.parseCssToObject((target.getAttribute('light:style') === null) ? '' : target.getAttribute('light:style'))
 
   if (value === undefined) delete styles[name]
   else styles[name] = value
 
-  element.setAttribute('light:style', Tools.parseObjectToCss(styles))
+  target.setAttribute('light:style', Tools.parseObjectToCss(styles))
 }
 
 import Tools from './Tools.js'

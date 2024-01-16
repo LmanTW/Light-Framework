@@ -86,9 +86,7 @@ function setValue (element, path, value) {
 
   let keys = path.split('.')
 
-  for (let i = 0; i < keys.length-1; i++) {
-    target = target[keys[i]]
-  }
+  for (let i = 0; i < keys.length-1; i++) target = target[keys[i]]
 
   target[keys[keys.length-1]] = value
 }

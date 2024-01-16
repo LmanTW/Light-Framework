@@ -1,13 +1,13 @@
 // Create Svg Image
-export default async (url, options) => {
+export default async (src, options) => {
   checkParameters({
-    url: { type: ['string'] },
+    src: { type: ['string'] },
     options: { type: ['undefined', 'object'] }
-  }, { url, options })
+  }, { src, options })
 
-  if (cache[url] === undefined) cache[url] = await (await fetch(url)).text()
+  if (cache[src] === undefined) cache[src] = await (await fetch(src)).text()
 
-  const svgImage = createElemnet('div', { innerHTML: cache[url] }).children[0]
+  const svgImage = createElemnet('div', { innerHTML: cache[src] }).children[0]
   let viewBox = `${svgImage.viewBox.baseVal.x} ${svgImage.viewBox.baseVal.y} ${svgImage.viewBox.baseVal.width} ${svgImage.viewBox.baseVal.height}`
   
   options = (options === undefined) ? { xmlns: 'http://www.w3.org/2000/svg', viewBox, innerHTML: svgImage.innerHTML } : Object.assign(options, { xmlns: 'http://www.w3.org/2000/svg', viewBox, innerHTML: svgImage.innerHTML })
