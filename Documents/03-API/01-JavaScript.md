@@ -45,6 +45,14 @@ You can also use certain [Special HTML Attributes](/document?page=03-API%2F02-HT
 * `hover` as `light:style:hover` | A object of styles, like `style`
 * `trigger` as `light:trigger` | Same as the [Special HTML Attribute](/document?page=02-Get-Started%2F03-Special-HTML-Attribute.md&header=lighttrigger) of `light:trigger`
 
+### Example
+```js
+// Add a element with green background to document.body, which also have a child
+document.body.appendChild(Light.createElement('div', { style: { backgroundColor: 'green', width: '[10ps]', height: '[10ps] }}, [
+  Light.createElement('div')
+]))
+```
+
 ## createSvgElement()
 ```js
 Light.createSvgElement(<src>, <options>) // Create a svg element from a url
@@ -74,8 +82,7 @@ Light.getComponent(<element>) // Get the component which where the element belon
 
 You can use this in the scripts which is in a component, just give the script an id, and use `Light.getComponent(document.getElementById(<id>))` to get the component.
 
-Let's assume that this is a component:
-
+### Example
 ```html
 <div>
   ...
@@ -87,14 +94,6 @@ Let's assume that this is a component:
   // Get the component
   let component = Light.getComponent(document.getElementById('script_page_home'))
 </script>
-```
-
-### Example
-```js
-// Add a element with green background to document.body, which also have a child
-document.body.appendChild(Light.createElement('div', { style: { backgroundColor: 'green', width: '[10ps]', height: '[10ps] }}, [
-  Light.createElement('div')
-]))
 ```
 
 ## createSvgElement()
