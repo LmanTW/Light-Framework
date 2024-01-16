@@ -54,6 +54,8 @@ export default class {
       lastUpdateTime: performance.now()-interval
     }
 
+    if (this.#interval === undefined) this.startTimer()
+
     return id
   }
 

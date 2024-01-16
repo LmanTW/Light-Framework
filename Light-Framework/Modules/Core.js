@@ -97,10 +97,10 @@ export default class {
   remove () {
     deleteComponent(this.#id)
 
-    this.#root.remove()
-
     this.EventManager.remove()
     this.Timer.deleteTimer()
+
+    this.#root.remove()
   }
 }
 
