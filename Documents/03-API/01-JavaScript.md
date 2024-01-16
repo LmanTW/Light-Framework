@@ -4,6 +4,7 @@
   * [createElement()](#createelement)
   * [createSvgElement()](#createsvgelement)
   * [setStyle()](#setstyle)
+  * [getComponent()](#getcomponent)
 * [Light()](#light2)
   * [Event](#event)
     * [listen()](#listen)
@@ -57,11 +58,36 @@ Light.createSvgElement(<src>, <options>) // Create a svg element from a url
 ```js
 Light.setStyle(<target>, <name>, <value>) // Set element's light:style
 ```
-* `target <HTMLElement>` | The element that you want to set the light:style
+* `target <HTMLElement>` | A [HTML](https://en.wikipedia.org/wiki/HTML) element
 * `name <string>` | The name of the style
 * `value <string || number>` | The value of the style
 
 > return `<undefined>`
+
+## getComponent()
+```js
+Light.getComponent(<element>) // Get the component which where the element belong
+```
+* `target <HTMLElement>` | The element
+
+> return `new Light()`
+
+You can use this in the scripts which is in a component, just give the script an id, and use `Light.getComponent(document.getElementById(<id>))` to get the component.
+
+Let's assume that this is a component:
+
+```html
+<div>
+  ...
+</div>
+
+<script id="script_page_home">
+  import Light from 'https://framework.light.tw/Asset/Light.mjs'
+
+  // Get the component
+  let component = Light.getComponent(document.getElementById('script_page_home'))
+</script>
+```
 
 ### Example
 ```js
