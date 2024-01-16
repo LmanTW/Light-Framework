@@ -3,6 +3,7 @@
   * [use()](#use)
   * [createElement()](#createelement)
   * [createSvgElement()](#createsvgelement)
+  * [setStyle()](#setstyle)
 * [Light()](#light2)
   * [Event](#event)
     * [listen()](#listen)
@@ -33,7 +34,7 @@ Light.use(plugin) // Use a plugin
 Light.createElement(tagName, options, children) // Create Element
 ```
 * `tagName <string>` | [HTML](https://en.wikipedia.org/wiki/HTML) element tag name
-* `options <undefined || object>` | Attribute to the element
+* `options <undefined || object>` | Attributes to the element
 * `children <undefined || array>` | Children of the element (An array of [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement))
 
 > return `<HTMLElement>`
@@ -42,6 +43,25 @@ You can also use certain [Special HTML Attributes](/document?page=03-API%2F02-HT
 * `style` as `light:style` | A object of styles, the property name can either be like `backgroundColor` or `background-color`
 * `hover` as `light:style:hover` | A object of styles, like `style`
 * `trigger` as `light:trigger` | Same as the [Special HTML Attribute](/document?page=02-Get-Started%2F03-Special-HTML-Attribute.md&header=lighttrigger) of `light:trigger`
+
+## createSvgElement()
+```js
+Light.createSvgElement(<src>, <options>) // Create a svg element from a url
+```
+* `src <string>` | The source of the svg image
+* `options <undefined || object>` | Attributes to the element (Same as [createElement()](#createelement))
+
+> return `<HTMLElement>`
+
+## setStyle()
+```js
+Light.setStyle(<target>, <name>, <value>) // Set element's light:style
+```
+* `target <HTMLElement>` | The element that you want to set the light:style
+* `name <string>` | The name of the style
+* `value <string || number>` | The value of the style
+
+> return `<undefined>`
 
 ### Example
 ```js
