@@ -58,6 +58,7 @@ export default class {
   }
 
   get root () {return this.#root}
+  get id () {return this.#id}
 
   // Load
   load (html) {
@@ -68,19 +69,16 @@ export default class {
     this.EventManager.remove()
     this.Timer.deleteTimer()
 
-    let newRoot = this.#root.cloneNode(true)
+    let element = createElement('div', { innerHTML: html })
+    let newRoot = createElement('div')
 
-    while (newRoot.firstChild) newRoot.firstChild.remove()
-
-    Array.from(createElement('div', { innerHTML: html }).children).forEach((child) => {
+    Array.from(element.children).forEach((child) => {
       if (child.tagName !== 'SCRIPT') newRoot.appendChild(child)
     })
 
-    this.#root.replaceWith(newRoot)
+    this.#root.innerHTML = newRoot.innerHTML
 
-    this.#root = newRoot
-
-    Array.from(createElement('div', { innerHTML: html }).children).forEach((child) => {
+    Array.from(element.children).forEach((child) => {
       if (child.tagName === 'SCRIPT') {
         let options = { id: child.getAttribute('id'), type: child.getAttribute('type'), src: child.getAttribute('src'), innerHTML: child.innerHTML }
     

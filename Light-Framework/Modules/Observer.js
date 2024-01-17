@@ -9,8 +9,10 @@ export default class {
 
     this.#observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === 'childList') Array.from(mutation.addedNodes).forEach((element) => this.checkChildren(element, true))
-        else if (mutation.type === 'attributes' && mutation.attributeName.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[mutation.attributeName.substring(6, mutation.attributeName.length)] !== undefined) this.checkAttribute(mutation.target, mutation.attributeName.substring(6, mutation.attributeName.length))
+        if (getComponentIdFromParent(mutation.target) === Core.id) {
+          if (mutation.type === 'childList') Array.from(mutation.addedNodes).forEach((element) => this.checkChildren(element, true))
+          else if (mutation.type === 'attributes' && mutation.attributeName.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[mutation.attributeName.substring(6, mutation.attributeName.length)] !== undefined) this.checkAttribute(mutation.target, mutation.attributeName.substring(6, mutation.attributeName.length))
+        }
       })
     })
 
@@ -45,4 +47,5 @@ export default class {
   }
 }
 
+import { getComponentIdFromParent } from './Components.js'
 import Tools from './Tools.js'
