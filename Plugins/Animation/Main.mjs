@@ -1,4 +1,4 @@
-import animejs from 'https://unpkg.com/animejs@3.2.2/lib/anime.es.js'
+import animejs from 'https://unpkg.com/animejs@3.2.2/lib/anime.es.min.js'
 
 // Animation
 export default {
