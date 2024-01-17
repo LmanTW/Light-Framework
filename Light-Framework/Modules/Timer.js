@@ -27,7 +27,7 @@ export default class {
             if (timer.count >= timer.times) {
               if (timer.callback2 !== undefined) timer.callback2()
 
-              delete timer[id]
+              delete this.#timers[id]
             }
           }
         }
