@@ -16,7 +16,8 @@ export default {
         }, { key, callback })
 
         if (caches[key] === undefined) caches[key] = await callback(key)
-        else return caches[key]
+        
+        return caches[key]
       }
 
       // Clean
