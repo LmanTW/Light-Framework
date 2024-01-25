@@ -8,7 +8,7 @@
 Light-Framework adds special attributes to [HTML](https://en.wikipedia.org/wiki/HTML). These attributes all start with `light:` and can be added through plugins.
 
 ## light:style
-It's just like the `style` attribute, but with extra functionality like: `custom unit`, `webkit compatibility`, and some special property.
+It's just like the `style` attribute, but with extra functionality like: `custom unit`, and some special property.
 
 * Short CSS Variable | You can use this by using `[$<name>]` (Same as `var(--<name>)`).
 * Custom Unit | You can use this by using `[<number><unitName>]`.
