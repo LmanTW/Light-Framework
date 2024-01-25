@@ -1,5 +1,5 @@
 # Animation
-Provides functionality for creating transformations and keyframes
+Provides functionalities for creating transformations and keyframes
 
 * This plugin uses [animejs](https://animejs.com/), which is absolutely amazing!
 
@@ -18,3 +18,35 @@ Light.use(Animation)
 ```
 
 # JavaScript API
+
+* [Animation](#animation)
+  * [transform()](#transform)
+  * [keyframe()](#keyframe)
+
+# Animation
+```js
+import Light from 'https://framework.light.tw/Asset/Light.mjs'
+
+import Animation from 'https://framework.light.tw/Asset/Plugin/Animation.mjs'
+
+Light.use(Animation)
+```
+
+## transform()
+```js
+Light.Animation.transform(<target>, <transforms>, <options>)
+```
+* `target <array[HTMLElement] || HTMLElement>` | Target that you want to apply transforms
+* `transforms <object>` | Values that you want to transform
+* `options <undefined || object>` | https://animejs.com/documentation/#duration
+
+
+### Example
+```js
+let element = document.getElementById('anElement')
+
+// Apply transfom to element
+Light.Animation.transform(element, {
+  'style.width': [0, 100] // Start value and end value
+}, { duration: 1000 })
+```
