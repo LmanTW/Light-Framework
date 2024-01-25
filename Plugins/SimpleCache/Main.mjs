@@ -24,5 +24,6 @@ export default {
         caches = {}
       }
     }
-  } 
+  },
+  init: () => {}
 }
