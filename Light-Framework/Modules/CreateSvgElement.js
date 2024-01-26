@@ -5,9 +5,9 @@ export default async (src, options) => {
     options: { type: ['undefined', 'object'] }
   }, { src, options })
 
-  if (cache[src] === undefined) cache[src] = await (await fetch(src)).text()
+  if (window.svgCache[src] === undefined) window.svgCache[src] = await (await fetch(src)).text()
 
-  const svgImage = createElemnet('div', { innerHTML: cache[src] }).children[0]
+  const svgImage = createElemnet('div', { innerHTML: window.svgCache[src] }).children[0]
   let viewBox = `${svgImage.viewBox.baseVal.x} ${svgImage.viewBox.baseVal.y} ${svgImage.viewBox.baseVal.width} ${svgImage.viewBox.baseVal.height}`
   
   options = (options === undefined) ? { xmlns: 'http://www.w3.org/2000/svg', viewBox, innerHTML: svgImage.innerHTML } : Object.assign(options, { xmlns: 'http://www.w3.org/2000/svg', viewBox, innerHTML: svgImage.innerHTML })
@@ -18,5 +18,3 @@ export default async (src, options) => {
 import checkParameters from './Tools/CheckParameters.js'
 
 import createElemnet from './CreateElement.js'
-
-let cache = {}
