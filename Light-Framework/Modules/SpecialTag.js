@@ -16,7 +16,7 @@ export default () => {
     }
 
     async connectedCallback () {
-      if (window.svgCache[this.getAttribute('src')] === undefined) cache[this.getAttribute('src')] = await (await fetch(this.getAttribute('src'))).text()
+      if (window.svgCache[this.getAttribute('src')] === undefined) window.svgCache[this.getAttribute('src')] = await (await fetch(this.getAttribute('src'))).text()
 
       const element = createElement('div', { innerHTML: window.svgCache[this.getAttribute('src')] }).children[0]
 
