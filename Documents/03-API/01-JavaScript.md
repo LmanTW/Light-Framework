@@ -167,7 +167,7 @@ We recommend you to use this when you're trying to listen to an event, because t
 
 ## listen()
 ```js
-.listen(<target>, <name>, <callback>) // Listen to event
+.listen(<target>, <name>, <callback>) // Listen to an event
 ```
 * `target <HTMLElement>` | The target that you want to listen on
 * `name <string>` | The name of the event
@@ -177,7 +177,7 @@ We recommend you to use this when you're trying to listen to an event, because t
 
 ## remove()
 ```js
-.remove(<id>) // Remove listener
+.remove(<id>) // Remove a listener
 ```
 * `id <undefined || string>` | The ID of the listener (if the ID is <undefined>, then it will simply remove all the listeners under this component).
 
@@ -211,7 +211,7 @@ We recommend you to use this when you're trying to create interval or timeout, b
 
 ## deleteTimer()
 ```js
-.deleteTimer(<id>) // Delete timer
+.deleteTimer(<id>) // Delete a timer
 ```
 * `id <string>` | The id of the timer that you want to delete
 
