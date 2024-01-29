@@ -32,7 +32,7 @@ Light.use(plugin) // Use a plugin
 
 ## createElement()
 ```js
-Light.createElement(tagName, options, children) // Create Element
+Light.createElement(tagName, options, children) // Create a element
 ```
 * `tagName <string>` | [HTML](https://en.wikipedia.org/wiki/HTML) element tag name
 * `options <undefined || object>` | Attributes to the element
@@ -74,7 +74,7 @@ Light.setStyle(<target>, <name>, <value>) // Set element's light:style
 
 ## getComponent()
 ```js
-Light.getComponent(<element>) // Get the component which where the element belong
+Light.getComponent(<element>) // Get the component which is where the element belong
 ```
 * `target <HTMLElement>` | The element
 
@@ -98,7 +98,7 @@ You can use this in the scripts which is in a component, just give the script an
 
 ## createSvgElement()
 ```js
-Light.createSvgElement(src, options) // Create Svg Element
+Light.createSvgElement(src, options) // Create svg element
 ```
 * `src <string>` | The source of the svg image (a link or path)
 * `options <undefined || object>` | Attribute to the element
