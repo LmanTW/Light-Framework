@@ -12,3 +12,4 @@ Light.use(Animation)
 
 ## Official Plugins
 * [Animation](/document?page=99-Plugins%2FAnimation) | Provides functionality for creating transformations and keyframes animation
+* [Simple Cache](/document?page=99-Plugins%2FSimpleCache) | Provides functionalities for caching data
