@@ -26,7 +26,7 @@ Everytime the user first loads this application, we need a 'frame' to load all t
   </body>
  
   <script type="module">
-    import Light from '../../Light-Framework/API.js'
+    import Light from 'https://framework.light.tw/Asset/Light.mjs'
 
     // Create a component and mount it onto document.body, so we can use special html attribute (light:) and custom css unit ([ps], stand for page size)
     new Light(document.body)
@@ -54,7 +54,7 @@ Everytime the user first loads this application, we need a 'frame' to load all t
 <button id="button_load">Load page 2</button>
 
 <script id="script_page1" type="module">
-  import Light from '../../Light-Framework/API.js'
+  import Light from 'https://framework.light.tw/Asset/Light.mjs'
 
   // Get the component, this funciton will search upward along parentElement to find component root and return the Light instance
   let component = Light.getComponent(document.getElementById('script_page1'))
@@ -71,7 +71,7 @@ Everytime the user first loads this application, we need a 'frame' to load all t
 <button id="button_load">Load page 1</button>
 
 <script id="script_page1" type="module">
-  import Light from '../../Light-Framework/API.js'
+  import Light from 'https://framework.light.tw/Asset/Light.mjs'
 
   // Pretty much the same as page 1
 
