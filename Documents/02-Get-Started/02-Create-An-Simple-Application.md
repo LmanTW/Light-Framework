@@ -15,14 +15,13 @@ server.listen(8080)
 ```
 
 ## Create The "Frame"
-Everytime the user first loads this application, we need a 'frame' to load all the components.
+Everytime the user first loads the application, we need a 'frame' to load all the components.
 
 * Create a file called `index.html`
 ```html
 <html>
   <body style="margin: 0px">
-    <div id="navbar" light:style="display: flex; center: column; background-color: green; width: 100vw; height: [3ps]"></div>
-    <div id="pageContent" light:style="display: flex; flex-direction: column; center: row column; width: 100vw; height: calc(100vh - [3ps])"></div>
+    <div id="pageContent" light:style="display: flex; flex-direction: column; center: row column; width: 100vw; height: 200vh"></div>
   </body>
  
   <script type="module">
@@ -31,11 +30,6 @@ Everytime the user first loads this application, we need a 'frame' to load all t
     // Create a component and mount it onto document.body, so we can use special html attribute (light:) and custom css unit ([ps], stand for page size)
     new Light(document.body)
     //        ^ Can also be a css query selector <string>
-
-    // Create a component for navbar and mount it onto #navbar
-    new Light('#navbar')
-      // Load the navbar component from ./navbar
-      .load(await (await fetch('./navbar.html')).text())
 
     // Create a component for pageContent and mount it onto #pageContent
     new Light('#pageContent')
