@@ -38,9 +38,9 @@ export default class {
   // Create Timeout
   createTimeout (time, callback) {
     Tools.checkParameters({
-      interval: { type: ['number'] },
+      time: { type: ['number'] },
       callback: { type: ['function'] }
-    }, { interval, callback })
+    }, { time, callback })
 
     let id = Tools.generateID(5, Object.keys(this.#timers))
 
