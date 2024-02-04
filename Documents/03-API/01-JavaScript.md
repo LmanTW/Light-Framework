@@ -10,6 +10,7 @@
     * [listen()](#listen)
     * [remove()](#remove)
   * [Timer](#timer)
+    * [createTimeout](#createtimeout)
     * [createInterval()](#createinterval)
     * [createLoop()](#createloop)
     * [deleteTimer()](#deletetimer)
@@ -188,6 +189,13 @@ We recommend you to use this when you're trying to listen to an event, because t
 new Light(<target>).Timer // The tiemr for this component
 ```
 We recommend you to use this when you're trying to create interval or timeout, because this module removes all the timers when the component is removed or reloaded. This ensures that you won't have timers that are not suppose to trigger after the component is removed or reloaded.
+
+## createTimeout()
+```js
+.createTimeout(<time>, <callback>) // Create Timeout
+```
+* `time <number>` | The Time that you want to wait
+* `callback <function>` | A function that you want to execute
 
 ## createInterval()
 ```js
