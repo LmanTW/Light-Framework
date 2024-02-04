@@ -35,6 +35,31 @@ export default class {
     }, 1)
   }
 
+  // Create Timeout
+  createTimeout (time, callback) {
+    Tools.checkParameters({
+      interval: { type: ['number'] },
+      callback: { type: ['function'] }
+    }, { interval, callback })
+
+    let id = Tools.generateID(5, Object.keys(this.#timers))
+
+    this.#timers[id] = {
+      interval: time,
+      times: 1,
+
+      callback: () => {},
+      callback2: callback,
+
+      count: 0,
+      lastUpdateTime: performance.now()
+    }
+
+    if (this.#interval === undefined) this.startTimer()
+
+    return id
+  }
+
   // Create Interval
   createInterval (interval, callback) {
     Tools.checkParameters({
