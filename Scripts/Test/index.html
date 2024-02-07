@@ -1,21 +1,13 @@
 <html>
-  <light-style>
-    body {
-      width: [10ps]
-    } 
-  </light-style>
+  <body light:style="abc">
 
-  <body>
-    <div id="test"></div>
   </body>
- 
+
   <script type="module">
-    import Light from '../../Light-Framework/API.js'
+    import Light from '/Light-Framework/API.js'
 
-    import Animation from '../../Plugins/Animation/Main.mjs'
+    const component = new Light('body')
 
-    Light.use(Animation)
-
-    let component = new Light('#test')
+    await component.load(await (await fetch('/Scripts/Test/test.html')).text())
   </script>
 </html>
