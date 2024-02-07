@@ -30,7 +30,7 @@ export default {
       window.requestAnimationFrame(() => Object.keys(lateStyles).forEach((name) => element.style[name] = lateStyles[name]))
     }, false)
     Core.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, Core.StyleManager.createHoverStyle(Tools.parseStyleValue(value, Core.UnitManager.units))), false)
-    Core.AttributeManager.createAttribute('trigger', (element, value) => Core.EventManager.listen(element, 'click', () => {
+    Core.AttributeManager.createAttribute('trigger', (element, value) => Core.ListenerManager.listen(element, 'click', () => {
       if (value[0] === '/') window.location.href = value
       else if (value.substring(0, 7) === 'http://' || value.substring(0, 8) === 'https://') window.open(value)
       else document.head.appendChild(createElement('script', { type: 'module', innerHTML: value })).remove()
