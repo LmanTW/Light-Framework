@@ -14,16 +14,16 @@ export default class {
     }, { style })
  
     for (let id of Object.keys(styles.style)) {
-      if (styles.style[id] === style) return id
+      if (styles.style[id] === style) return `style-${id}`
     }
 
-    const id = `style-${Tools.generateID(5, Object.keys(styles.hover))}`
+    const id = Tools.generateID(5, Object.keys(styles.style)) 
 
     styles.style[id] = style
 
     compileStyle()
 
-    return id
+    return `style-${id}`
   }
 
   // Create Hover Style
@@ -33,16 +33,16 @@ export default class {
     }, { style })
 
     for (let id of Object.keys(styles.hover)) {
-      if (styles.hover[id] === style) return id
+      if (styles.hover[id] === style) return `hover-${id}`
     }
 
-    const id = `hover-${Tools.generateID(5, Object.keys(styles.hover))}`
+    const id = Tools.generateID(5, Object.keys(styles.hover)) 
 
     styles.hover[id] = style
 
     compileStyle()
 
-    return id
+    return `hover-${id}`
   }
 }
 
@@ -50,8 +50,8 @@ export default class {
 function compileStyle () {
   const chunks = []
 
-  Object.keys(styles.style).forEach((id) => chunks.push(`.${id} {${styles.style[id]}}`))
-  Object.keys(styles.hover).forEach((id) => chunks.push(`.${id}:hover {${styles.hover[id]}}`))
+  Object.keys(styles.style).forEach((id) => chunks.push(`.style-${id} {${styles.style[id]}}`))
+  Object.keys(styles.hover).forEach((id) => chunks.push(`.hover-${id}:hover {${styles.hover[id]}}`))
 
   style.textContent = chunks.join('')
 }
