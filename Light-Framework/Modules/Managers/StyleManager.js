@@ -17,7 +17,7 @@ export default class {
       if (styles.style[id] === style) return id
     }
 
-    let id = `style-${Tools.generateID(5, Object.keys(styles.hover))}`
+    const id = `style-${Tools.generateID(5, Object.keys(styles.hover))}`
 
     styles.style[id] = style
 
@@ -36,7 +36,7 @@ export default class {
       if (styles.hover[id] === style) return id
     }
 
-    let id = `hover-${Tools.generateID(5, Object.keys(styles.hover))}`
+    const id = `hover-${Tools.generateID(5, Object.keys(styles.hover))}`
 
     styles.hover[id] = style
 
@@ -48,7 +48,7 @@ export default class {
 
 // Set Style
 function compileStyle () {
-  let chunks = []
+  const chunks = []
 
   Object.keys(styles.style).forEach((id) => chunks.push(`.${id} {${styles.style[id]}}`))
   Object.keys(styles.hover).forEach((id) => chunks.push(`.${id}:hover {${styles.hover[id]}}`))
@@ -56,4 +56,4 @@ function compileStyle () {
   style.textContent = chunks.join('')
 }
 
-import Tools from '../Tools.js'
+import Tools from '../Tools/Main.js'

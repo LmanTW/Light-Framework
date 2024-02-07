@@ -6,7 +6,7 @@ export default (target, name, value) => {
     value: { type: ['undefined', 'string', 'number'] }
   }, { target, name, value })
 
-  let component = getComponent(getComponentIdFromParent(target))
+  const component = ComponentManager.getComponent(ComponentManager.getComponentFromParent(target))
 
   if (component === undefined) throw new Error('Cannot Find Component')
 
@@ -18,6 +18,6 @@ export default (target, name, value) => {
   target.setAttribute('light:style', Tools.parseObjectToCss(styles))
 }
 
-import Tools from './Tools.js'
+import Tools from './Tools/Main.js'
 
-import { getComponentIdFromParent, getComponent } from './Components.js'
+import ComponentManager from './Managers/ComponentManager.js'

@@ -1,6 +1,6 @@
 // Parse Style To Object
 export default (style) => {
-  let object = {}
+  const object = {}
 
   style.split(';').forEach((chunk) => {
     let [name, value] = chunk.split(':')

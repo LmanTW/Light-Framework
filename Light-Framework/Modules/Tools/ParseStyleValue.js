@@ -1,7 +1,7 @@
 // Parse Style Value
 export default (value, units) => {
   if (value.includes('[') && value.includes(']')) {
-    let unitList = Object.keys(units).sort((a, b) => b.length-a.length)
+    const unitList = Object.keys(units).sort((a, b) => b.length-a.length)
 
     for (let i = 0; i < value.length; i++) {
       if (value[i] === '[') {

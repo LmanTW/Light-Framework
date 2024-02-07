@@ -3,16 +3,17 @@ import info from './Info.json' assert { type: 'json' }
 if (window.light === undefined) {
   console.log(`[ Light-Framework ]
 
-  Version: v${info.version}
+  Version: ${info.version}
+  Build: ${info.build}
 
   Github: ${info.github}`)
 
-  createSpecialTags()
+  window.light = true
 }
 
 // API
-class API { 
-  static get use () {return PluginManager.use}
+class API {
+  static get use () {return PluginManager.addPlugin}
 
   static get createElement () {return createElement}
   static get createSvgElement () {return createSvgElement}
@@ -24,45 +25,36 @@ class API {
       element: { instance: [HTMLElement] }
     }, { element })
 
-    let id = getComponentIdFromParent(element)
+    let id = ComponentManager.getComponentFromParent(element)
 
-    return getComponent(id)
+    return ComponentManager.getComponent(id)
   }
 
   #Core
 
-  constructor (target) {
-    this.#Core = new Core(target, this)
+  constructor (target, options) {
+    this.#Core = new Core(this, target, options)
 
-    this.Event = this.#Core.EventManager
-    this.Timer = this.#Core.Timer
-
-    this.Unit = this.#Core.UnitManager
+    this.Event = this.#Core.ListenerManager
+    this.Timer = this.#Core.TimerManager
   }
 
-  get root () {return this.#Core.root}
+  async load (html, wait) {await this.#Core.load(html, wait)}
+  remove () {this.#Core.remove()}
 
-  // Load
-  load (html) {
-    this.#Core.load(html)
-  }
-
-  // Remove
-  remove () {
-    this.#Core.remove()
-  }
+  finish () {this.#Core.finish()}
 }
 
 export default API
 
-import Tools from './Modules/Tools.js'
+import Tools from './Modules/Tools/Main.js'
 
-import { getComponentIdFromParent, getComponent } from './Modules/Components.js'
+import ComponentManager from './Modules/Managers/ComponentManager.js'
 import PluginManager from './Modules/Managers/PluginManager.js'
 import createSvgElement from './Modules/CreateSvgElement.js'
-import createSpecialTags from './Modules/SpecialTag.js'
+import DefaultPlugin from './Modules/DefaultPlugin.js'
 import createElement from './Modules/CreateElement.js'
 import setStyle from './Modules/SetStyle.js'
 import Core from './Modules/Core.js'
 
-window.light = true
+PluginManager.addPlugin(DefaultPlugin)

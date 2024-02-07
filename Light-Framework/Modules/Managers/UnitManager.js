@@ -11,31 +11,33 @@ export default class {
   get units () {return this.#units}
 
   // Create Unit
-  createUnit (name, callback) {
+  createUnit (name, callback, reload) {
     Tools.checkParameters({
       name: { type: ['string'] },
-      callback: { type: ['function'] }
+      callback: { type: ['function'] },
+      reload: { type: ['undefined', 'boolean'] }
     }, { name, callback })
 
     if (this.#units[name] !== undefined) throw new Error(`Unit Named "${name}" Already Exist`)
 
     this.#units[name] = callback
 
-    this.#Core.Observer.checkChildren(this.#Core.root, true)
+    if (reload === undefined || reload === true) this.#Core.Observer.checkChildren(this.#Core.root)
   }
 
   // Delete Unit
-  deleteUnit (name) {
+  deleteUnit (name, reload) {
     Tools.checkParameters({
-      name: { type: ['string'] }
+      name: { type: ['string'] },
+      reload: { type: ['undefined', 'boolean'] }
     }, { name })
 
     if (this.#units[name] === undefined) throw new Error(`Unit Named "${name}" Not Found`)
 
     delete this.#units[name]
 
-    this.#Core.Observer.checkChildren(this.#Core.root, true)
+    if (reload === undefined || reload === true) this.#Core.Observer.checkChildren(this.#Core.root)
   }
 }
 
-import Tools from '../Tools.js'
+import Tools from '../Tools/Main.js'

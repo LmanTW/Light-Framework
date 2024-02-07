@@ -9,7 +9,7 @@ export default class {
 
     this.#observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (getComponentIdFromParent(mutation.target) === Core.id) {
+        if (ComponentManager.getComponentFromParent(mutation.target) === Core.id) {
           if (mutation.type === 'childList') Array.from(mutation.addedNodes).forEach((element) => this.checkChildren(element, true))
           else if (mutation.type === 'attributes' && mutation.attributeName.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[mutation.attributeName.substring(6, mutation.attributeName.length)] !== undefined) this.checkAttribute(mutation.target, mutation.attributeName.substring(6, mutation.attributeName.length))
         }
@@ -20,15 +20,12 @@ export default class {
   }
 
   // Check Children
-  checkChildren (parent, checkParent) {
-    if (parent.tagName !== undefined) {
-      if (checkParent) this.checkAttribute(parent)
+  checkChildren (element) {
+    if (element.tagName !== undefined) {
+      this.checkAttribute(element)
 
-      Array.from(parent.children).forEach((child) => {
-        this.checkAttribute(child)
-
-        if (child.tagName === 'LIGHT-STYLE' || (child.tagName === 'STYLE' && child.getAttribute('light-style') !== null)) child.outerHTML = `<style light-style="">${Tools.parseStyleValue(child.innerHTML, this.#Core.UnitManager.units)}<\style>`
-        else if (child.getAttribute('light') === null && child.children.length > 0) this.checkChildren(child)
+      Array.from(element.children).forEach((child) => {
+        if (child.getAttribute('light') === null) this.checkChildren(child)
       })
     }
   }
@@ -47,5 +44,4 @@ export default class {
   }
 }
 
-import { getComponentIdFromParent } from './Components.js'
-import Tools from './Tools.js'
+import ComponentManager from './Managers/ComponentManager.js'

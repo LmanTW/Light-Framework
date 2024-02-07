@@ -23,7 +23,7 @@ export default (tagName, options, children) => {
   return element
 }
 
-import Tools from './Tools.js'
+import Tools from './Tools/Main.js'
 
 const specialAttributes = {
   style: 'light:style',

@@ -22,6 +22,15 @@ async function build (entry, outputFileName, options) {
 
 // Start
 async function start () {
+  const info = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../Light-Framework/Info.json')))
+
+  const date = new Date()
+  const dateString = `${date.getFullYear()}/${new String(date.getMonth()+1).padStart(2, '0')}/${new String(date.getDate()).padStart(2, '0')} ${new String(date.getHours()).padStart(2, '0')}:${new String(date.getMinutes()).padStart(2, '0')}`
+
+  info.build = dateString
+
+  fs.writeFileSync(path.resolve(__dirname, '../../Light-Framework/Info.json'), JSON.stringify(info, null, 2))
+
   await build(path.resolve(__dirname, '../../Light-Framework/API.js'), 'Light')
   await build(path.resolve(__dirname, '../../Light-Framework/API.js'), 'Light', { format: 'iife', globalName: 'Light' })
 }

@@ -1,6 +1,6 @@
 // Parse Object To CSS
 export default (object) => {
-  let styles = []
+  const styles = []
 
   Object.keys(object).forEach((key) => {
     let name = []

@@ -1,21 +1,8 @@
 // Generate ID
 export default (length, keys) => {
-  let id = generateAnID(length)
+  let count = 0
 
-  while (keys.includes(id)) id = generateAnID(length)
+  while (keys.includes(count.toString().padStart(length, '0'))) count++
 
-  return id
+  return count.toString().padStart(length, '0')
 }
-
-// Generate An ID
-function generateAnID (length) {
-  let string = ''
-
-  for (let i = 0; i < length; i++) string+=letters[getRandom(0, letters.length-1)]
-
-  return string
-}
-
-import getRandom from './GetRandom.js'
-
-const letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'

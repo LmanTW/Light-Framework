@@ -2,14 +2,13 @@
 export default class {
   static get plugins () {return plugins}
 
-  // Use Plugin
-  static use (plugin) {
+  // Add Plugin
+  static addPlugin (plugin) {
     Tools.checkParameters({
       plugin: { type: ['object'] },
     }, { plugin })
 
     if (plugin.id === undefined) throw new Error('Could Not Verify Plugin (ID Not Found)')
-    if (plugin.init === undefined) throw new Error(`Failed To Initialize Plugin: ${plugin.id}`)
 
     if (plugins[plugin.id] !== undefined) throw new Error(`Plugin Is Already Used: ${plugin.id}`)
 
@@ -24,11 +23,17 @@ export default class {
 
   // Initialize Plugins
   static initializePlugins (Core) {
-    Object.keys(plugins).forEach((id) => plugins[id].init(Core, Tools))
+    Object.keys(plugins).forEach((id) => {
+      if (plugins[id].init !== undefined) {
+        if (typeof plugins[id].init !== 'function') throw new Error(`Failed To Register Plugin: ${id}`)
+
+        plugins[id].init(Core, Tools)
+      }
+    })
   }
 }
 
-import Tools from '../Tools.js'
+import Tools from '../Tools/Main.js'
 
 import API from '../../API.js'
 
