@@ -1,11 +1,11 @@
-// ../../Light-Framework/Info.json
+// Light-Framework/Info.json
 var Info_default = {
   version: "v2 Beta 0.1",
-  build: "2024/02/07 20:01",
+  build: "2024/02/08 15:10",
   github: "https://github.com/LmanTW/Light-Framework"
 };
 
-// ../../Light-Framework/Modules/Tools/ParseObjectToCss.js
+// Light-Framework/Modules/Tools/ParseObjectToCss.js
 var ParseObjectToCss_default = (object) => {
   const styles2 = [];
   Object.keys(object).forEach((key) => {
@@ -23,7 +23,7 @@ var ParseObjectToCss_default = (object) => {
 };
 var uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-// ../../Light-Framework/Modules/Tools/ParseCssToObject.js
+// Light-Framework/Modules/Tools/ParseCssToObject.js
 var ParseCssToObject_default = (style2) => {
   const object = {};
   style2.split(";").forEach((chunk) => {
@@ -45,7 +45,7 @@ var ParseCssToObject_default = (style2) => {
   return object;
 };
 
-// ../../Light-Framework/Modules/Tools/CheckValue.js
+// Light-Framework/Modules/Tools/CheckValue.js
 var CheckValue_default = (value, conditions) => {
   if (conditions.type !== void 0) {
     const type = Array.isArray(value) ? "array" : typeof value;
@@ -57,7 +57,7 @@ var CheckValue_default = (value, conditions) => {
   return { error: false };
 };
 
-// ../../Light-Framework/Modules/Tools/CheckParameters.js
+// Light-Framework/Modules/Tools/CheckParameters.js
 var CheckParameters_default = (conditions, parameters2) => {
   Object.keys(parameters2).forEach((name) => {
     if (conditions[name] === void 0)
@@ -72,7 +72,7 @@ var CheckParameters_default = (conditions, parameters2) => {
   });
 };
 
-// ../../Light-Framework/Modules/Tools/ParseStyleValue.js
+// Light-Framework/Modules/Tools/ParseStyleValue.js
 var ParseStyleValue_default = (value, units) => {
   if (value.includes("[") && value.includes("]")) {
     const unitList = Object.keys(units).sort((a, b) => b.length - a.length);
@@ -98,7 +98,7 @@ var ParseStyleValue_default = (value, units) => {
   return value;
 };
 
-// ../../Light-Framework/Modules/Tools/CheckObject.js
+// Light-Framework/Modules/Tools/CheckObject.js
 var CheckObject_default = (objectName, conditions, object) => {
   Object.keys(conditions).forEach((key) => {
     const result = CheckValue_default(object[key], conditions[key]);
@@ -111,7 +111,7 @@ var CheckObject_default = (objectName, conditions, object) => {
   });
 };
 
-// ../../Light-Framework/Modules/Tools/GenerateID.js
+// Light-Framework/Modules/Tools/GenerateID.js
 var GenerateID_default = (length, keys) => {
   let count = 0;
   while (keys.includes(new String(count).padStart(length, "0")))
@@ -119,7 +119,7 @@ var GenerateID_default = (length, keys) => {
   return new String(count).padStart(length, "0");
 };
 
-// ../../Light-Framework/Modules/Tools/ApplyStyle.js
+// Light-Framework/Modules/Tools/ApplyStyle.js
 var ApplyStyle_default = (style2) => {
   if (style2.center !== void 0) {
     let types = style2.center.split(" ");
@@ -142,7 +142,7 @@ var ApplyStyle_default = (style2) => {
   return style2;
 };
 
-// ../../Light-Framework/Modules/Tools/Main.js
+// Light-Framework/Modules/Tools/Main.js
 var Main_default = {
   parseObjectToCss: ParseObjectToCss_default,
   parseCssToObject: ParseCssToObject_default,
@@ -153,7 +153,7 @@ var Main_default = {
   applyStyle: ApplyStyle_default
 };
 
-// ../../Light-Framework/Modules/Managers/ComponentManager.js
+// Light-Framework/Modules/Managers/ComponentManager.js
 var components = {};
 var ComponentManager_default = class {
   // Create Component
@@ -180,7 +180,7 @@ var ComponentManager_default = class {
   }
 };
 
-// ../../Light-Framework/Modules/Managers/PluginManager.js
+// Light-Framework/Modules/Managers/PluginManager.js
 var PluginManager_default = class {
   static get plugins() {
     return plugins;
@@ -214,7 +214,7 @@ var PluginManager_default = class {
 };
 var plugins = {};
 
-// ../../Light-Framework/Modules/CreateElement.js
+// Light-Framework/Modules/CreateElement.js
 var CreateElement_default = (tagName, options, children) => {
   Main_default.checkParameters({
     tagName: { type: ["string"] },
@@ -244,7 +244,7 @@ var specialAttributes = {
   trigger: "light:trigger"
 };
 
-// ../../Light-Framework/Modules/CreateSvgElement.js
+// Light-Framework/Modules/CreateSvgElement.js
 var CreateSvgElement_default = async (src, options) => {
   CheckParameters_default({
     src: { type: ["string"] },
@@ -258,7 +258,7 @@ var CreateSvgElement_default = async (src, options) => {
   return CreateElement_default("svg", options);
 };
 
-// ../../Light-Framework/Modules/DefaultPlugin.js
+// Light-Framework/Modules/DefaultPlugin.js
 var DefaultPlugin_default = {
   id: "Default",
   register: (_, Tools) => {
@@ -326,7 +326,7 @@ function addClass(element, className) {
   element.setAttribute("class", classList.join(" "));
 }
 
-// ../../Light-Framework/Modules/SetStyle.js
+// Light-Framework/Modules/SetStyle.js
 var SetStyle_default = (target, name, value) => {
   Main_default.checkParameters({
     target: { instance: [HTMLElement] },
@@ -344,7 +344,7 @@ var SetStyle_default = (target, name, value) => {
   target.setAttribute("light:style", Main_default.parseObjectToCss(styles2));
 };
 
-// ../../Light-Framework/Modules/Managers/AttributeManager.js
+// Light-Framework/Modules/Managers/AttributeManager.js
 var AttributeManager_default = class {
   #Core;
   #attributes = {};
@@ -381,7 +381,7 @@ var AttributeManager_default = class {
   }
 };
 
-// ../../Light-Framework/Modules/Managers/ListenerManager.js
+// Light-Framework/Modules/Managers/ListenerManager.js
 var ListenerManager_default = class {
   #events = {};
   // Listen
@@ -408,7 +408,7 @@ var ListenerManager_default = class {
   }
 };
 
-// ../../Light-Framework/Modules/Managers/TimerManager.js
+// Light-Framework/Modules/Managers/TimerManager.js
 var TimerManager_default = class {
   #interval;
   #timers = {};
@@ -513,7 +513,7 @@ var TimerManager_default = class {
   }
 };
 
-// ../../Light-Framework/Modules/Managers/StyleManager.js
+// Light-Framework/Modules/Managers/StyleManager.js
 var style = document.head.appendChild(document.createElement("style"));
 var styles = {
   style: {},
@@ -556,7 +556,7 @@ function compileStyle() {
   style.textContent = chunks.join("");
 }
 
-// ../../Light-Framework/Modules/Managers/UnitManager.js
+// Light-Framework/Modules/Managers/UnitManager.js
 var UnitManager_default = class {
   #Core;
   #units = {};
@@ -593,7 +593,7 @@ var UnitManager_default = class {
   }
 };
 
-// ../../Light-Framework/Modules/Observer.js
+// Light-Framework/Modules/Observer.js
 var Observer_default = class {
   #Core;
   #observer;
@@ -635,7 +635,7 @@ var Observer_default = class {
   }
 };
 
-// ../../Light-Framework/Modules/Core.js
+// Light-Framework/Modules/Core.js
 var Core_default = class {
   #id;
   #root;
@@ -699,9 +699,12 @@ var Core_default = class {
           newRoot.appendChild(script);
         }
       });
-      if (wait === true)
-        this.#finishCallback = () => updateRoot(this.#root);
-      else
+      if (wait === true) {
+        this.#finishCallback = (callback) => {
+          updateRoot(this.#root);
+          callback();
+        };
+      } else
         updateRoot(this.#root);
       function updateRoot(root) {
         while (root.firstChild)
@@ -721,15 +724,17 @@ var Core_default = class {
     this.TimerManager.deleteAllTimers();
   }
   // Finish Loading
-  finish() {
+  async finish() {
     if (this.#finishCallback !== void 0) {
-      this.#finishCallback();
-      this.#finishCallback = void 0;
+      return new Promise((resolve) => {
+        this.#finishCallback(() => resolve);
+        this.#finishCallback = void 0;
+      });
     }
   }
 };
 
-// ../../Light-Framework/API.js
+// Light-Framework/API.js
 if (window.light === void 0) {
   console.log(`[ Light-Framework ]
 

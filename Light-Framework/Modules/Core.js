@@ -74,8 +74,13 @@ export default class {
         }
       })
 
-      if (wait === true) this.#finishCallback = () => updateRoot(this.#root)
-      else updateRoot(this.#root)
+      if (wait === true) {
+        this.#finishCallback = (callback) => {
+          updateRoot(this.#root)
+
+          callback()
+        }
+      } else updateRoot(this.#root)
 
       // Update The Root
       function updateRoot (root) {
@@ -101,11 +106,13 @@ export default class {
   }
 
   // Finish Loading
-  finish () {
+  async finish () {
     if (this.#finishCallback !== undefined) {
-      this.#finishCallback()
+      return new Promise((resolve) => {
+        this.#finishCallback(() => resolve)
 
-      this.#finishCallback = undefined
+        this.#finishCallback = undefined
+      })
     }
   }
 }
