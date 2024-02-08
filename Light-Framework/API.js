@@ -42,7 +42,7 @@ class API {
   async load (html, wait) {await this.#Core.load(html, wait)}
   remove () {this.#Core.remove()}
 
-  finish () {this.#Core.finish()}
+  async finish () {await this.#Core.finish()}
 }
 
 export default API
