@@ -51,6 +51,16 @@ export default class {
     this.TimerManager.deleteAllTimers()
 
     return new Promise((resolve) => {
+      let ids = []
+
+      Array.from(this.#root.children).forEach((child) => {
+        if (child.tagName === 'SCRIPT') {
+          child.id = Tools.generateID(5, ids)
+
+          ids.push(child.id)
+        }
+      })
+
       const content = createElement('div', { innerHTML: html })
       const newRoot = document.body.appendChild(createElement('div', { light: this.#id }))
 

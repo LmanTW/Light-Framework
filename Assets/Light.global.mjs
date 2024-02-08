@@ -26,7 +26,7 @@ var Light = (() => {
   // ../../Light-Framework/Info.json
   var Info_default = {
     version: "v2 Beta 0.1",
-    build: "2024/02/08 15:15",
+    build: "2024/02/08 15:34",
     github: "https://github.com/LmanTW/Light-Framework"
   };
 
@@ -706,6 +706,13 @@ var Light = (() => {
       this.ListenerManager.removeAllListeners();
       this.TimerManager.deleteAllTimers();
       return new Promise((resolve) => {
+        let ids = [];
+        Array.from(this.#root.children).forEach((child) => {
+          if (child.tagName === "SCRIPT") {
+            child.id = Main_default.generateID(5, ids);
+            ids.push(child.id);
+          }
+        });
         const content = CreateElement_default("div", { innerHTML: html });
         const newRoot = document.body.appendChild(CreateElement_default("div", { light: this.#id }));
         newRoot.style.position = "fixed";
