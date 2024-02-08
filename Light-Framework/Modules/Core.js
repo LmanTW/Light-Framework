@@ -109,7 +109,7 @@ export default class {
   async finish () {
     if (this.#finishCallback !== undefined) {
       return new Promise((resolve) => {
-        this.#finishCallback(() => resolve)
+        this.#finishCallback(() => resolve())
 
         this.#finishCallback = undefined
       })

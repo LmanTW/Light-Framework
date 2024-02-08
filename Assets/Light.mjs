@@ -1,7 +1,7 @@
 // ../../Light-Framework/Info.json
 var Info_default = {
   version: "v2 Beta 0.1",
-  build: "2024/02/08 15:13",
+  build: "2024/02/08 15:15",
   github: "https://github.com/LmanTW/Light-Framework"
 };
 
@@ -727,7 +727,7 @@ var Core_default = class {
   async finish() {
     if (this.#finishCallback !== void 0) {
       return new Promise((resolve) => {
-        this.#finishCallback(() => resolve);
+        this.#finishCallback(() => resolve());
         this.#finishCallback = void 0;
       });
     }
