@@ -11,7 +11,7 @@ async function build (entry, outputFileName, options) {
     entry: [entry],
 
     format: 'esm',
-//    minify: 'terser',
+    minify: 'terser',
 
     outDir: path.resolve(__dirname, '../../Assets/'),
   }, (options === undefined) ? {} : options))
@@ -33,6 +33,15 @@ async function start () {
 
   await build(path.resolve(__dirname, '../../Light-Framework/API.js'), 'Light')
   await build(path.resolve(__dirname, '../../Light-Framework/API.js'), 'Light', { format: 'iife', globalName: 'Light' })
+
+  await tsup.build({
+    entry: [path.resolve(__dirname, '../../Plugins/Animation/Main.js')],
+
+    format: 'esm',
+    minify: 'terser',
+
+    outDir: path.resolve(__dirname, '../../Plugins/Animation'),
+  })
 }
 
 start()

@@ -53,13 +53,18 @@ export default class {
     return new Promise((resolve) => {
       let ids = []
 
-      Array.from(this.#root.children).forEach((child) => {
-        if (child.tagName === 'SCRIPT') {
-          child.id = Tools.generateID(5, ids)
+      function childChildren (element) {
+        Array.from(element.children).forEach((child) => {
+          if (child.getAttribute('light') !== null) {
+            if (child.id !== null) {
+              child.id = Tools.generateID(5, ids)
 
-          ids.push(child.id)
-        }
-      })
+              ids.push(child.id)
+            }
+
+          }
+        })
+      }
 
       const content = createElement('div', { innerHTML: html })
       const newRoot = document.body.appendChild(createElement('div', { light: this.#id }))
