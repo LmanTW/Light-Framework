@@ -2,47 +2,29 @@ const style = document.head.appendChild(document.createElement('style'))
 
 let styles = {
   style: {},
-  hover: {}
+  hover: {},
+  hold: {}
 }
 
 // Style Manager
 export default class {
   // Create Style
-  createStyle (style) {
+  createStyle (style, type) {
     Tools.checkParameters({
       style: { type: ['string'] }
     }, { style })
  
     for (let id of Object.keys(styles.style)) {
-      if (styles.style[id] === style) return `style-${id}`
+      if (styles[type][id] === style) return `${type}-${id}`
     }
 
-    const id = Tools.generateID(5, Object.keys(styles.style)) 
+    const id = Tools.generateID(5, Object.keys(styles[type])) 
 
-    styles.style[id] = style
+    styles.style[type] = style
 
     compileStyle()
 
-    return `style-${id}`
-  }
-
-  // Create Hover Style
-  createHoverStyle (style) {
-    Tools.checkParameters({
-      style: { type: ['string'] }
-    }, { style })
-
-    for (let id of Object.keys(styles.hover)) {
-      if (styles.hover[id] === style) return `hover-${id}`
-    }
-
-    const id = Tools.generateID(5, Object.keys(styles.hover)) 
-
-    styles.hover[id] = style
-
-    compileStyle()
-
-    return `hover-${id}`
+    return `${type}-${id}`
   }
 }
 
@@ -52,6 +34,7 @@ function compileStyle () {
 
   Object.keys(styles.style).forEach((id) => chunks.push(`.style-${id} {${styles.style[id]}}`))
   Object.keys(styles.hover).forEach((id) => chunks.push(`.hover-${id}:hover {${styles.hover[id]}}`))
+  Object.keys(styles.hold).forEach((id) => chunks.push(`.hold-${id}:active:hover {${styles.hold[id]}}`))
 
   style.textContent = chunks.join('')
 }
