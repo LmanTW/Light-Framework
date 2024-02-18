@@ -28,5 +28,6 @@ import Tools from './Tools/Main.js'
 const specialAttributes = {
   style: 'light:style',
   hover: 'light:style:hover',
+  hold: 'light:style:hold',
   trigger: 'light:trigger'
 }
