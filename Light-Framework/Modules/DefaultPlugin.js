@@ -47,7 +47,7 @@ export default {
         if (classList.length > 0) element.setAttribute('class', classList.join(' '))
         else element.removeAttribute('class')
 
-        addClass(element, Core.StyleManager.createStyle(Tools.parseObjectToCss(styles)))
+        addClass(element, Core.StyleManager.createStyle(Tools.parseObjectToCss(styles), 'style'))
 
         window.requestAnimationFrame(() => Object.keys(lateStyles).forEach((name) => element.style[name] = lateStyles[name]))
       }
