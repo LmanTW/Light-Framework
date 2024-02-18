@@ -2,7 +2,7 @@
 export default {
   id: 'Default',
 
-  register: (_, Tools) => {
+  register: () => {
     window.svgCache = {}
 
     class SvgElement extends HTMLElement {
@@ -16,7 +16,9 @@ export default {
         const element = createElement('div', { innerHTML: window.svgCache[this.getAttribute('src')] }).children[0]
 
         this.getAttributeNames().forEach((name) => {
-          if (name !== 'src') element.setAttribute(name, this.getAttribute(name))
+          if (name !== 'src') try {
+            element.setAttribute(name, this.getAttribute(name))
+          } catch (error) {}
         })
 
         if (this.parentNode !== null) this.outerHTML = element.outerHTML
