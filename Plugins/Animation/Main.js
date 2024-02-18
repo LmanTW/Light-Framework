@@ -75,9 +75,7 @@ export default {
         return target
       }
     }
-  },
-
-  init: () => {}
+  }
 }
 
 // Set Value

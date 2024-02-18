@@ -20,12 +20,12 @@ export default class {
   }
 
   // Check Children
-  checkChildren (element) {
+  checkChildren (element, force) {
     if (element.tagName !== undefined) {
       this.checkAttribute(element)
 
       Array.from(element.children).forEach((child) => {
-        if (child.getAttribute('light') === null) this.checkChildren(child)
+        if (child.getAttribute('light') === null || force === true) this.checkChildren(child)
       })
     }
   }
