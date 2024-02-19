@@ -20,7 +20,7 @@ export default class {
 
     const id = Tools.generateID(5, Object.keys(styles[type])) 
 
-    styles.style[type] = style
+    styles[type][id] = style
 
     compileStyle()
 
