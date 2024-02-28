@@ -9,7 +9,7 @@ Provides functionalities for creating transformations and keyframes
 import Animation from 'https://framework.light.tw/Asset/Plugin/Animation.mjs'
 
 // Import From jsDelivr (May not be the newest version)
-import Animation from 'https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Asset/Plugin/Animation.mjs'
+import Animation from 'https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Plugins/Animation/Main.mjs'
 ```
 
 ## Use The Plugin
