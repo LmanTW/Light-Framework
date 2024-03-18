@@ -3,6 +3,31 @@ export default {
   id: 'Default',
 
   register: () => {
+    window.svgCache = {}
+
+    class SvgElement extends HTMLElement {
+      constructor () {
+        super()
+      }
+
+      async connectedCallback () {
+        if (window.svgCache[this.getAttribute('src')] === undefined) window.svgCache[this.getAttribute('src')] = await (await fetch(this.getAttribute('src'))).text()
+
+        const element = createElement('div', { innerHTML: window.svgCache[this.getAttribute('src')] }).children[0]
+
+        this.getAttributeNames().forEach((name) => {
+          if (name !== 'src') {
+            try {
+              element.setAttribute(name, this.getAttribute(name))
+            } catch (error) {}
+          }
+        })
+
+        if (this.parentNode !== null) this.outerHTML = element.outerHTML
+      }
+    }
+
+    customElements.define('light-svg', SvgElement)
   },
 
   init: (Core) => {
