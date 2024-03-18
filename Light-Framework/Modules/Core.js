@@ -99,7 +99,7 @@ function getElements (parent, callback, max) {
     if (callback(child)) elements.push(child)
     else elements = elements.concat(getElements(child, callback, max))
 
-    if (elements.length >= max) breaik
+    if (elements.length >= max) break
   }
 
   return elements

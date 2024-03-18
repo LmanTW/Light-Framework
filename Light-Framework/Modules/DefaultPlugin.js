@@ -57,7 +57,7 @@ export default {
     Core.AttributeManager.createAttribute('style:hold', (element, value) => addClass(element, StyleManager.createStyle(parseStyleValue(value, Core.UnitManager.units), 'hold', '.hold-{id}:active:hover')), false)
     Core.AttributeManager.createAttribute('trigger', (element, value) => {
       if (element.getAttribute('light:trigger-set') === null) {
-        element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, style: { all: 'unset' }}).outerHTML
+        element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, target: '_blank', style: { all: 'unset' }}).outerHTML
 
         element.setAttribute('light:trigger-set', 'true')
       }
