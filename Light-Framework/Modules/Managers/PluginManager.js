@@ -10,16 +10,18 @@ export default class {
 
     plugins[Plugin.id] = Plugin
 
-    if (Plugin.register !== undefined) plugins[Plugin.id].register(API)
+    if (Plugin.register !== undefined) plugins[Plugin.id].register(API, Tools)
   }
 
   // Initialize Plugins
   static initializePlugins (Core) {
     Object.keys(plugins).forEach((id) => {
-      if (plugins[id].init !== undefined) plugins[id].init(Core)
+      if (plugins[id].init !== undefined) plugins[id].init(Core, Tools)
     })
   }
 }
+
+import Tools from '../Tools/Main.js'
 
 import API from '../../API.js'
 

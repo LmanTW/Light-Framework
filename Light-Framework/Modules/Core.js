@@ -52,6 +52,8 @@ export default class {
   load (html) {
     this.#checkComponent()
 
+    removeChildComponents(this.#root)
+
     const content = createElement('div', { innerHTML: html })
 
     const scripts = []
