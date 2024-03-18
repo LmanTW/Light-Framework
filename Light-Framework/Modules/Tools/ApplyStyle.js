@@ -1,24 +1,22 @@
 // Apply Style
-export default (style) => {
-  if (style.center !== undefined) {
-    let types = style.center.split(' ')
+export default (styleObject) => {
+  if (styleObject.center !== undefined) {
+    let types = styleObject.center.split(' ')
 
-    style.display = 'flex'
+    styleObject.display = 'flex'
 
     if (types.includes('row')) {
-      if (style.flexDirection === 'column') style.alignItems = 'center'
-      else style.justifyContent = 'center'
+      if (styleObject.flexDirection === 'column') styleObject.alignItems = 'center'
+      else styleObject.justifyContent = 'center'
     }
 
     if (types.includes('column')) {
-      if (style.flexDirection === 'column') style.justifyContent = 'center'
-      else style.alignItems = 'center'
+      if (styleObject.flexDirection === 'column') styleObject.justifyContent = 'center'
+      else styleObject.alignItems = 'center'
     }
 
-    delete style.center
+    delete styleObject.center
   }
 
-  Object.keys((name) => style[`-webkit-${name}`] = style[name])
-
-  return style
+  return styleObject 
 }

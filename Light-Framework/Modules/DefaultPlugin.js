@@ -3,64 +3,53 @@ export default {
   id: 'Default',
 
   register: () => {
-    window.svgCache = {}
-
-    class SvgElement extends HTMLElement {
-      constructor () {
-        super()
-      }
-
-      async connectedCallback () {
-        if (window.svgCache[this.getAttribute('src')] === undefined) window.svgCache[this.getAttribute('src')] = await (await fetch(this.getAttribute('src'))).text()
-
-        const element = createElement('div', { innerHTML: window.svgCache[this.getAttribute('src')] }).children[0]
-
-        this.getAttributeNames().forEach((name) => {
-          if (name !== 'src') try {
-            element.setAttribute(name, this.getAttribute(name))
-          } catch (error) {}
-        })
-
-        if (this.parentNode !== null) this.outerHTML = element.outerHTML
-      }
-    }
-
-    customElements.define('light-svg', SvgElement)
   },
 
-  init: (Core, Tools) => {
+  init: (Core) => {
     Core.AttributeManager.createAttribute('style', (element, value) => {
-      if (element.tagName === 'STYLE') element.innerHTML = Tools.parseStyleValue(element.innerHTML, Core.UnitManager.units)   
-      else {
-        let styles = Tools.applyStyle(Tools.parseCssToObject(Tools.parseStyleValue(value, Core.UnitManager.units)))
+      const styles = applyStyle(parseCssToObject(parseStyleValue(value, Core.UnitManager.units)))
 
-        const lateStyles = {}
+      const lateStyles = {}
 
-        Object.keys(styles).forEach((name) => {
-         if (['transition', 'transitionDuration'].includes(name)) {
-            lateStyles[name] = styles[name]
+      Object.keys(styles).forEach((name) => {
+        if (['transition', 'transitionDuration'].includes(name)) {
+          lateStyles[name] = styles[name]
 
-            delete styles[name]
-          }
-        })
+          delete styles[name]
+        }
+      })
 
-        let classList = Array.from(element.classList).filter((className) => !className.includes('style-'))
+      const classList = Array.from(element.classList).filter((className) => !className.includes('style-'))
       
-        if (classList.length > 0) element.setAttribute('class', classList.join(' '))
-        else element.removeAttribute('class')
+      if (classList.length > 0) element.setAttribute('class', classList.join(' '))
+      else element.removeAttribute('class')
 
-        addClass(element, Core.StyleManager.createStyle(Tools.parseObjectToCss(styles), 'style'))
+      addClass(element, StyleManager.createStyle(parseObjectToCss(styles), 'style', 'style-<id>'))
 
-        window.requestAnimationFrame(() => Object.keys(lateStyles).forEach((name) => element.style[name] = lateStyles[name]))
+      window.requestAnimationFrame(() => Object.keys(lateStyles).forEach((name) => element.style[name] = lateStyles[name]))
+    }, false)
+    Core.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, StyleManager.createStyle(parseStyleValue(value, Core.UnitManager.units), 'hover', 'hover-{id}:hover')), false)
+    Core.AttributeManager.createAttribute('style:hold', (element, value) => addClass(element, StyleManager.createStyle(parseStyleValue(value, Core.UnitManager.units), 'hold', '.hold-{id}:active:hover')), false)
+    Core.AttributeManager.createAttribute('trigger', (element, value) => {
+      if (element.getAttribute('light:trigger-set') === null) {
+        element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, style: { all: 'unset' }}).outerHTML
+
+        element.setAttribute('light:trigger-set', 'true')
       }
     }, false)
-    Core.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, Core.StyleManager.createStyle(Tools.parseStyleValue(value, Core.UnitManager.units), 'hover')), false)
-    Core.AttributeManager.createAttribute('style:hold', (element, value) => addClass(element, Core.StyleManager.createStyle(Tools.parseStyleValue(value, Core.UnitManager.units), 'hold')), false)
-    Core.AttributeManager.createAttribute('trigger', (element, value) => Core.ListenerManager.listen(element, 'click', () => {
-      if (value[0] === '/') window.location.href = value
-      else if (value.substring(0, 7) === 'http://' || value.substring(0, 8) === 'https://') window.open(value)
-      else document.head.appendChild(createElement('script', { type: 'module', innerHTML: value })).remove()
-    }), false)
+    Core.AttributeManager.createAttribute('url', (element, value) => {
+      if (element.getAttribute('light:url-set') === null) {
+        const a = createElement('a', { innerHTML: element.innerHTML, href: value, style: { all: 'unset' }})
+
+        while (element.firstChild) element.firstChild.remove()
+
+        element.appendChild(a)
+
+        Core.ListenerManager.listen(a, 'click', (event) => event.preventDefault())
+
+        element.setAttribute('light:url-set', 'true')
+      }      
+    })
 
     Core.UnitManager.createUnit('ps', (value) => `calc(calc(1vw + 1vh) * ${value})`)
   }
@@ -78,4 +67,37 @@ function addClass (element, className) {
   element.setAttribute('class', classList.join(' '))
 }
 
+// Parse Style Value
+function parseStyleValue (value, units) {
+  if (value.includes('[') && value.includes(']')) {
+    const unitList = Object.keys(units).sort((a, b) => b.length-a.length)
+
+    for (let i = 0; i < value.length; i++) {
+      if (value[i] === '[') {
+        let chunk = ''
+
+        while (value[i] !== ']' && i < value.length) {
+          i++
+
+          if (value[i] !== ']') chunk+=value[i]
+        }
+
+        if (chunk[0] === '$') value = value.replaceAll(`[${chunk}]`, `var(--${chunk.substring(1, chunk.length)})`)
+        else {
+          for (let unit of unitList) {
+            if (chunk.substring(chunk.length-unit.length, chunk.length) === unit) value = value.replaceAll(`[${chunk}]`, units[unit](chunk.substring(0, chunk.length-unit.length)))
+          }
+        }
+      }
+    }
+  }
+
+  return value
+}
+
+import applyStyle from './Tools/ApplyStyle.js'
+
+import parseObjectToCss from './Tools/ParseObjectToCss.js' 
+import parseCssToObject from './Tools/ParseCssToObject.js'
+import StyleManager from './Managers/StyleManager.js'
 import createElement from './CreateElement.js'

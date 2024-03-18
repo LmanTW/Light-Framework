@@ -1,8 +1,8 @@
-// Parse Style To Object
-export default (style) => {
+// Parse CSS To Object
+export default (css) => {
   const object = {}
 
-  style.split(';').forEach((chunk) => {
+  css.split(';').forEach((chunk) => {
     let [name, value] = chunk.split(':')
 
     if (value === undefined) return
@@ -24,3 +24,4 @@ export default (style) => {
 
   return object
 }
+

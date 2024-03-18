@@ -1,11 +1,88 @@
-// Timer
+// Timer Manager
 export default class {
   #interval
 
-  #timers = {}
+  #timers = {} 
+
+  // Create Timeout
+  createTimeout (time, callback) {
+    const id = generateID(5, Object.keys(this.#timers))
+
+    this.#timers[id] = {
+      interval: time,
+      times: 1,
+
+      callback: () => {},
+      callback2: callback,
+
+      count: 0,
+      lastUpdateTime: performance.now()
+    }
+
+    if (this.#interval === undefined) this.#startTimer()
+
+    return id
+  }
+
+  // Create Interval
+  createInterval (interval, callback) {
+    const id = generateID(5, Object.keys(this.#timers))
+
+    this.#timers[id] = {
+      interval,
+      times: Infinity,
+
+      callback,
+
+      count: 0,
+      lastUpdateTime: performance.now() 
+    }
+
+    if (this.#interval === undefined) this.#startTimer()
+
+    return id
+  }
+
+  // Create Loop
+  createLoop (interval, times, callback, callback2) {
+    const id = Tools.generateID(5, Object.keys(this.#timers))
+
+    this.#timers[id] = {
+      interval,
+      times,
+
+      callback,
+      callback2,
+
+      count: 0,
+      lastUpdateTime: performance.now() 
+    }
+
+    if (this.#interval === undefined) this.#startTimer()
+
+    return id
+  }
+
+  // Delete Timer
+  deleteTimer (id) {
+    if (this.#timers[id] === undefined) throw new Error(`Timer Not Found: ${id}`)
+
+    delete this.#timers[id]
+
+    if (Object.keys(this.#timers).length < 1) {
+      clearInterval(this.#interval)
+
+      this.#interval = undefined
+    }
+  }
+
+  // Delete All Timers
+  deleteAllTimers () {
+    Object.keys(this.#timers).forEach((id) => this.deleteTimer(id))
+  }
 
   // Start Timer
-  startTimer () {
+  #startTimer () {
     this.#interval = setInterval(() => {
       const time = performance.now()
 
@@ -30,106 +107,6 @@ export default class {
       })
     }, 1)
   }
-
-  // Create Timeout
-  createTimeout (time, callback) {
-    Tools.checkParameters({
-      time: { type: ['number'] },
-      callback: { type: ['function'] }
-    }, { time, callback })
-
-    const id = Tools.generateID(5, Object.keys(this.#timers))
-
-    this.#timers[id] = {
-      interval: time,
-      times: 1,
-
-      callback: () => {},
-      callback2: callback,
-
-      count: 0,
-      lastUpdateTime: performance.now()
-    }
-
-    if (this.#interval === undefined) this.startTimer()
-
-    return id
-  }
-
-  // Create Interval
-  createInterval (interval, callback, instantStart) {
-    Tools.checkParameters({
-      interval: { type: ['number'] },
-      callback: { type: ['function'] },
-      instantStart: { type: ['undefined', 'boolean'] }
-    }, { interval, callback, instantStart })
-
-    const id = Tools.generateID(5, Object.keys(this.#timers))
-
-    this.#timers[id] = {
-      interval,
-      times: Infinity,
-
-      callback,
-
-      count: 0,
-      lastUpdateTime: (instantStart === true) ? performance.now()-interval : performance.now() 
-    }
-
-    if (this.#interval === undefined) this.startTimer()
-
-    return id
-  }
-
-  // Create Loop
-  createLoop (interval, times, callback, callback2, instantStart) {
-    Tools.checkParameters({
-      interval: { type: ['number'] },
-      times: { type: ['number'] },
-      callback: { type: ['function'] },
-      callback2: { type: ['undefined', 'function'] },
-      instantStart: { type: ['undefined', 'boolean'] }
-    }, { interval, times, callback, callback2, instantStart })
-
-    const id = Tools.generateID(5, Object.keys(this.#timers))
-
-    this.#timers[id] = {
-      interval,
-      times,
-
-      callback,
-      callback2,
-
-      count: 0,
-      lastUpdateTime: (instantStart === true) ? performance.now()-interval : performance.now()
-    }
-
-    if (this.#interval === undefined) this.startTimer()
-
-    return id
-  }
-
-  // Delete Timer
-  deleteTimer (id) {
-    Tools.checkParameters({
-      id: { type: ['string'] }
-    }, { id })
-
-    if (this.#timers[id] === undefined) throw new Error(`Timer Not Found: ${id}`)
-
-    delete this.#timers[id]
-
-    if (Object.keys(this.#timers).length < 1) {
-      clearInterval(this.#interval)
-
-      this.#interval = undefined
-    }
-  }
-
-  // Delete All Timers
-  deleteAllTimers () {
-    Object.keys(this.#timers).forEach((id) => this.deleteTimer(id))
-  }
 }
 
-import Tools from '../Tools/Main.js'
+import generateID from '../Tools/GenerateID.js'

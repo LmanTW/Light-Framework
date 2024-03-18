@@ -1,47 +1,61 @@
-const tsup = require('tsup')
-const path = require('path')
-const fs = require('fs')
+(async () => {
+  const { build } = require('tsup')
+  const path = require('path')
+  const fs = require('fs')
 
-fs.readdirSync(path.resolve(__dirname, '../../Assets')).forEach((file) => fs.unlinkSync(path.resolve(__dirname, `../../Assets/${file}`)))
+  const TextColor = {
+    reset: '\x1b[0m',
+    
+    green: '\x1b[32m',
+    purple: '\x1b[35m'
+  }
 
-// Build
-async function build (entry, outputFileName, options) {
-  await tsup.build(Object.assign({
-    name: 'Light-Framework',
-    entry: [entry],
-
-    format: 'esm',
-    minify: 'terser',
-
-    outDir: path.resolve(__dirname, '../../Assets/'),
-  }, (options === undefined) ? {} : options))
-
-  if (options !== undefined && options.format === 'iife') fs.renameSync(path.resolve(__dirname, '../../Assets/API.global.js'), path.resolve(__dirname, `../../Assets/${outputFileName}.global.mjs`))
-  else fs.renameSync(path.resolve(__dirname, '../../Assets/API.mjs'), path.resolve(__dirname, `../../Assets/${outputFileName}.mjs`))
-}
-
-// Start
-async function start () {
-  const info = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../Light-Framework/Info.json')))
+  console.log(` 📌 ${TextColor.reset}Upading Info`)
 
   const date = new Date()
   const dateString = `${date.getFullYear()}/${new String(date.getMonth()+1).padStart(2, '0')}/${new String(date.getDate()).padStart(2, '0')} ${new String(date.getHours()).padStart(2, '0')}:${new String(date.getMinutes()).padStart(2, '0')}`
 
-  info.build = dateString
+  const info = JSON.parse(fs.readFileSync(path.join(__dirname, '../../Light-Framework/Info.json')))
 
-  fs.writeFileSync(path.resolve(__dirname, '../../Light-Framework/Info.json'), JSON.stringify(info, null, 2))
+  fs.writeFileSync(path.join(__dirname, '../../Light-Framework/Info.json'), `{\n  "version": "${info.version}",\n  "build": "${dateString}",\n\n  "github": "${info.github}"\n}`)
 
-  await build(path.resolve(__dirname, '../../Light-Framework/API.js'), 'Light')
-  await build(path.resolve(__dirname, '../../Light-Framework/API.js'), 'Light', { format: 'iife', globalName: 'Light' })
+  console.log(` 📌 ${TextColor.green}Successfully Upated Info (Build: ${dateString})`)
 
-  await tsup.build({
-    entry: [path.resolve(__dirname, '../../Plugins/Animation/Main.js')],
+  console.log(`\n 📦 ${TextColor.reset}Bundling Light-Framework To ESM`)
 
-    format: 'esm',
+  await build({
+    entry: [path.resolve(__dirname, '../../Light-Framework/API.js')],
+
+    target: 'es6',
     minify: 'terser',
 
-    outDir: path.resolve(__dirname, '../../Plugins/Animation'),
-  })
-}
+    outDir: path.join(__dirname, 'Cache'),
+    format: 'esm',
 
-start()
+    silent: true
+  })
+
+  console.log(` 📦 ${TextColor.green}Successfully Bundled Light-Framework To ESM (Size: ${parseFloat(fs.statSync(path.join(__dirname, 'Cache', 'API.mjs')).size / 1024).toFixed(2)} KB)`)
+
+  fs.renameSync(path.join(__dirname, 'Cache', 'API.mjs'), path.resolve(__dirname, '../../Assets/Light.mjs'))
+
+  console.log(`\n 📦 ${TextColor.reset}Bundling Light-Framework To IIFE`)
+
+  await build({
+    entry: [path.resolve(__dirname, '../../Light-Framework/API.js')],
+
+    target: 'es6',
+    minify: 'terser',
+
+    outDir: path.join(__dirname, 'Cache'),
+    format: 'iife',
+
+    silent: true
+  })
+
+  fs.writeFileSync(path.resolve(__dirname, '../../Assets/Light.global.mjs'), `var Light=` + fs.readFileSync(path.join(__dirname, 'Cache', 'API.global.js'), 'utf8'))
+
+  console.log(` 📦 ${TextColor.green}Successfully Bundled Light-Framework To IIFE (Size: ${parseFloat(fs.statSync(path.resolve(__dirname, '../../Assets/Light.global.mjs')).size / 1024).toFixed(2)} KB)\n`)
+
+  fs.readdirSync(path.join(__dirname, 'Cache')).forEach((file) => fs.rmSync(path.join(__dirname, 'Cache', file)))
+})()

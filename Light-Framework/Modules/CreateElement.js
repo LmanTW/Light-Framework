@@ -1,11 +1,5 @@
 // Create Element
 export default (tagName, options, children) => {
-  Tools.checkParameters({
-    tagName: { type: ['string'] },
-    options: { type: ['undefined', 'object'] },
-    children: { type: ['undefined', 'array'] }
-  }, { tagName, options, children })
-
   const element = (tagName === 'svg') ? document.createElementNS('http://www.w3.org/2000/svg', 'svg') : document.createElement(tagName)
 
   if (options !== undefined) {
@@ -13,7 +7,7 @@ export default (tagName, options, children) => {
 
     Object.keys(options).forEach((key) => {
       if (key === 'innerHTML') element.innerHTML = options[key]
-      else if (specialAttributes[key] !== undefined) element.setAttribute(specialAttributes[key], (['style', 'hover'].includes(key)) ? Tools.parseObjectToCss(Tools.applyStyle(options[key])) : options[key])
+      else if (['style', 'light:style', 'light:style:hover', 'light:style:hold'].includes(key) && typeof options[key] === 'object') element.setAttribute(key, parseObjectToCss(applyStyle(options[key])))
       else element.setAttribute(key, options[key])
     })
   }
@@ -23,11 +17,5 @@ export default (tagName, options, children) => {
   return element
 }
 
-import Tools from './Tools/Main.js'
-
-const specialAttributes = {
-  style: 'light:style',
-  hover: 'light:style:hover',
-  hold: 'light:style:hold',
-  trigger: 'light:trigger'
-}
+import parseObjectToCss from './Tools/ParseObjectToCss.js'
+import applyStyle from './Tools/ApplyStyle.js'

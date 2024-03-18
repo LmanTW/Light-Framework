@@ -1,26 +1,20 @@
 const style = document.head.appendChild(document.createElement('style'))
 
-let styles = {
-  style: {},
-  hover: {},
-  hold: {}
-}
+const styles = {}
 
 // Style Manager
 export default class {
   // Create Style
-  createStyle (style, type) {
-    Tools.checkParameters({
-      style: { type: ['string'] }
-    }, { style })
- 
-    for (let id of Object.keys(styles.style)) {
-      if (styles[type][id] === style) return `${type}-${id}`
+  static createStyle (style, type, idFormat) {
+    if (styles[type] === undefined) styles[type] = { idFormat, styles: {} }
+
+    for (let id of Object.keys(styles[type].styles)) {
+      if (styles[type].styles[id] === style) return `${type}-${id}`
     }
 
-    const id = Tools.generateID(5, Object.keys(styles[type])) 
+    const id = generateID(5, Object.keys(styles[type].styles)) 
 
-    styles[type][id] = style
+    styles[type].styles[id] = style
 
     compileStyle()
 
@@ -32,11 +26,11 @@ export default class {
 function compileStyle () {
   const chunks = []
 
-  Object.keys(styles.style).forEach((id) => chunks.push(`.style-${id} {${styles.style[id]}}`))
-  Object.keys(styles.hover).forEach((id) => chunks.push(`.hover-${id}:hover {${styles.hover[id]}}`))
-  Object.keys(styles.hold).forEach((id) => chunks.push(`.hold-${id}:active:hover {${styles.hold[id]}}`))
+  Object.keys(styles).forEach((type) => {
+    Object.keys(styles[type].styles).forEach((id) => chunks.push(`.${styles[type].idFormat.replace('<id>', id)} {${styles[type].styles[id]}}`))
+  })
 
-  style.textContent = chunks.join('')
+  style.textContent = chunks.join('\n')
 }
 
-import Tools from '../Tools/Main.js'
+import generateID from '../Tools/GenerateID.js'

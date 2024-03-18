@@ -5,141 +5,102 @@ export default class {
 
   #data
 
-  #finishCallback
+  constructor (classInstance, element, data) {
+    this.#id = ComponentManager.registerComponent(this)
+    this.#root = element
 
-  constructor (Component, target, data) {
-    if (typeof target !== 'string' && !(target instanceof HTMLElement)) throw new Error('Parameter "target" Must Be A <string> Or An Instance Of HTMLElement')
-
-    Tools.checkParameters({
-      data: { type: ['undefined', 'object'] }
-    }, { data })
-
-    this.#data = (data === undefined) ? {} : data
- 
-    this.#root = (typeof target === 'string') ? document.querySelector(target) : target
-
-    if (this.#root === null) throw new Error(`Target Not Found: ${target}`)
-    if (this.#root.getAttribute('light') !== null) throw new Error('Target Is Already A Light Component')
-
-    this.#id = ComponentManager.createComponent(Component)
+    this.#data = data
 
     this.ListenerManager = new ListenerManager()
     this.TimerManager = new TimerManager()
 
     this.AttributeManager = new AttributeManager(this)
     this.UnitManager = new UnitManager(this)
-    this.StyleManager = new StyleManager(this)
     this.Observer = new Observer(this)
 
-    this.#root.setAttribute('light', this.#id)
+    element.setAttribute('light', this.#id)
 
-    PluginManager.initializePlugins(this)
+    PluginManager.initializePlugins(this)    
   }
 
-  get root () {return this.#root}
   get id () {return this.#id}
+  get root () {return this.#root}
   get data () {return this.#data}
 
-  // Load Component From URl
-  async load (html, wait) {
-    Tools.checkParameters({
-      html: { type: ['string'] },
-      wait: { type: ['undefined', 'boolean'] }
-    }, { html, wait })
+  // Get Element By ID
+  getElementByID (id) {
+    this.#checkComponent()
 
-    this.ListenerManager.removeAllListeners()
-    this.TimerManager.deleteAllTimers()
-
-    return new Promise((resolve) => {
-      let ids = []
-
-      function childChildren (element) {
-        Array.from(element.children).forEach((child) => {
-          if (child.getAttribute('light') !== null) {
-            if (child.id !== null) {
-              child.id = Tools.generateID(5, ids)
-
-              ids.push(child.id)
-            }
-
-          }
-        })
-      }
-
-      const content = createElement('div', { innerHTML: html })
-      const newRoot = document.body.appendChild(createElement('div', { light: this.#id }))
-
-      newRoot.style.position = 'fixed'
-      newRoot.style.bottom = '0px'
-      newRoot.style.width = '0px'
-      newRoot.style.height = '0px'
-      newRoot.style.overflow = 'hidden'
-
-      Array.from(content.children).forEach((child) => {
-        if (child.tagName !== 'SCRIPT') newRoot.appendChild(child)
-      })
-
-      Array.from(content.children).forEach((child) => {
-        if (child.tagName === 'SCRIPT') {
-          const script = createElement('script', { innerHTML: child.innerHTML })
-
-          child.getAttributeNames().forEach((name) => script.setAttribute(name, child.getAttribute(name)))
-
-          newRoot.appendChild(script)
-        }
-      })
-
-      if (wait === true) {
-        this.#finishCallback = (callback) => {
-          updateRoot(this.#root)
-
-          callback()
-        }
-      } else updateRoot(this.#root)
-
-      // Update The Root
-      function updateRoot (root) {
-        while (root.firstChild) root.firstChild.remove()
-
-        Array.from(newRoot.children).forEach((child) => {
-          root.appendChild(child)
-        })
-
-        newRoot.remove()
-
-        resolve()
-      }
-    })
+    return getElements(this.#root, (element) => element.id === id, 1)[0]
   }
 
-  // Remove Component
+  // Get Element By Class Name
+  getElementsByClassName (name) {
+    this.#checkComponent()
+
+    return getElements(this.#root, (element) => Array.from(element.classList).includes(name), Infinity)
+  }
+
+  // Get Element By Tag Name
+  getElementsByTagName (name) {
+    return getElements(this.#root, (element) => element.localName === name, Infinity)
+  }
+
+  // Load The Component From HTML
+  load (html) {
+    this.#checkComponent()
+
+    this.#root.innerHTML = html
+  }
+
+  // Remove The Component
   remove () {
-    deleteComponent(this.#id)
+    this.#checkComponent()
 
-    this.ListenerManager.removeAllListeners()
+    removeChildComponents(this.#root)
+
+    this.ListenerManager.deleteAllListeners()
     this.TimerManager.deleteAllTimers()
+
+    this.Observer.observer.disconnect() 
+
+    this.id = undefined
+
+    this.#root.setAttribute('light', null)
   }
 
-  // Finish Loading
-  async finish () {
-    if (this.#finishCallback !== undefined) {
-      return new Promise((resolve) => {
-        this.#finishCallback(() => resolve())
-
-        this.#finishCallback = undefined
-      })
-    }
+  // Check Component
+  #checkComponent () {
+    if (!this.#root.isConnected || this.#root.getAttribute('light') !== this.#id) throw new Error('Component Not Found')
   }
 }
 
-import Tools  from './Tools/Main.js'
+// Get Element
+function getElements (parent, callback, max) {
+  let elements = []
+
+  for (const child of parent.children) {
+    if (callback(child)) elements.push(child)
+    else elements = elements.concat(getElements(child, callback, max))
+
+    if (elements.length >= max) breaik
+  }
+
+  return elements
+}
+
+// Remove Child Components
+function removeChildComponents (parent) {
+  parent.children.forEach((child) => {
+    if (child.getAttribute('light') !== null) ComponentManager.getComponent(child.getAttribute('light'))
+    else removeChildComponents(child)
+  })
+}
 
 import ComponentManager from './Managers/ComponentManager.js'
 import AttributeManager from './Managers/AttributeManager.js'
 import ListenerManager from './Managers/ListenerManager.js'
 import PluginManager from './Managers/PluginManager.js'
 import TimerManager from './Managers/TimerManager.js'
-import StyleManager from './Managers/StyleManager.js'
 import UnitManager from './Managers/UnitManager.js'
-import createElement from './CreateElement.js'
 import Observer from './Observer.js'

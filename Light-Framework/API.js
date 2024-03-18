@@ -11,45 +11,172 @@ if (window.light === undefined) {
   window.light = true
 }
 
-// API
-class API {
-  static get use () {return PluginManager.addPlugin}
+// API 
+export default class {
+  // Use Plugin
+  static use (Plugin) {
+    checkParameters({
+      Plugin: { type: ['object'] }
+    }, { Plugin })
 
-  static get createElement () {return createElement}
-  static get createSvgElement () {return createSvgElement}
-  static get setStyle () {return setStyle}
+    checkObject('Plugin', {
+      id: { type: ['string'] },
 
-  // Get Component
-  static getComponent (element) {
-    Tools.checkParameters({
-      element: { instance: [HTMLElement] }
-    }, { element })
+      register: { type: ['undefined', 'function'] },
+      init: { type: ['undefined', 'function'] }
+    }, Plugin)
 
-    let id = ComponentManager.getComponentFromParent(element)
+    PluginManager.addPlugin(Plugin)
+  }
 
-    return ComponentManager.getComponent(id)
+  // Create Element
+  static createElement (tagName, options, children) {
+    checkParameters({
+      tagName: { type: ['string'] },
+      options: { type: ['undefined', 'object'] },
+      children: { type: ['undefined', 'array'] }
+    }, { tagName, options, children })
+
+    return createElement(tagName, options, children)
+  }
+
+  // Create SVG Element
+  static async createSvgElement (src, options) {
+    checkParameters({
+      src: { type: ['string'] },
+      options: { type: ['undefined', 'object'] }
+    }, { src, options })
+
+    return await createSvgElement(src, options)
+  }
+
+  // Set Style
+  static setStyle (element, name, value) {
+    if (!(element instanceof HTMLElement)) throw new Error('Parameter "element" Must Be An Instance Of <HTMLElement>')
+
+    checkParameters({
+      name: { type: ['string'] },
+      value: { type: ['number', 'string'] }
+    }, { name, value })
+
+    setStyle(element, name, value)
   }
 
   #Core
 
-  constructor (target, options) {
-    this.#Core = new Core(this, target, options)
+  constructor (element, data) {
+    if (!(element instanceof HTMLElement)) throw new Error('Parameter "element" Must Be An Instance Of <HTMLElement>')
 
-    this.Event = this.#Core.ListenerManager
-    this.Timer = this.#Core.TimerManager
+    checkParameters({
+      data: { type: ['undefined', 'object'] }
+    }, { data })
+
+    this.#Core = new Core(this, element, data)
+
+    this.ListenerManager = {
+      listen: (target, name, callback) => {
+        checkParameters({
+          name: { type: ['string'] },
+          callback: { type: ['function'] }
+        }, { name, callback })
+
+        return this.#Core.ListenerManager.listen(target, name, callback)
+      },
+
+      deleteListener: (id) => {
+        checkParameters({
+          id: { type: ['string'] }
+        }, { id })
+
+        this.#Core.ListenerManager.deleteListener(id)
+      }
+    }
+
+    this.TimerManager = {
+      createTimeout: (time, callback) => {
+        checkParameters({
+          time: { type: ['number'] },
+          callback: { type: ['function'] }
+        }, { time, callback })
+
+        return this.#Core.TimerManager.createTimeout(time, callback)
+      },
+
+      createInterval: (interval, callback) => {
+        checkParameters({
+          interval: { type: ['number'] },
+          callback: { type: ['function'] }
+        }, { interval, callback })
+
+        return this.#Core.TimerManager.createInterval(interval, callback)
+      },
+
+      createLoop: (interval, times, callback, callback2) => {
+        checkParameters({
+          interval: { type: ['number'] },
+          times: { type: ['number'] },
+          callback: { type: ['function'] },
+          callback2: { type: ['undefined', 'function'] }
+        }, [ interval, times, callback, callback2 ])
+
+        return this.#Core.TimerManager.createLoop(interval, times, callback, callback2)
+      },
+
+      deleteTimer: (id) => {
+        checkParameters({
+          id: { type: ['string'] }
+        }, { id })
+
+        this.#Core.TimerManager.deleteTimer(id)
+      }
+    }
   }
 
-  async load (html, wait) {await this.#Core.load(html, wait)}
-  remove () {this.#Core.remove()}
+  // Get Element By ID
+  getElementByID (id) {
+    checkParameters({
+      id: { type: ['string'] }
+    }, { id })
 
-  async finish () {await this.#Core.finish()}
+    return this.#Core.getElementByID(id)
+  }
+
+  // Get Element By Class Name
+  getElementsByClassName (name) {
+    checkParameters({
+      name: { type: ['string'] },
+    }, { name })
+  
+    return this.#Core.getElementsByClassName(name)
+  }
+
+  // Get Element By Tag Name
+  getElementsByTagName (name) {
+    checkParameters({
+      name: { type: ['string'] },
+    }, { name })
+  
+    return this.#Core.getElementsByTagName(name)
+  }
+
+  // Load The Component From HTML
+  load (html) {
+    checkParameters({
+      html: { type: ['string'] }
+    }, { html })
+
+    this.#Core.load(html)
+  }
+
+  // Remove The Component
+  remove () {
+    this.#Core.remove()
+  }
 }
 
-export default API
+import checkParameters from './Modules/Tools/CheckParameters.js'
+import checkObject from './Modules/Tools/CheckObject.js'
 
-import Tools from './Modules/Tools/Main.js'
-
-import ComponentManager from './Modules/Managers/ComponentManager.js'
 import PluginManager from './Modules/Managers/PluginManager.js'
 import createSvgElement from './Modules/CreateSvgElement.js'
 import DefaultPlugin from './Modules/DefaultPlugin.js'

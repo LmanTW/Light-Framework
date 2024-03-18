@@ -1,29 +1,32 @@
-const components = {}
-
 // Component Manager
 export default class {
-  // Create Component
-  static createComponent (Component) {
-    const id = Tools.generateID(5, Object.keys(components))
+  // Register Component
+  static registerComponent (Core) {
+    const id = generateID(5, Object.keys(components))
 
-    components[id] = Component
+    components[id] = Core
 
     return id
   }
 
-  // Get Component From Parent
-  static getComponentFromParent (element) {
-    if (element === null) return
-    else if (element.getAttribute('light') === null) {
-      if (element.parentNode === undefined) return
-      else return this.getComponentFromParent(element.parentNode)
-    } else return element.getAttribute('light')
+  // Unregister Component
+  static unregisterComponent (id) {
+    delete components[id]
   }
 
   // Get Component
   static getComponent (id) {
     return components[id]
   }
+
+  // Get Component From Parent
+  static getComponentFromParent (element) {
+    if (element.getAttribute('light') !== null) return element.getAttribute('light')
+
+    if (element.parentNode !== null) return this.getComponentFromParent(element.parentNode)
+  }
 }
 
-import Tools from '../Tools/Main.js'
+import generateID from '../Tools/GenerateID.js'
+
+const components = {}
