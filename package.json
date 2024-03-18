@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "test": "node Scripts/Test/Main.js",
+    "build": "node Scripts/Build/Main.js"
+  },
+
+  "dependencies": {
+    "express": "^4.18.3",
+    "terser": "^5.29.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.2"
+  }
+}

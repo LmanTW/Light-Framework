@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 
 <html>
-  <body>
-    <div light:style="font-size: [5ps]" light:style:hold="font-size: [7ps]" light:url="https://google.com">
-      Click This Shit
-    </div>
-  </body>
+  <body></body>
 
   <script type="module">
     import Light from '../../Light-Framework/API.js'
 
     const component = new Light(document.body)
+
+    component.load(await (await fetch('./Component.html')).text())
   </script>
 </html>

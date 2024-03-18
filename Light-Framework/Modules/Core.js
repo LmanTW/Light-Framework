@@ -6,6 +6,8 @@ export default class {
   #data
 
   constructor (classInstance, element, data) {
+    this.classInstance = classInstance
+
     this.#id = ComponentManager.registerComponent(this)
     this.#root = element
 
@@ -50,7 +52,21 @@ export default class {
   load (html) {
     this.#checkComponent()
 
-    this.#root.innerHTML = html
+    const content = createElement('div', { innerHTML: html })
+
+    const scripts = []
+
+    getElements(content, (element) => element.localName === 'script', Infinity).forEach((element) => {
+      scripts.push(element.innerHTML)
+
+      element.remove()
+    })
+
+    this.#root.innerHTML = content.innerHTML
+
+    scripts.forEach((script) => {
+      new Function('Light', 'Component', script)(Light, this.classInstance)
+    })
   }
 
   // Remove The Component
@@ -103,4 +119,6 @@ import ListenerManager from './Managers/ListenerManager.js'
 import PluginManager from './Managers/PluginManager.js'
 import TimerManager from './Managers/TimerManager.js'
 import UnitManager from './Managers/UnitManager.js'
+import createElement from './CreateElement.js'
 import Observer from './Observer.js'
+import Light from '../API.js'

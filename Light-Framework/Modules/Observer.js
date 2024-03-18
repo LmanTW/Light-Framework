@@ -17,19 +17,23 @@ export default class {
 
   // Check Children
   checkChildren (parent) {
-    this.checkAttribute(parent)
+    if (parent.tagName !== undefined) {
+      this.checkAttribute(parent)
 
-    Array.from(parent.children).forEach((child) => {
-      if (child.tagName !== undefined && child.getAttribute('light') === null) this.checkChildren(child)
-    })
+      Array.from(parent.children).forEach((child) => {
+        if (child.tagName !== undefined && child.getAttribute('light') === null) this.checkChildren(child)
+      })
+    }
   }
 
   // Check Attribute
   checkAttribute (element, attributeName) {
-    if (attributeName === undefined) {
-      element.getAttributeNames().forEach((name) => {
-        if (name.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[name.substring(6, name.length)] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(name))
-      })
-    } else if (this.#Core.AttributeManager.attributes[attributeName] !== undefined) this.#Core.AttributeManager.attributes[attributeName](element, element.getAttribute(`light:${attributeName}`)) 
+    if (element.tagName !== undefined) {
+      if (attributeName === undefined) {
+        element.getAttributeNames().forEach((name) => {
+          if (name.substring(0, 6) === 'light:' && this.#Core.AttributeManager.attributes[name.substring(6, name.length)] !== undefined) this.#Core.AttributeManager.attributes[name.substring(6, name.length)](element, element.getAttribute(name))
+        })
+      } else if (this.#Core.AttributeManager.attributes[attributeName] !== undefined) this.#Core.AttributeManager.attributes[attributeName](element, element.getAttribute(`light:${attributeName}`)) 
+    }
   }
 }
