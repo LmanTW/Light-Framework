@@ -54,12 +54,15 @@ export default class {
 
     removeChildComponents(this.#root)
 
+    this.ListenerManager.deleteAllListeners()
+    this.TimerManager.deleteAllTimers()
+
     const content = createElement('div', { innerHTML: html })
 
     const scripts = []
 
     getElements(content, (element) => element.localName === 'script', Infinity).forEach((element) => {
-      scripts.push(element.innerHTML)
+      scripts.push({ type: element.type, content: element.innerHTML })
 
       element.remove()
     })
@@ -67,7 +70,8 @@ export default class {
     this.#root.innerHTML = content.innerHTML
 
     scripts.forEach((script) => {
-      new Function('Light', 'Component', script)(Light, this.classInstance)
+      if (script.type === 'module') new Function('Light', 'Component', 'import', `(async () =>${script})()`)(Light, this.classInstance, async (src) => await import(src))
+      else new Function('Light', 'Component', script)(Light, this.classInstance)
     })
   }
 
