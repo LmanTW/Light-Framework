@@ -109,7 +109,7 @@ function getElements (parent, callback, max) {
 
 // Remove Child Components
 function removeChildComponents (parent) {
-  parent.children.forEach((child) => {
+  Array.from(parent.children).forEach((child) => {
     if (child.getAttribute('light') !== null) ComponentManager.getComponent(child.getAttribute('light'))
     else removeChildComponents(child)
   })
