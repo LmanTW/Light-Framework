@@ -9,4 +9,3 @@ A lightweight web framework for building SPA.
 
 ## Contributors
 * [LmanTW](https://github.com/LmanTW) | Project founder
-* [Icebrick01](https://github.com/IceBrick01) | Document maintainer
