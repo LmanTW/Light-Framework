@@ -70,7 +70,7 @@ export default class {
     this.#root.innerHTML = content.innerHTML
 
     scripts.forEach((script) => {
-      if (script.type === 'module') new Function('Light', 'Component', 'Import', `(async()=>${script.content})()`)(Light, this.classInstance, async (src) => await import(src))
+      if (script.type === 'module') new Function('Light', 'Component', 'Import', `(async()=>{${script.content}})()`)(Light, this.classInstance, async (src) => await import(src))
       else new Function('Light', 'Component', script.content)(Light, this.classInstance)
     })
   }
