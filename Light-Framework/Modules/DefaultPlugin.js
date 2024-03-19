@@ -53,7 +53,7 @@ export default {
 
       window.requestAnimationFrame(() => Object.keys(lateStyles).forEach((name) => element.style[name] = lateStyles[name]))
     }, false)
-    Core.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, StyleManager.createStyle(parseStyleValue(value, Core.UnitManager.units), 'hover', 'hover-{id}:hover')), false)
+    Core.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, StyleManager.createStyle(parseStyleValue(value, Core.UnitManager.units), 'hover', '.hover-{id}:hover')), false)
     Core.AttributeManager.createAttribute('style:hold', (element, value) => addClass(element, StyleManager.createStyle(parseStyleValue(value, Core.UnitManager.units), 'hold', '.hold-{id}:active:hover')), false)
     Core.AttributeManager.createAttribute('trigger', (element, value) => {
       if (element.getAttribute('light:trigger-set') === null) {
