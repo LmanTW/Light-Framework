@@ -1,5 +1,5 @@
 # Installation
-You can install Light-Framework in several ways, but we suggest you to just download it, and put it on your host.
+You can install Light-Framework in several ways, but we suggest you to just download it and put it on your host.
 
 ## ESM
 ```js
@@ -19,7 +19,7 @@ import Light from 'https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/Lig
 <script type="module" src="https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/Light.global.mjs"></script>
 
 <script>
-  // You can access Light-Framewor as Light
+  // You can access Light-Framework as Light
 
   console.log(Light)
 </script>
