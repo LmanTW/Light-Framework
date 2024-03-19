@@ -33,7 +33,7 @@ Suppose you want to build a [SPA (Single Page Application)](https://en.wikipedia
 ```
 
 ## Box.html
-```
+```html
 <div id="color" light:style="width: 100%; height: 100%"></div>
 
 <script>
