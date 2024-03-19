@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+  <body light:style="display: flex; margin: 0px">
+    <div id="box1" light:style="width: 50vw; height: 100vh; cursor: pointer"></div>
+    <div id="box2" light:style="width: 50vw; height: 100vh; cursor: pointer"></div>
+  </body>
+
+  <script type="module">
+    import Light from 'https://framework.light.tw/Asset/Light.mjs'
+
+    // Create a global component, so we can use special css value under the body
+    const globalComponent = new Light(document.body)
+
+    // Get elements in the component
+    const box1 = globalComponent.getElementByID('box1')
+    const box2 = globalComponent.getElementByID('box2')
+
+    // Create components for both boxes and load it from Box.html
+    new Light(box1).load(await (await fetch('./Box.html')).text())
+    new Light(box2).load(await (await fetch('./Box.html')).text())
+  </script>
+</html>

@@ -1,0 +1,17 @@
+<div id="color" light:style="width: 100%; height: 100%"></div>
+
+<script>
+  // Get the element in the component
+  const color = Component.getElementByID('color') 
+
+  // Set the color
+  Light.setStyle(color, 'background-color', `rgb(${getRandom(0, 255)},${getRandom(0, 255)},${getRandom(0, 255)})`)
+
+  // Listen to click event
+  Component.ListenerManager.listen(color, 'click', async () => Component.load(await (await fetch('./Box.html')).text()))
+
+  // Get random 
+  function getRandom (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+</script>
