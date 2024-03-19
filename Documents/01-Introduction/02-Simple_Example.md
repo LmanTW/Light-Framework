@@ -11,20 +11,16 @@ The main "frame" of the application, used to load all the components.
 <!DOCTYPE html>
 
 <html>
-  <body light:style="display: flex; margin: 0px">
-    <div id="box1" light:style="width: 50vw; height: 100vh; cursor: pointer"></div>
-    <div id="box2" light:style="width: 50vw; height: 100vh; cursor: pointer"></div>
+  <body style="display: flex; margin: 0px">
+    <div id="box1" style="width: 50vw; height: 100vh; cursor: pointer"></div>
+    <div id="box2" style="width: 50vw; height: 100vh; cursor: pointer"></div>
   </body>
 
   <script type="module">
     import Light from 'https://framework.light.tw/Asset/Light.mjs'
 
-    // Create a global component, so we can use special css value under the body
-    const globalComponent = new Light(document.body)
-
-    // Get elements in the component
-    const box1 = globalComponent.getElementByID('box1')
-    const box2 = globalComponent.getElementByID('box2')
+    const box1 = document.getElementById('box1')
+    const box2 = document.getElementById('box2')
 
     // Create components for both boxes and load it from Box.html
     new Light(box1).load(await (await fetch('./Box.html')).text())
@@ -40,7 +36,9 @@ The component file for the component "box"
 
 <script>
   // Get the element in the component
-  const color = Component.getElementByID('color') 
+  const color = Component.getElementByID('color')
+
+  // (This is a script in a component, Light-Framework will expose Light, Component to the script.)
 
   // Set the color
   Light.setStyle(color, 'background-color', `rgb(${getRandom(0, 255)},${getRandom(0, 255)},${getRandom(0, 255)})`)
