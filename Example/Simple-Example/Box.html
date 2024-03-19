@@ -4,6 +4,8 @@
   // Get the element in the component
   const color = Component.getElementByID('color') 
 
+  // (This is a script in a component, Light-Framework will expose Light, Component to the script.)
+
   // Set the color
   Light.setStyle(color, 'background-color', `rgb(${getRandom(0, 255)},${getRandom(0, 255)},${getRandom(0, 255)})`)
 
