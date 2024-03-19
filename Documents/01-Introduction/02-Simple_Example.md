@@ -1,5 +1,5 @@
 # Simple Example
-Suppose you want to build a [SPA (Single Page Application)](https://en.wikipedia.org/wiki/Single-page_application), it may look something like this.
+Suppose you want to build a [SPA (Single Page Application)](https://en.wikipedia.org/wiki/Single-page_application), it may look something like this. This is a simple applaction which you have two clickable boxes which when the user click, the color will change.
 
 ## File Structure
 * [Main.html](mainhtml)
@@ -55,4 +55,4 @@ The component file for the component "box"
 </script>
 ```
 
-You can check this example at [here](../../Example/Simple-Example)
+You can check this example [here](../../Example/Simple-Example)
