@@ -53,4 +53,4 @@ The component file for the component "box"
 </script>
 ```
 
-You can check this example [here](../../Example/Simple-Example)
+[[Example](https://github.com/LmanTW/Light-Framework/tree/main/Example/Simple-Examples)] [[More Examples](https://github.com/LmanTW/Light-Framework/tree/main/Examples)]
