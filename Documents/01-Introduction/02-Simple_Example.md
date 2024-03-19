@@ -6,6 +6,7 @@ Suppose you want to build a [SPA (Single Page Application)](https://en.wikipedia
 * [Box.html](boxhtml)
 
 ## Main.html
+The main "frame" of the application, used to load all the components.
 ```html
 <!DOCTYPE html>
 
@@ -33,6 +34,7 @@ Suppose you want to build a [SPA (Single Page Application)](https://en.wikipedia
 ```
 
 ## Box.html
+The component file for the component "box"
 ```html
 <div id="color" light:style="width: 100%; height: 100%"></div>
 
