@@ -1,4 +1,4 @@
-# Create The Frame
+# Create The "Frame"
 When building an [SPA (Single Page Application)](https://en.wikipedia.org/wiki/Single-page_application) with Light-Framework, you need a main html for loading all the basic layout components.
 
 ## Example
