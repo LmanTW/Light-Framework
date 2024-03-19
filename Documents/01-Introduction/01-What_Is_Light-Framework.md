@@ -9,7 +9,7 @@ Just for fun, here's the size comparison of several popular frameworks.
 
 * [Light-Framework](https://github.com/LmanTW/Light-Framework/blob/main/Assets/Light.mjs) (15.2 KB)
 * [Htmx](https://unpkg.com/htmx.org@1.9.11) (46.9 KB)
-* [React](https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js) (128.7 KB)
+* [React Dom](https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js) (128.7 KB)
 * [Vue](https://unpkg.com/vue@3.4.21/dist/vue.global.js) (507.2 KB)
 
 (Last update 2024/3/19)
