@@ -7,4 +7,4 @@ We want to keep things simple, so Light-Framework don't have any complex concept
 ## Downsides
 Nothing is perfect, same with Light-Framework.
 
-* **More code**: You may need to write more code compare to other frameworks, but I personally don't think that's a bad thing, because it can give you more control over your whole applaction, and let you understand what's happening under the hood
+* **More code**: You may need to write more code compare to other frameworks, but I personally don't think that's a bad thing, because it can give you more control over your whole applaction, and let you understand what's happening under the hood.
