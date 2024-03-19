@@ -30,7 +30,7 @@ The main "frame" of the application, used to load all the components.
 ```
 
 ## Box.html
-The component file for the component "box".
+The component file for the component: "box".
 ```html
 <div id="color" light:style="width: 100%; height: 100%"></div>
 
