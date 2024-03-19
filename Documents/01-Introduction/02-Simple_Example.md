@@ -30,7 +30,7 @@ The main "frame" of the application, used to load all the components.
 ```
 
 ## Box.html
-The component file for the component "box"
+The component file for the component "box".
 ```html
 <div id="color" light:style="width: 100%; height: 100%"></div>
 
@@ -46,7 +46,7 @@ The component file for the component "box"
   // Listen to click event
   Component.ListenerManager.listen(color, 'click', async () => Component.load(await (await fetch('./Box.html')).text()))
 
-  // Get random 
+  // Get random number
   function getRandom (min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
