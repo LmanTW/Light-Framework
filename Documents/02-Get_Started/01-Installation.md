@@ -20,7 +20,6 @@ import Light from 'https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/Lig
 
 <script>
   // You can access Light-Framework as Light
-
   console.log(Light)
 </script>
 ```
