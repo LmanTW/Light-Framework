@@ -14,6 +14,7 @@ Import the ESM version of Light-Framework.
 ```ts
 import { Light } from '<Path to Light.mjs>'
 ```
+
 Import the global version of Light-Framework.
 ```html
 <scripts src="<Path to Light.global.mjs>"></scripts>
