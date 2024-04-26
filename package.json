@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "start": "ts-node Scripts/Test/Main.ts",
+    "build": "ts-node Scripts/Build/Main.ts"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "terser": "^5.30.4",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}

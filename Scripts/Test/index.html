@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+  <style>
+    :root {
+      --color: green 
+    }
+  </style>
+
+  <body>
+    <h1 id="text" light:style="color: [$color]; transition-duration: 1s" light:style:hover="transform: scale(1.1)" light:url="/test">Test</h1>
+  </body>
+
+  <script src="../../Assets/Light.global.mjs"></script>
+
+  <script type="module">
+    import Animation from '../../Plugins/Animation/Main.mjs'
+
+    Light.use(Animation)
+
+    const component = new Light(document.body)
+
+    const element = component.getElementByID('text')
+
+    Light.Animation.keyframes(element, [
+      { 'innerHTML': '0%' },
+      { 'innerHTML': '100%' }
+    ], { loop: true })
+  </script>
+</html>
