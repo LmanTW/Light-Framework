@@ -10,6 +10,7 @@ You can install Light-Framework in several ways, but we suggest you to just down
 * [Light.global.mjs](https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/Light.global.mjs) (Global)
 
 ## Import Light-Framework
+
 Import the ESM version of Light-Framework.
 ```ts
 import { Light } from '<Path to Light.mjs>'
