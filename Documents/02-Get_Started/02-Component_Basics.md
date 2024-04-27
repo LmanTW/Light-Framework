@@ -29,11 +29,18 @@ You can load a component from a HTML code:
 Add this into your main script:
 ```js
 async function loadComponent () {
-  component.load(await (await fetch('./component.html')).text())
-  //        ^ Load the component from the fetch result
+  component.load(await (await fetch('./component.html')).text(), '/component.html')
+  //        ^ Load the component from the fetch result           ^ The path of the component, this is useful for relative path importing in the component
 }
 
 loadComponent()
+```
+
+This will load the HTML into the mounted element, the mounted element will look like:
+```html
+<div id="app">
+  <h1>Hello World</h1>
+</div>
 ```
 
 ## Remove A Component
