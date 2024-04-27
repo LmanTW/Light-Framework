@@ -35,7 +35,7 @@ export { log }
 </script>
 ```
 
-If you want to import a default module, it may be a bit different:
+If you want to import a default module, it will be a bit different:
 
 * `module.js`
 ```js
