@@ -4,4 +4,4 @@ A lightweight web framework for building [SPA (Single Page Application)](https:/
 > [!WARNING]
 > This project is still under development, so it may be missing a lot of features / documentation.
 
-[[Website](https://framework.light.tw)]
+[[Website](https://framework.light.tw)] [[Documents](https://framework.light.tw/document)]
