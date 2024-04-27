@@ -1,7 +1,7 @@
 # Special Styling
 You can use spcial styling via the `light:style` [special attribute](/document?page=Get%20Started%2FSpecial%20Attributes), you can use special styling like:
-```
-<div></div>
+```html
+<div light:style="background-color: [$color]; width: [10ps]; height: [10ps]"></div>
 ```
 
 ## Special Properties
