@@ -9,6 +9,6 @@ You don't need hundreds of kilobytes to build a simple [SPA (Single Page Applica
 ## Downsides
 Nothing is perfect, and Light-Framework is no exception.
 
-* **More Code**: You may need to write more code compared to other frameworks. (Although I don't think this is a bad thing on a small scale, because you should understand what's happening in your program, and writing your own code can be helpful.)
-* **Not Friendly For SEO**: [SEO](https://en.wikipedia.org/wiki/Search_engine_optimization) may require server-side rendering, because it'll be better if search engines can fetch the full content of your application (The component system will require script executing, so content in the component won't be visible to search engines).
+* **More Code**: You may need to write more code compared to other frameworks (Although I don't think this is a bad thing on a small scale, because you should understand what's happening in your program, and writing your own code can be helpful.).
+* **Not Friendly For SEO**: [SEO](https://en.wikipedia.org/wiki/Search_engine_optimization) may require server-side rendering, because it'll be better if search engines can fetch the full content of your application (The component system will require script executing, so content in the component won't be visible to search engines.).
 * **Not For Scale**: Light-Framework is not for large-scale applications, because sometimes "simple" just makes everything more "complicated".
