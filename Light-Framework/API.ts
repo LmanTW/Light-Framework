@@ -60,8 +60,8 @@ class Light {
   }
 
   // Load The Component
-  public load (html: string): void {
-    this._Core.load(html)
+  public load (html: string, componentPath?: string): void {
+    this._Core.load(html, componentPath)
   }
 
   public remove (): void {

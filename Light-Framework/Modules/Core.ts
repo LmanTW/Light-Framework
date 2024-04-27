@@ -80,10 +80,11 @@ export default class {
   }
 
   // Load Component 
-  public load (html: string): void {
+  public load (html: string, componentPath?: string): void {
     Tools.checkParameters({
-      html: { type: ['string'] }
-    }, { html })
+      html: { type: ['string'] },
+      componentPath: { type: ['undefined', 'string'] }
+    }, { html, componentPath })
 
     removeChildComponents(this._element)
 
@@ -98,11 +99,26 @@ export default class {
       return { type: element.getAttribute('type'), content: element.innerHTML }
     }) 
 
-    this._element.innerHTML = content.innerHTML
+    this._element.innerHTML = content.innerHTML 
 
     scripts.forEach((script) => {
-      if (script.type === 'module') new Function('Light', 'Component', 'Import', `(async()=>{${script.content}})()`)(Light, this.API, async (src) => await import(src))
-      else new Function('Light', 'Component', script.content)(Light, this.API)
+      if (script.type === 'module') {
+        new Function('Light', 'Component', 'Import', `(async()=>{${script.content}})()`)(Light, this.API, async (src) => {
+          if (componentPath !== undefined && src[0] === '.') {
+            const path = componentPath.split('/')
+
+            src.split('/').forEach((name) => {
+              if (name === '.') path.splice(path.length - 1, 1)
+              else if (name === '..') path.splice(path.length - 2, 2)
+              else path.push(name)
+            })
+
+            src = path.join('/')
+          }
+
+          return await import(src)
+        })
+      } else new Function('Light', 'Component', script.content)(Light, this.API)
     }) 
   }
 

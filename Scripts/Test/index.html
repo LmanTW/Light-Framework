@@ -20,11 +20,6 @@
 
     const component = new Light(document.body)
 
-    const element = component.getElementByID('text')
-
-    Light.Animation.keyframes(element, [
-      { 'innerHTML': '0%' },
-      { 'innerHTML': '100%' }
-    ], { loop: true })
+    component.load(await (await fetch('./Components/Component.html')).text(), '/Scripts/Test/Components/Component.html')
   </script>
 </html>

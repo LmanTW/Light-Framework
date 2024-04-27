@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
     let data = fs.readFileSync(filePath, 'utf8')
 
     if (extension === '.html') res.setHeader('Content-Type', 'text/html')
-    else if (extension === '.mjs') res.setHeader('Content-Type', 'application/javascript')
+    else if (extension === '.js' || extension === '.mjs') res.setHeader('Content-Type', 'application/javascript')
 
     res.end(data)
   } else res.end('Resource Not Found')
