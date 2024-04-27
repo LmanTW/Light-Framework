@@ -16,7 +16,7 @@ The script will be run in a [Function](https://developer.mozilla.org/en-US/docs/
 When running a component script, `Light` and `Component` APIs will be automatically imported.
 
 ## Module Importing
-If you want to import another module in a component script, you need to set `type="module"` (This will also make the outer scope async.) and there will be a `Import` function:
+If you want to import another module in a component script, you need to set `type="module"` (This will also make the outer scope async.) and there will be a `Import` function that you can use:
 
 * `module.js`
 ```js
