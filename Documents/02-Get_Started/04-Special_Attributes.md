@@ -1,5 +1,5 @@
 # Special Attributes
-Light-Framework has some default HTML special attributes, and you can easily add more via the plugin API.
+Light-Framework has some built-in special HTML attributes, and you can easily add more via the plugin API. Special attributes only exist under components, and different component can have different special attributes.
 
 ## Styling
 * `light:style="<style>"` | It's just like a normal style attribute, but you can use special properties and custom units.
