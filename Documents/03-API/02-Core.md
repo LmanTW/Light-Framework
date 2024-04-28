@@ -7,7 +7,7 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
     * [removeListener()](#removelistener)
     * [removeAllListeners()](#removealllisteners)
     * [findListeners()](#findlisteners)
-  * [TimerManager](#listener)
+  * [TimerManager](#timermanager)
     * [createTimeout()](#createtimeout)
     * [createInterval()](#createinterval)
     * [createLoop()](#createloop)
@@ -18,6 +18,9 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
     * [deleteAttribute()](#deleteattribute)
     * [getAttribute()](#getattribute)
   * [UnitManager](#unitmanager)
+    * [createUnit()](#createunit)
+    * [deleteUnit()](#deleteUnit)
+    * [parseStyleValue()](#parsestylevalue)
   * [Observer](#observer)
 
 # Core
@@ -125,6 +128,11 @@ You can only access the Core instance via the plugin API.
 Core.AttributeManager.createAttribute('log', (element, value) => console.log(value)
 ```
 
+Every special attribute start with `light:`, so to use it in HTML, it'll look something like:
+```html
+<div light:log="Hello World"></div>
+```
+
 > return `<undefined>`
 
 ## deleteAttribute()
@@ -142,3 +150,37 @@ Core.AttributeManager.createAttribute('log', (element, value) => console.log(val
 ```
 
 > return `<undefined | ((element: HTMLElement, value: string) => any)>` (The callback of the attribute)
+
+# UnitManager
+
+## createUnit()
+```ts
+.createUnit(<name>, <callback>, <update>) // Create a unit
+```
+* `name <string>` | The name of the unit.
+* `callback <function>` | The callback function for the attribute. The callback will receive a `<string>` and should return a `<string>` as well.
+* `update <undefined | boolean>` | Whether the observer should update all the children of the mounted element after the unit is created. `Default: false`
+
+> return `<undefined>`
+
+## deleteUnit()
+```ts
+.deleteUnit(<name>, <update>) // Delete a unit
+```
+* `name <string>` | The name of the unit.
+* `update <undefined | boolean>` | Whether the observer should update all the children of the mounted element after the unit is deleted. `Default: false`
+
+> return `<undefined>`
+
+## parseStyleValue()
+```ts
+.parseStyleValue(<value>) // Parse style value
+```
+* `value <string>` | The style that you want to parse. (This will apply all the special units to the style)
+
+## Example
+```ts
+Core.UnitManager.parseStyleValue('font-size: [2.5ps]') // Result: "font-size: calc(calc(1vw + 1vh) * 2.5)"
+```
+
+> return `<string>`
