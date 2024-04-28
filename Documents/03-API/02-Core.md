@@ -22,11 +22,14 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
     * [deleteUnit()](#deleteUnit)
     * [parseStyleValue()](#parsestylevalue)
   * [Observer](#observer)
+    * [checkChildren()](#checkchildren)
+    * [checkAttributes()](#checkattributes)
 
 # Core
 You can only access the Core instance via the plugin API.
 
 # ListenerManager
+ListenerManager is a module used to manage all the listeners within the component script.
 
 ## listen()
 ```ts
@@ -68,6 +71,7 @@ You can only access the Core instance via the plugin API.
 > return `<string[]>` (A list of listener IDs)
 
 # TimerManager
+TimerManager is a module used to manage all the timers within the component script.
 
 ## createTimeout()
 ```ts
@@ -114,6 +118,7 @@ You can only access the Core instance via the plugin API.
 > return `<undefined>`
 
 # AttributeManager
+AttributeManager is a module used to manage all the special attributes within the component.
 
 ## createAttribute()
 ```ts
@@ -152,6 +157,7 @@ Every special attribute start with `light:`, so to use it in HTML, it'll look so
 > return `<undefined | ((element: HTMLElement, value: string) => any)>` (The callback of the attribute)
 
 # UnitManager
+UnitManager is a module used to manage all the custom style units within the component.
 
 ## createUnit()
 ```ts
@@ -184,3 +190,22 @@ Core.UnitManager.parseStyleValue('font-size: [2.5ps]') // Result: "font-size: ca
 ```
 
 > return `<string>`
+
+# Observer
+Observer is a module used to observe changes in the component.
+
+## checkChildren()
+```ts
+.checkChildren(<element>) // Check the children of the element
+```
+
+> return `<undefined>`
+
+## checkAttributes()
+```ts
+.checkAttributes(<element>, <attributeName>) // Check the attributes of the element
+```
+* `element <HTMLElement>` | The element that you want to check.
+* `attributeName <undefined | string>` | The name of the attribute that you want to check. If it receives undefined, it'll check all the attributes.
+
+> return `<undefined>`
