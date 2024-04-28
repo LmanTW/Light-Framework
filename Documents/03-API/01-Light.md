@@ -1,12 +1,12 @@
 # Light
 The public API of Light-Framework.
 
-* [Light](#light)
+* [Light](#light2)
   * [use()](#use)
   * [createElement()](#createelement)
   * [createSvgElement()](#createsvgelement)
   * [setStyle()](#setstyle)
-* [Light()](#light2)
+* [Light()](#light3)
   * [Getters](#getters)
   * [ListenerManager](#listenermanager)
   * [TimerManager](#timermanager)
