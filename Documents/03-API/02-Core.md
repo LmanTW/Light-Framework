@@ -37,6 +37,12 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
     * [getComponentFromParent()](#getComponentfromparent)
   * [CustomElementManager](#customelementmanager)
   * [StyleManager](#StyleManager)
+  * [getElementByID()](#getelementbyid)
+  * [getElementsByClassName()](#getelementsbyclassname)
+  * [getElementsByTagName()](#getelementsbytagname)
+  * [getAllElements()](#getallelements)
+  * [load()](#load)
+  * [remove()](#remove)
 
 # Core
 You can only access the Core instance via the plugin API.
@@ -49,6 +55,54 @@ You can only access the Core instance via the plugin API.
 
 ## Setters
 * `data` | Extra data held by the component.
+
+## getElementByID()
+```ts
+.getElementByID(<id>) // Get the element by ID in the component
+```
+* `id <string>` | The ID of the element.
+
+> return `<undefined | HTMLElement>`
+
+## getElementsByClassName()
+```ts
+.getElementsByClassName(<className>) // The elements by class name in the component
+```
+* `className <string>` | The class name of the element.
+
+> return `<HTMLElement[]>`
+
+## getElementsByTagName()
+```ts
+.getElementsByTagName(<tagName>) // The elements by tag name in the component
+```
+* `tagName <string>` | The tag name of the element.
+
+> return `<HTMLElement[]>`
+
+## getAllElements()
+```ts
+.getAllElements() // Get all elements in the component
+```
+
+> return `<HTMLElement[]>`
+
+## load()
+```ts
+.load(<html>, <componentPath>) // Load the component
+```
+* `html <string>` | The HTML you want to load.
+* `componentPath <undefined | html>` | The path of the component, this is required for relative path importing.
+
+> return `<undefined>`
+
+## remove()
+```ts
+.remove() // Remove the component
+```
+Removing a component won't remove the element that it's mounted on.
+
+> return `<undefined>`
 
 # ListenerManager
 ListenerManager is a module used to manage all the listeners within the component script.
