@@ -14,6 +14,9 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
     * [deleteTimer()](#deletetimer)
     * [deleteAllTimers()](#deletealltimers)
   * [AttributeManager](#attributemanager)
+    * [createAttribute()](#createattribute)
+    * [deleteAttribute()](#deleteattribute)
+    * [getAttribute()](#getattribute)
   * [UnitManager](#unitmanager)
   * [Observer](#observer)
 
@@ -106,3 +109,36 @@ You can only access the Core instance via the plugin API.
 ```
 
 > return `<undefined>`
+
+# AttributeManager
+
+## createAttribute()
+```ts
+.createAttribute(<name>, <callback>, <update>) // Create an attribute
+```
+* `name <string>` | The name of the attribute.
+* `callback <function>` | The callback of the attribute. The callback will receive the following parameters: `(element: HTMLElement, value: string)`
+* `update <undefined | boolean>` | Whether the observer should update all the children of the mounted element after the attribute is created. `Default: false`
+
+## Example
+```ts
+Core.AttributeManager.createAttribute('log', (element, value) => console.log(value)
+```
+
+> return `<undefined>`
+
+## deleteAttribute()
+```ts
+.deleteAttribute(<name>, <update>) // Delete an attribute
+```
+* `name <string>` | The name of the attribute.
+* `update <undefined | boolean>` | Whether the observer should update all the children of the mounted element after the attribute is deleted. `Default: false`
+
+> return `<undefined>`
+
+## getAttribute()
+```ts
+.getAttribute(<name>) // Get attribute
+```
+
+> return `<undefined | ((element: HTMLElement, value: string) => any)>` (The callback of the attribute)
