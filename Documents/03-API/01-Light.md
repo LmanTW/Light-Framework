@@ -102,3 +102,20 @@ new Light(<element>, <data>) // Create a component
 ```
 
 > return `<HTMLElement[]>`
+
+## load()
+```ts
+.load(<html>, <componentPath>) // Load the component
+```
+* `html <string>` | The HTML you want to load.
+* `componentPath <undefined | html>` | The path of the component, this is required for relative path importing.
+
+> return `<undefined>`
+
+## remove()
+```ts
+.remove() // Remove the component
+```
+Removing a component won't remove the element that it's mounted on.
+
+> return `<undefined>`
