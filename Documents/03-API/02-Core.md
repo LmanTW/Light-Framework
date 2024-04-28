@@ -2,6 +2,8 @@
 The private API of Light-Framework. Core is the hidden API under the [Component API](/document?page=API%2FLight&header=light3), it has control over the whole component.
 
 * [Core()](#core)
+  * [Getters](#getters)
+  * [Setters](#setters)
   * [ListenerManager](#listenermanager)
     * [listen()](#listen)
     * [removeListener()](#removelistener)
@@ -19,7 +21,7 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
     * [getAttribute()](#getattribute)
   * [UnitManager](#unitmanager)
     * [createUnit()](#createunit)
-    * [deleteUnit()](#deleteUnit)
+    * [deleteUnit()](#deleteunit)
     * [parseStyleValue()](#parsestylevalue)
   * [Observer](#observer)
     * [checkChildren()](#checkchildren)
@@ -27,6 +29,15 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
 
 # Core
 You can only access the Core instance via the plugin API.
+
+## Getters
+* `id <string>` | The ID of the component
+* `element <HTMLElement>` | The element that the component is mounted onto.
+* `API` | The upper [Component API](/document?page=API%2FLight&header=light3).
+* `data` | Extra data held by the component.
+
+## Setters
+* `data` | Extra data held by the component.
 
 # ListenerManager
 ListenerManager is a module used to manage all the listeners within the component script.
