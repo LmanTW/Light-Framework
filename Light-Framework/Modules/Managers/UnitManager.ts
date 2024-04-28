@@ -20,7 +20,7 @@ export default class {
 
     this._units[name] = callback
 
-    if (update === undefined || update === false) this._Core.Observer.checkChildren(this._Core.element)
+    if (update) this._Core.Observer.checkChildren(this._Core.element)
   }
 
   // Delete Unit
@@ -34,7 +34,7 @@ export default class {
 
     delete this._units[name]
 
-    if (update === undefined || update === false) this._Core.Observer.checkChildren(this._Core.element)
+    if (update) this._Core.Observer.checkChildren(this._Core.element)
   }
 
   // Parse Style Value

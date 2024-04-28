@@ -20,7 +20,7 @@ export default class {
 
     this._attributes[name] = callback
 
-    if (update === undefined || update === false) this._Core.Observer.checkChildren(this._Core.element)
+    if (update) this._Core.Observer.checkChildren(this._Core.element)
   }
 
   // Delete Attribute
@@ -34,7 +34,7 @@ export default class {
 
     delete this._attributes[name]
 
-    if (update === undefined || update === false) this._Core.Observer.checkChildren(this._Core.element)
+    if (update) this._Core.Observer.checkChildren(this._Core.element)
   }
 
   // Get Attribute
