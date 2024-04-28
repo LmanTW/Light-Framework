@@ -50,4 +50,4 @@ You can remove a component using the following code:
 component.remove()
 ```
 
-> Removing a Light-Framework component won't remove the element that it's mounted on.
+> Removing a component won't remove the element that it's mounted on.
