@@ -8,6 +8,11 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
     * [removeAllListeners()](#removealllisteners)
     * [findListeners()](#findlisteners)
   * [TimerManager](#listener)
+    * [createTimeout()](#createtimeout)
+    * [createInterval()](#createinterval)
+    * [createLoop()](#createloop)
+    * [deleteTimer()](#deletetimer)
+    * [deleteAllTimers()](#deletealltimers)
   * [AttributeManager](#attributemanager)
   * [UnitManager](#unitmanager)
   * [Observer](#observer)
@@ -55,3 +60,49 @@ You can only access the Core instance via the plugin API.
   * `tag <undefined | string>` | The tag of the listener.
 
 > return `<string[]>` (A list of listener IDs)
+
+# TimerManager
+
+## createTimeout()
+```ts
+.createTimeout(<ms>, <callback>) // Create a timeout
+```
+* `ms <number>` | The duration of the timeout.
+* `callback <function>` | The callback of the timeout.
+
+> return `<string>` (The ID of the timer)
+
+## createInterval()
+```ts
+.createInterval(<interval>, <callback>) // Create an interval
+```
+* `interval <number>` | The interval.
+* `callback <function>` | The callback of the interval.
+
+> return `<string>` (The ID of the timer)
+
+## createLoop()
+```ts
+.createLoop(<times>, <interval>, <callback>, <callback2>) // Create a loop with interval
+```
+* `times <number>` | The number of times you want to loop.
+* `interval <number>` | The interval between each iteration.
+* `callback <function>` | The callback for each iteration of the loop.
+* `callback2 <undefined | function>` | The callback of end of the loop.
+
+> return `<string>` (The ID of the timer)
+
+## deleteTimer()
+```ts
+.deleteTimer(<id>) // Delete a timer
+```
+* `id <string>` | The ID of the timer
+
+> return `<undefined>`
+
+## deleteAllTimers()
+```ts
+.deleteAllTimers() // Delete all timers
+```
+
+> return `<undefined>`
