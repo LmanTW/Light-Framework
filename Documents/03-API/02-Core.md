@@ -26,6 +26,17 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
   * [Observer](#observer)
     * [checkChildren()](#checkchildren)
     * [checkAttributes()](#checkattributes)
+  * [PluginManager](#pluginmanager)
+    * [addPlugin()](#addplugin)
+    * [removePlugin()](#removeplugin)
+    * [initializePlugins()](#initializeplugins)
+  * [ComponentManager](#componentmanager)
+    * [registerComponent()](#registercomponent)
+    * [unregisterComponent()](#unregistercomponent)
+    * [getComponent()](#getcomponent)
+    * [getComponentFromParent()](#getComponentfromparent)
+  * [CustomElementManager](#customelementmanager)
+  * [StyleManager](#StyleManager)
 
 # Core
 You can only access the Core instance via the plugin API.
@@ -218,5 +229,54 @@ Observer is a module used to observe changes in the component.
 ```
 * `element <HTMLElement>` | The element that you want to check.
 * `attributeName <undefined | string>` | The name of the attribute that you want to check. If it receives undefined, it'll check all the attributes.
+
+> return `<undefined>`
+
+# PluginManager
+PluginManager is a module used to manage all the plugins.
+
+## addPlugin()
+```ts
+.addPlugin(<Plugin>) // Add a plugin
+```
+* `Plugin <object>` | The plugin that you wan to add.
+  * `id <string>` | The ID of the plugin.
+  * `register <undefined | function>` | The register function of the plugin. The function will receive the following parameters: `(API: typeof Light, Utilities: Utilities)`
+  * `init <undefined | function>` | The initialize function of the plugin. The function will receive the following parameters: `(Core: Core)`
+
+> return `<undefined>`
+
+## removePlugin()
+```ts
+.removePlugin(<id>) // Remove a plugin
+```
+* `id <string>` | The ID of the plugin
+
+> return `<undefined>`
+
+## initializePlugins()
+```ts
+.initializePlugins(<Core>) // Initialize plugins
+```
+* `Core <Core>` | Initialize plugins on a [Core](#core).
+
+> return `<undefined>`
+
+# ComponentManager
+ComponentManager is a module used to manage all the components.
+
+## registerComponent()
+```ts
+.registerComponent(<Core>) // Register a component
+```
+* `Core <Core>` The [Core](#core). of the component.
+
+> return `<string>` (The ID of the component)
+
+## unregisterComponent()
+```ts
+.unregisterComponent(<id>) // Unregister A component
+```
+* `id <string>` The ID of the component.
 
 > return `<undefined>`
