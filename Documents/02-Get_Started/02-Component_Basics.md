@@ -1,5 +1,5 @@
 # Component Basics
-Creating a component in Light-Framework is the first step to start leaning Light-Framework, so let's create one:
+Creating a component is the first step to start leaning Light-Framework, so let's create one:
 
 ```html
 <!DOCTYPE html>
