@@ -19,7 +19,7 @@ The public API of Light-Framework.
 [[Installation](/document?page=Get%20Started%2FInstallation)]
 
 ## use()
-```js
+```ts
 .use(<Plugin>) // Use a plugin
 ```
 * `Plugin <Plugin>` | The plugin that you want to use.
@@ -27,7 +27,7 @@ The public API of Light-Framework.
 > return `<undefined>`
 
 ## createElement()
-```js
+```ts
 .createElement(<tagName>, <attributes>, <children>) // Create an element
 ```
 * `tagName <string>` | The tag name of the element.
@@ -37,7 +37,7 @@ The public API of Light-Framework.
 > return `<HTMLElement>`
 
 ## createSvgElement()
-```js
+```ts
 .createSvgElement(<src>, <attributes>, <wait>) // Create a svg element
 ```
 * `src <string>` | The source of the svg element.
@@ -61,7 +61,7 @@ This will change the `light:style` attribute.
 > return `<undefined>`
 
 # Light()
-```js
+```ts
 new Light(<element>, <data>) // Create a component
 ```
 * `element <HTMLElement>` | The element where you want to mount the component.
@@ -73,7 +73,7 @@ new Light(<element>, <data>) // Create a component
 * `element <HTMLElement>` | The element that the component is mounted onto.
 
 ## getElementByID()
-```js
+```ts
 .getElementByID(<id>) // Get the element by ID in the component
 ```
 * `id <string>` | The ID of the element.
@@ -81,7 +81,7 @@ new Light(<element>, <data>) // Create a component
 > return `<undefined | HTMLElement>`
 
 ## getElementsByClassName()
-```js
+```ts
 .getElementsByClassName(<className>) // The elements by class name in the component
 ```
 * `className <string>` | The class name of the element.
@@ -89,7 +89,7 @@ new Light(<element>, <data>) // Create a component
 > return `<HTMLElement[]>`
 
 ## getElementsByTagName()
-```js
+```ts
 .getElementsByTagName(<tagName>) // The elements by tag name in the component
 ```
 * `tagName <string>` | The tag name of the element.
@@ -97,7 +97,7 @@ new Light(<element>, <data>) // Create a component
 > return `<HTMLElement[]>`
 
 ## getAllElements()
-```js
+```ts
 .getAllElements() // Get all elements in the component
 ```
 
