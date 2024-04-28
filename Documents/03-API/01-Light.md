@@ -8,6 +8,7 @@ The public API of Light-Framework.
   * [setStyle()](#setstyle)
 * [Light()](#light3)
   * [Getters](#getters)
+  * [Setters](#setters)
   * [ListenerManager](#listenermanager)
   * [TimerManager](#timermanager)
   * [getElementByID()](#getelementbyid)
@@ -73,6 +74,9 @@ new Light(<element>, <data>) // Create a component
 * `id <string>` | The ID of the component.
 * `data <any>` | Extra data held by the component.
 * `element <HTMLElement>` | The element that the component is mounted onto.
+
+## Setters
+* `data <any>` | Extra data held by the component.
 
 ## getElementByID()
 ```ts
