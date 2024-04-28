@@ -3,7 +3,7 @@ export default class {
   private _id!: undefined | string
   private _element: HTMLElement
 
-  public API!: Light
+  private _API!: Light
   public data!: any
 
   public ListenerManager!: ListenerManager
@@ -27,7 +27,7 @@ export default class {
     this._id = ComponentManager.registerComponent(this)
     this._element = element
 
-    this.API = API
+    this._API = API
     this.data = data
 
     this.ListenerManager = new ListenerManager()
@@ -103,7 +103,7 @@ export default class {
 
     scripts.forEach((script) => {
       if (script.type === 'module') {
-        new Function('Light', 'Component', 'Import', `(async()=>{${script.content}})()`)(Light, this.API, async (src) => {
+        new Function('Light', 'Component', 'Import', `(async()=>{${script.content}})()`)(Light, this._API, async (src) => {
           if (componentPath !== undefined && src[0] === '.') {
             const path = componentPath.split('/')
 
@@ -118,7 +118,7 @@ export default class {
 
           return await import(src)
         })
-      } else new Function('Light', 'Component', script.content)(Light, this.API)
+      } else new Function('Light', 'Component', script.content)(Light, this._API)
     }) 
   }
 
