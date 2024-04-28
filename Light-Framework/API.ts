@@ -40,6 +40,10 @@ class Light {
     this.TimerManager = this._Core.TimerManager
   }
 
+  public id () {return this._Core.id}
+  public data () {return this._Core.data}
+  public element () {return this._Core.element}
+
   // Get Element By Id
   public getElementByID (id: string): undefined | HTMLElement {
     return this._Core.getElementByID(id)
@@ -55,7 +59,7 @@ class Light {
     return this._Core.getElementsByTagName(tagName)
   }
 
-  public get getAllElements (): HTMLElement[] {
+  public getAllElements (): HTMLElement[] {
     return this._Core.getAllElements()
   }
 

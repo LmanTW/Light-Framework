@@ -28,6 +28,8 @@ function applySpecialProperties (properties: CssProperties): CssProperties {
       if (properties.flexDirection === 'column') properties.justifyContent = 'center'
       else properties.alignItems = 'center'
     }
+
+    delete properties.center
   }
 
   return properties
