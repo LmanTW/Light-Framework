@@ -6,7 +6,7 @@ The public API of Light-Framework.
   * [createElement()](#createelement)
   * [createSvgElement()](#createsvgelement)
   * [setStyle()](#setstyle)
-* [Light()](#light-1)
+* [Light()](#light2)
   * [Getters](#getters)
   * [ListenerManager](#listenermanager)
   * [TimerManager](#timermanager)
