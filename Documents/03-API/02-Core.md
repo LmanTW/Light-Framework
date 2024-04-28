@@ -334,3 +334,19 @@ ComponentManager is a module used to manage all the components.
 * `id <string>` The ID of the component.
 
 > return `<undefined>`
+
+## getComponent()
+```ts
+.getComponent(<id>) // Get a component
+```
+* `id <string>` | The ID of the component.
+
+> return `<undefined | Core>`
+
+## getComponentFromParent()
+```ts
+.getComponentFromParent(<element>) // Get component from parent
+```
+* `element <HTMLElement>` | The element from which you want to get the component it's in.
+
+> return `<undefined | string>` (The ID of the component)
