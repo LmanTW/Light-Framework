@@ -212,6 +212,8 @@ Core.AttributeManager.createAttribute('log', (element, value) => console.log(val
 
 Every special attribute start with `light:`, so to use it in HTML, it'll look something like:
 ```html
+<!--Assume this is in the component-->
+
 <div light:log="Hello World"></div>
 ```
 
