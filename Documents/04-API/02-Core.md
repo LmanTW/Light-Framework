@@ -207,7 +207,7 @@ AttributeManager is a module used to manage all the special attributes within th
 
 ## Example
 ```ts
-Core.AttributeManager.createAttribute('log', (element, value) => console.log(value)
+Core.AttributeManager.createAttribute('log', (element, value) => console.log(value))
 ```
 
 Every special attribute start with `light:`, so to use it in HTML, it'll look something like:
