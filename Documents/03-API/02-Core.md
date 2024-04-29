@@ -34,8 +34,7 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
     * [registerComponent()](#registercomponent)
     * [unregisterComponent()](#unregistercomponent)
     * [getComponent()](#getcomponent)
-    * [getComponentFromParent()](#getComponentfromparent)
-  * [CustomElementManager](#customelementmanager)
+    * [getComponentFromParent()](#getcomponentfromparent)
   * [StyleManager](#StyleManager)
   * [getElementByID()](#getelementbyid)
   * [getElementsByClassName()](#getelementsbyclassname)
@@ -350,3 +349,30 @@ ComponentManager is a module used to manage all the components.
 * `element <HTMLElement>` | The element from which you want to get the component it's in.
 
 > return `<undefined | string>` (The ID of the component)
+
+# StyleManager
+StyleManager is a module used to manage all the compiled styles. (Light-Framework usez CSS classes to apply style to elements.)
+
+This module will create a new style tag containing all compiled styles.
+
+## createStyle()
+```ts
+.createStyle(<style>, <type>, <idFormat>) // Create a style
+```
+* `style <string>` | The style that you want to create.
+* `type <type>` | The type of the style.
+* `idFormat` | The format of the page ID.
+
+## Example
+```ts
+Core.StyleManager.createStyle('width:calc(calc(10vw + 10vh) * 2.5ps);height:calc(calc(10vw + 10vh) * 2.5ps', 'hover', 'hover-<id>:hover')
+```
+
+> return `<string>` (The ID of the style.)
+
+## updateStyles()
+```ts
+.updateStyles() // Update styles (Update all compiled styles)
+```
+
+> return `<undefined>`
