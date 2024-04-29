@@ -12,7 +12,7 @@ class PluginManager {
 
     plugins[Plugin.id] = Plugin
 
-    if (Plugin.register !== undefined) Plugin.register(Light, { PluginManager: this, ComponentManager, CustomElementManager, Tools })
+    if (Plugin.register !== undefined) Plugin.register(Light, { PluginManager: this, ComponentManager, Tools })
   }
 
   // Remove Plugin
@@ -50,13 +50,11 @@ interface Plugin {
 interface Utilities {
   PluginManager: typeof PluginManager,
   ComponentManager: typeof ComponentManager,
-  CustomElementManager: typeof CustomElementManager
   Tools: typeof Tools
 }
 
 export { PluginManager, Plugin }
 
-import CustomElementManager from './CustomElementManager.ts'
 import ComponentManager from './ComponentManager.ts'
 import { Light } from '../../API.ts'
 import Tools from '../Tools/Main.ts'

@@ -19,7 +19,7 @@ const DefaultPlugin: Plugin = {
       }
     }
 
-    Utilities.CustomElementManager.createCustomElement('svg', LightSVG)
+    if (customElements.get('light-svg') === undefined) customElements.define('light-svg', LightSVG)
   },
 
   init: (Core) => {

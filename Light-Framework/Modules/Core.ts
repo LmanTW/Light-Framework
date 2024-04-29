@@ -15,7 +15,6 @@ export default class {
 
   public PluginManager: typeof PluginManager = PluginManager
   public ComponentManager: typeof ComponentManager = ComponentManager
-  public CustomElementManager: typeof CustomElementManager = CustomElementManager
   public StyleManager: typeof StyleManager = StyleManager
 
   constructor (API: Light, element: HTMLElement, data: any) {
@@ -162,7 +161,6 @@ function removeChildComponents (parent: HTMLElement): void {
   })
 }
 
-import CustomElementManager from './Managers/CustomElementManager.ts'
 import ComponentManager from './Managers/ComponentManager.ts'
 import AttributeManager from './Managers/AttributeManager.ts'
 import ListenerManager from './Managers/ListenerManager.ts'
