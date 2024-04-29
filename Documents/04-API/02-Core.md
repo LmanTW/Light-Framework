@@ -243,7 +243,7 @@ UnitManager is a module used to manage all the custom style units within the com
 .createUnit(<name>, <callback>, <update>) // Create a unit
 ```
 * `name <string>` | The name of the unit.
-* `callback <function>` | The callback function for the attribute. The callback will receive a `<string>` and should return a `<string>` as well.
+* `callback <function>` | The callback function for the attribute. The callback will receive a <string> and should also return a `<string>` representing a CSS math function.
 * `update <undefined | boolean>` | Whether the observer should update all the children of the mounted element after the unit is created. `Default: false`
 
 > return `<undefined>`
