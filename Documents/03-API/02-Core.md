@@ -36,6 +36,8 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
     * [getComponent()](#getcomponent)
     * [getComponentFromParent()](#getcomponentfromparent)
   * [StyleManager](#StyleManager)
+    * [createStyle()](#createstyle)
+    * [updateStyles()](#updatestyles)
   * [getElementByID()](#getelementbyid)
   * [getElementsByClassName()](#getelementsbyclassname)
   * [getElementsByTagName()](#getelementsbytagname)
