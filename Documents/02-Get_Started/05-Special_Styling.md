@@ -14,4 +14,4 @@ Special unit allows you to create custom units using the plugin API, the syntax 
 
 * `ps` | Stand for "page size", the formula is `calc(calc(1vw + 1vh) * value)`.
 
-* * `$` | This is a bit different from special unit, this is for accessing CSS variables. (The syntax looks like this `[$<variable name>]`)
+* `$` | This is a bit different from special unit, this is for accessing CSS variables. (The syntax looks like this `[$<variable name>]`)
