@@ -294,7 +294,7 @@ PluginManager is a module used to manage all the plugins.
 ```ts
 .addPlugin(<Plugin>) // Add a plugin
 ```
-* `Plugin <object>` | The plugin that you wan to add.
+* `Plugin <object>` | The plugin that you want to add.
   * `id <string>` | The ID of the plugin.
   * `register <undefined | function>` | The register function of the plugin. The function will receive the following parameters: `(API: typeof Light, Utilities: Utilities)`
   * `init <undefined | function>` | The initialize function of the plugin. The function will receive the following parameters: `(Core: Core)`
