@@ -44,16 +44,16 @@ const DefaultPlugin: Plugin = {
       addClass(element, Core.StyleManager.createStyle(createStyle(properties), 'style', 'style-<id>'))
 
       window.requestAnimationFrame(() => Object.keys(delayValues).forEach((name) => element.style[name] = delayValues[name]))
-    }, false)
-    Core.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, Core.StyleManager.createStyle(Core.UnitManager.parseStyleValue(value), 'hover', 'hover-<id>:hover')), false)
-    Core.AttributeManager.createAttribute('style:hold', (element, value) => addClass(element, Core.StyleManager.createStyle(Core.UnitManager.parseStyleValue(value), 'hold', 'hold-<id>:active:hover')), false)
+    })
+    Core.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, Core.StyleManager.createStyle(Core.UnitManager.parseStyleValue(value), 'hover', 'hover-<id>:hover')))
+    Core.AttributeManager.createAttribute('style:hold', (element, value) => addClass(element, Core.StyleManager.createStyle(Core.UnitManager.parseStyleValue(value), 'hold', 'hold-<id>:active:hover')))
     Core.AttributeManager.createAttribute('trigger', (element, value) => {
       if (element.getAttribute('light:trigger-set') === null) {
         element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, target: '_blank', style: createStyle({ all: 'unset' }) }).outerHTML
 
         element.setAttribute('light:trigger-set', 'true')
       }
-    }, false)
+    })
     Core.AttributeManager.createAttribute('url', (element, value) => {
       if (element.getAttribute('light:url-set') === null) {
         const a = createElement('a', { innerHTML: element.innerHTML, href: value, style: createStyle({ all: 'unset' }) })
