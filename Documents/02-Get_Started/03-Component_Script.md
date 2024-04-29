@@ -27,7 +27,7 @@ function log (content) {
 export { log }
 ```
 
-* `component.ts`
+* `component.html`
 ```html
 <script type="module">
   const module = await Import('./component')
@@ -44,10 +44,42 @@ export default (content) => {
 }
 ```
 
-* `component.ts`
+* `component.html`
 ```html
 <script type="module">
   const module = (await Import('./component')).default
                                ^ relative path importing won't work if you didn't provide the `componentPath` when loading the component
+</script>
+```
+
+# Event Handling
+You should use the [ListenerManager](/document?page=API%2FCore&header=listenermanager)to listen to an event, so the listener will be disposed after the component is reloaded or removed.
+
+* `component.html`
+```html
+<h1 id="button">Click Me!</h1>
+
+<script>
+  const button = Component.getElementByID('button')
+                 ^ Get the element in the component
+
+  Component.ListenerManager.listen(button, 'click', () => console.log('The button is clicked!'))
+                                   ^ listen the event on element "button"
+</script>
+```
+
+## Timer Handling
+You should use the [TimerManager](/document?page=API%2FCore&header=timermanager)to create a timer, so the timer will be disposed after the component is reloaded or removed.
+
+* `component.html`
+```html
+<h1 id="text">Count: 0</h1>
+
+<script>
+  const text = Component.getElementByID('text')
+                 ^ Get the element in the component
+
+  Component.TimerManager.createInterval(100, (count) => text.innerHTML = `Count: ${count}`)
+                         ^ Create an interval
 </script>
 ```
