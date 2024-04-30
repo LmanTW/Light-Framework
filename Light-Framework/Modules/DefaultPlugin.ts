@@ -49,21 +49,21 @@ const DefaultPlugin: Plugin = {
     Core.AttributeManager.createAttribute('style:hold', (element, value) => addClass(element, Core.StyleManager.createStyle(Core.UnitManager.parseStyleValue(value), 'hold', 'hold-<id>:active:hover')))
     Core.AttributeManager.createAttribute('trigger:open', (element, value) => {
       if (element.getAttribute('light:computed') === null) {
-        element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, target: '_blank', style: createStyle({ all: 'unset' }) }).outerHTML
+        element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, target: '_blank', style: createStyle({ all: 'inherit' }) }).outerHTML
 
         element.setAttribute('light:computed', 'true')
       }
     })
     Core.AttributeManager.createAttribute('trigger:goto', (element, value) => {
       if (element.getAttribute('light:computed') === null) {
-        element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, style: createStyle({ all: 'unset' }) }).outerHTML
+        element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, style: createStyle({ all: 'inherit' }) }).outerHTML
 
         element.setAttribute('light:computed', 'true')
       }
     })
     Core.AttributeManager.createAttribute('url', (element, value) => {
       if (element.getAttribute('light:computed') === null) {
-        const a = createElement('a', { innerHTML: element.innerHTML, href: value, style: createStyle({ all: 'unset' }) })
+        const a = createElement('a', { innerHTML: element.innerHTML, href: value, style: createStyle({ all: 'inherit' }) })
 
         while (element.firstChild) element.firstChild.remove()
 
