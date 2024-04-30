@@ -7,7 +7,8 @@ Light-Framework has some built-in special HTML attributes, and you can easily ad
 * `light:style="<style>"` | Similar to `light:style`, but only applies the style when the mouse is holding the element. (This can work with [transition](https://developer.mozilla.org/en-US/docs/Web/CSS/transition))
 
 ## Navigating
-* `light:trigger="<URL>"` | This will open the URL in a new tab when the element is clicked.
+* `light:trigger:open="<URL>"` | This will open the URL in a new tab when the element is clicked.
+* * `light:trigger:goto="<URL>"` | This will goto the URL when the element is clicked.
 * `light:url="<URL>"` | This will add a URL to the element, so users can right click the element to get options like "Open the URL in a new tab".
 
 Both attributes can only set once, and may have some problems when changing the element's children after the attribute is computed. This is how they works:
