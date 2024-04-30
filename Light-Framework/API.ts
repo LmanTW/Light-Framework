@@ -33,7 +33,7 @@ class Light {
   public ListenerManager!: ListenerManager
   public TimerManager!: TimerManager
 
-  constructor (element: HTMLElement, data: any) {
+  constructor (element: HTMLElement, data?: any) {
     this._Core = new Core(this, element, data)
 
     this.ListenerManager = this._Core.ListenerManager 
