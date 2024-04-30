@@ -47,15 +47,29 @@ const DefaultPlugin: Plugin = {
     })
     Core.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, Core.StyleManager.createStyle(Core.UnitManager.parseStyleValue(value), 'hover', 'hover-<id>:hover')))
     Core.AttributeManager.createAttribute('style:hold', (element, value) => addClass(element, Core.StyleManager.createStyle(Core.UnitManager.parseStyleValue(value), 'hold', 'hold-<id>:active:hover')))
-    Core.AttributeManager.createAttribute('trigger', (element, value) => {
-      if (element.getAttribute('light:trigger-set') === null) {
+    Core.AttributeManager.createAttribute('trigger:open', (element, value) => {
+      if (element.getAttribute('light:computed') === null) {
         element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, target: '_blank', style: createStyle({ all: 'unset' }) }).outerHTML
 
-        element.setAttribute('light:trigger-set', 'true')
+        element.setAttribute('light:computed', 'true')
+      }
+    })
+    Core.AttributeManager.createAttribute('trigger:open', (element, value) => {
+      if (element.getAttribute('light:computed') === null) {
+        element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, target: '_blank', style: createStyle({ all: 'unset' }) }).outerHTML
+
+        element.setAttribute('light:computed', 'true')
+      }
+    })
+    Core.AttributeManager.createAttribute('trigger:goto', (element, value) => {
+      if (element.getAttribute('light:computed') === null) {
+        element.innerHTML = createElement('a', { innerHTML: element.innerHTML, href: value, style: createStyle({ all: 'unset' }) }).outerHTML
+
+        element.setAttribute('light:computed', 'true')
       }
     })
     Core.AttributeManager.createAttribute('url', (element, value) => {
-      if (element.getAttribute('light:url-set') === null) {
+      if (element.getAttribute('light:computed') === null) {
         const a = createElement('a', { innerHTML: element.innerHTML, href: value, style: createStyle({ all: 'unset' }) })
 
         while (element.firstChild) element.firstChild.remove()
@@ -64,7 +78,7 @@ const DefaultPlugin: Plugin = {
 
         Core.ListenerManager.listen(a, 'click', (event) => event.preventDefault())
 
-        element.setAttribute('light:url-set', 'true')
+        element.setAttribute('light:computed', 'true')
       }      
     })
 
