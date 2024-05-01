@@ -4,6 +4,8 @@ export default class {
   private _element: HTMLElement
 
   private _API!: Light
+
+  public componentPath: string = window.location.pathname
   public data!: any
 
   public ListenerManager!: ListenerManager
@@ -79,7 +81,7 @@ export default class {
   }
 
   // Load Component 
-  public load (html: string, componentPath?: string): void {
+  public async load (html: string, componentPath?: string): void {
     Tools.checkParameters({
       html: { type: ['string'] },
       componentPath: { type: ['undefined', 'string'] }
@@ -95,30 +97,26 @@ export default class {
     const scripts = getElements(content, (element) => element.localName === 'script', Infinity).map((element) => {
       element.remove()
 
-      return { type: element.getAttribute('type'), content: element.innerHTML }
+      return { src: element.getAttribute('src'), type: element.getAttribute('type'), content: element.innerHTML }
     }) 
 
-    this._element.innerHTML = content.innerHTML 
+    this._element.innerHTML = content.innerHTML
 
-    scripts.forEach((script) => {
+    for (let script of scripts) {
+      if (script.src !== null && script.src[0] === '.') script.src = resolvePath(componentPath, script.src)
+
+      const content = (script.src === null) ? script.content : await (await fetch(script.src)).text()
+
       if (script.type === 'module') {
-        new Function('Light', 'Component', 'Import', `(async()=>{${script.content}})()`)(Light, this._API, async (src) => {
-          if (componentPath !== undefined && src[0] === '.') {
-            const path = componentPath.split('/')
-
-            src.split('/').forEach((name) => {
-              if (name === '.') path.splice(path.length - 1, 1)
-              else if (name === '..') path.splice(path.length - 2, 2)
-              else path.push(name)
-            })
-
-            src = path.join('/')
-          }
+        new Function('Light', 'Component', 'Import', `(async()=>{${content}})()`)(Light, this._API, async (src) => {
+          if (componentPath !== undefined && src[0] === '.') src = resolvePath(componentPath, src)
 
           return await import(src)
         })
-      } else new Function('Light', 'Component', script.content)(Light, this._API)
-    }) 
+      } else new Function('Light', 'Component', content)(Light, this._API)
+    }
+  
+    this.componentPath = componentPath
   }
 
   // Remove Component
@@ -159,6 +157,19 @@ function removeChildComponents (parent: HTMLElement): void {
     if (child.getAttribute('light') !== null) ComponentManager.getComponent(child.getAttribute('light'))!.remove()
     else removeChildComponents(child as HTMLElement)
   })
+}
+
+// Resolve Path
+function resolvePath (basePath: string, path: string): string {
+  const result = basePath.split('/')
+
+  path.split('/').forEach((name) => {
+    if (name === '.') result.splice(path.length - 1, 1)
+    else if (name === '..') result.splice(path.length - 2, 2)
+    else result.push(name)
+  })
+
+  return result.join('/')
 }
 
 import ComponentManager from './Managers/ComponentManager.ts'
