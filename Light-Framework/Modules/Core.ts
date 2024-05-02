@@ -47,6 +47,7 @@ export default class {
 
   public get id () {return this._id}
   public get element () {return this._element}
+  public get API () {return this._API}
 
   // Get Element By ID
   public getElementByID (id: string): undefined | HTMLElement {
