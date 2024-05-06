@@ -7,7 +7,6 @@ const Plugin = {
 
   init: (Core) => {
     Core.UnitManager.createUnit('big', (value) => `calc(100ps * ${value})`)
-
   }
 }
 ```
