@@ -128,7 +128,7 @@ interface Timer {
   times: number,
   interval: number,
 
-  callback?: (count?: number) => any,
+  callback?: (count: number) => any,
   callback2?: () => any,
 
   count: number,
