@@ -11,7 +11,7 @@ const Plugin = {
 }
 ```
 
-Every special attribute start with light:, so to use it in HTML, it'll look something like:
+Every special attribute start with `light:`, so to use it in HTML, it'll look something like:
 ```html
 <!--Assume this is in the component-->
 
