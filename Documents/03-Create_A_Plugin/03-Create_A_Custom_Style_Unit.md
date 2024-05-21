@@ -6,7 +6,7 @@ const Plugin = {
   id: 'myPlugin',
 
   init: (Core) => {
-    Core.UnitManager.createUnit('big', (value) => `calc(100ps * ${value})`)
+    Core.UnitManager.createUnit('big', (value) => `calc(10px * ${value})`)
   }
 }
 ```
