@@ -392,6 +392,6 @@ interface CssProperties {
 
 type CssBorderStyle = 'none' | 'hidden' | 'dotted' | 'dashed' | 'solid' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'initial' | 'inherit'
 
-export { createStyle, applySpecialProperties, parseStyle }
+export { createStyle, applySpecialProperties, parseStyle, CssProperties }
 
 const capitalLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
