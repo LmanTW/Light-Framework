@@ -2,8 +2,8 @@
 You can install Light-Framework in several ways, but we suggest you to just download it and put it on your host.
 
 ## Downloads
-* [Light.mjs](/Downloads/Light.mjs) (ESM)
-* [Light.global.mjs](/Downloads/Light.global.mjs) (Global)
+* [Light.mjs](/Assets/Light.mjs) (ESM)
+* [Light.global.mjs](/Assets/Light.global.mjs) (Global)
 
 ## CDN (jsDelivr)
 * [Light.mjs](https://cdn.jsdelivr.net/gh/LmanTW/Light-Framework/Assets/Light.mjs) (ESM)
