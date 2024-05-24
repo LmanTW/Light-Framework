@@ -40,7 +40,7 @@ function parseStyle (style: string): CssProperties {
   const properties: CssProperties = {}
 
   style.split(';').forEach((chunk) => {
-    if (chunk.length > 0) {
+    if (chunk.includes(':')) {
       const [name, value] = chunk.split(':')
 
       properties[name.trim()] = value.trim()
