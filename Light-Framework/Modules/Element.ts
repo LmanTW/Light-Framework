@@ -10,8 +10,8 @@ function createElement (tagName: ElementTags, attributes?: ElementAttributes, ch
 
   if (attributes !== undefined) {
     Object.keys(attributes).forEach((name) => {
-      if (name === 'innerHTML') element.innerHTML = attributes[name]
-      else element.setAttribute(name, attributes[name])
+      if (name === 'innerHTML') element.innerHTML = attributes[name]!
+      else element.setAttribute(name, attributes[name]!)
     })
   }
 

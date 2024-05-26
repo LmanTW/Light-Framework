@@ -49,13 +49,13 @@ export default class {
       for (let i = 0; i < value.length; i++) {
         if (value[i] === '[') chunk = ''
         else if (value[i] === ']') {
-          if (chunk[0] === '$') result += `var(--${chunk.substring(1, chunk.length)})`
+          if (chunk![0] === '$') result += `var(--${chunk!.substring(1, chunk!.length)})`
           else {
             for (let unit of units) {
-              const unitName = chunk.substring(chunk.length - unit.length, chunk.length)
+              const unitName = chunk!.substring(chunk!.length - unit.length, chunk!.length)
 
               if (unitName === unit) {
-                result += this._units[unitName](chunk.substring(0, chunk.length - unit.length))
+                result += this._units[unitName](chunk!.substring(0, chunk!.length - unit.length))
 
                 break
               } 

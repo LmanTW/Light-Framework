@@ -33,7 +33,7 @@ class PluginManager {
     }, { Core })
 
     Object.keys(plugins).forEach((id) => {
-      if (plugins[id].init !== undefined) plugins[id].init(Core)
+      if (plugins[id].init !== undefined) plugins[id].init!(Core)
     })
   }
 }

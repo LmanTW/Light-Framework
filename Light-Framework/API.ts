@@ -1,4 +1,4 @@
-import info from './Info.json' with { type: 'json' }
+import info from './Info.json'
 
 console.log(`[ Light-Framework ]
 
@@ -21,7 +21,7 @@ class Light {
       value: { type: ['number', 'string'] }
     }, { element, name, value })
 
-    const properties = (element.getAttribute('light:style') === null) ? {} : parseStyle(element.getAttribute('light:style'))
+    const properties = (element.getAttribute('light:style') === null) ? {} : parseStyle(element.getAttribute('light:style')!)
 
     properties[name] = value.toString()
 

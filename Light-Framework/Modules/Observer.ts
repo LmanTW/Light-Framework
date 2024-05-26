@@ -14,7 +14,7 @@ export default class {
             Array.from(mutation.addedNodes).forEach((element) => {
               if ((element as HTMLElement).tagName !== undefined) this.checkChildren(element as HTMLElement)
             })
-          } else if (mutation.type === 'attributes') this.checkAttributes(mutation.target as HTMLElement, mutation.attributeName)
+          } else if (mutation.type === 'attributes') this.checkAttributes(mutation.target as HTMLElement, mutation.attributeName!)
         }
       })
     })
@@ -44,12 +44,12 @@ export default class {
         element.getAttributeNames().forEach((name) => {
           const attribute = this._Core.AttributeManager.getAttribute(name)
 
-          if (attribute !== undefined) attribute(element, element.getAttribute(name))
+          if (attribute !== undefined) attribute(element, element.getAttribute(name)!)
         })
       } else {
         const attribute = this._Core.AttributeManager.getAttribute(attributeName)
 
-        if (attribute !== undefined) attribute(element, element.getAttribute(attributeName))
+        if (attribute !== undefined) attribute(element, element.getAttribute(attributeName)!)
       }
     }
   }

@@ -82,7 +82,7 @@ export default class {
   }
 
   // Load Component 
-  public async load (html: string, componentPath?: string): void {
+  public async load (html: string, componentPath?: string): Promise<void> {
     Tools.checkParameters({
       html: { type: ['string'] },
       componentPath: { type: ['undefined', 'string'] }
@@ -104,12 +104,12 @@ export default class {
     this._element.innerHTML = content.innerHTML
 
     for (let script of scripts) {
-      if (script.src !== null && script.src[0] === '.') script.src = resolvePath(componentPath, script.src)
+      if (script.src !== null && script.src[0] === '.') script.src = (componentPath === undefined) ? script.src : resolvePath(componentPath, script.src)
 
       const content = (script.src === null) ? script.content : await (await fetch(script.src)).text()
 
       if (script.type === 'module') {
-        new Function('Light', 'Component', 'Import', `(async()=>{${content}})()`)(Light, this._API, async (src) => {
+        new Function('Light', 'Component', 'Import', `(async()=>{${content}})()`)(Light, this._API, async (src: string) => {
           if (componentPath !== undefined && src[0] === '.') src = resolvePath(componentPath, src)
 
           return await import(src)
@@ -117,7 +117,7 @@ export default class {
       } else new Function('Light', 'Component', content)(Light, this._API)
     }
   
-    this.componentPath = componentPath
+    if (componentPath !== undefined) this.componentPath = componentPath
   }
 
   // Remove Component
@@ -129,11 +129,11 @@ export default class {
 
     this.Observer.observer.disconnect()
 
-    ComponentManager.unregisterComponent(this._id)
+    ComponentManager.unregisterComponent(this._id!)
 
     this._id = undefined
 
-    this._element.setAttribute('light', null)
+    this._element.removeAttribute('light')
   }
 }
 
@@ -155,7 +155,7 @@ function getElements (parent: HTMLElement, callback: (element: HTMLElement) => b
 // Remove Child Components
 function removeChildComponents (parent: HTMLElement): void {
   Array.from(parent.children).forEach((child) => {
-    if (child.getAttribute('light') !== null) ComponentManager.getComponent(child.getAttribute('light'))!.remove()
+    if (child.getAttribute('light') !== null) ComponentManager.getComponent(child.getAttribute('light')!)!.remove()
     else removeChildComponents(child as HTMLElement)
   })
 }

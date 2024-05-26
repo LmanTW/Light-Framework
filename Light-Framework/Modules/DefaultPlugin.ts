@@ -9,11 +9,11 @@ const DefaultPlugin: Plugin = {
       }
 
       async connectedCallback () {
-        if (svgCache[this.getAttribute('src')] === undefined) svgCache[this.getAttribute('src')] = await (await fetch(this.getAttribute('src'))).text()
+        if (svgCache[this.getAttribute('src')!] === undefined) svgCache[this.getAttribute('src')!] = await (await fetch(this.getAttribute('src')!)).text()
 
-        const element = createElement('div', { innerHTML: svgCache[this.getAttribute('src')] })
+        const element = createElement('div', { innerHTML: svgCache[this.getAttribute('src')!] })
 
-        this.getAttributeNames().forEach((name) => element.setAttribute(name, this.getAttribute(name)))
+        this.getAttributeNames().forEach((name) => element.setAttribute(name, this.getAttribute(name)!))
 
         this.replaceWith(element)
       }
@@ -26,7 +26,7 @@ const DefaultPlugin: Plugin = {
     Core.AttributeManager.createAttribute('style', (element, value) => {
       const properties = applySpecialProperties(parseStyle(Core.UnitManager.parseStyleValue(value)))
 
-      const delayValues = {}
+      const delayValues: { [key: string]: any } = {}
 
       Object.keys(properties).forEach((name) => {
         if (['transition', 'transitionDuration'].includes(name)) {
@@ -43,7 +43,7 @@ const DefaultPlugin: Plugin = {
 
       addClass(element, Core.StyleManager.createStyle(createStyle(properties), 'style', 'style-<id>'))
 
-      window.requestAnimationFrame(() => Object.keys(delayValues).forEach((name) => element.style[name] = delayValues[name]))
+      window.requestAnimationFrame(() => Object.keys(delayValues).forEach((name) => (element.style as { [key: string]: any })[name] = delayValues[name]))
     })
     Core.AttributeManager.createAttribute('style:hover', (element, value) => addClass(element, Core.StyleManager.createStyle(Core.UnitManager.parseStyleValue(value), 'hover', 'hover-<id>:hover')))
     Core.AttributeManager.createAttribute('style:hold', (element, value) => addClass(element, Core.StyleManager.createStyle(Core.UnitManager.parseStyleValue(value), 'hold', 'hold-<id>:active:hover')))
@@ -87,7 +87,7 @@ const DefaultPlugin: Plugin = {
 
 // Add Class
 function addClass (element: HTMLElement, className: string): void {
-  let classList: string = element.getAttribute('class')
+  let classList: null | string = element.getAttribute('class')
   
   const chunks: string[] = (classList === null) ? [] : classList.split(' ')
 
@@ -102,4 +102,4 @@ import { createStyle, applySpecialProperties, parseStyle, CssProperties } from '
 import { Plugin } from './Managers/PluginManager'
 import { createElement } from './Element'
 
-const svgCache = {}
+const svgCache: { [key: string]: string } = {}
