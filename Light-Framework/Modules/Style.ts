@@ -1,8 +1,8 @@
 // Create Style
 function createStyle (properties: CssProperties): string {
-  applySpecialProperties(properties)
+  const result: { [key: string]: undefined | string } = {}
 
-  return Object.keys(properties).map((name) => {
+  Object.keys(properties).map((name) => {
     let convertedName = '' 
 
     for (let i = 0; i < name.length; i++) {
@@ -10,23 +10,27 @@ function createStyle (properties: CssProperties): string {
       else convertedName += name[i]
     }
 
-    return `${convertedName}:${properties[name]}`
-  }).join(';')
+    result[convertedName] = properties[name]
+  })
+
+  applySpecialProperties(result)
+
+  return Object.keys(result).map((key) => `${key}:${result[key]}`).join(';')
 }
 
 // Apply Special Properties
-function applySpecialProperties (properties: CssProperties): CssProperties {
+function applySpecialProperties (properties: { [key: string]: undefined | string }): CssProperties {
   if (properties.center !== undefined) {
     const values = properties.center.split(' ')
 
-    if (values.includes('row') || values.includes('all')) {
-      if (properties.flexDirection === 'column') properties.alignItems = 'center'
-      else properties.justifyContent = 'center'
+    if (values.includes('row') || values.includes('all')) { 
+      if (properties['flex-direction'] === 'column') properties['align-items'] = 'center'
+      else properties['justify-content'] = 'center'
     }
 
     if (values.includes('column') || values.includes('all')) {
-      if (properties.flexDirection === 'column') properties.justifyContent = 'center'
-      else properties.alignItems = 'center'
+      if (properties['flex-direction'] === 'column') properties['justify-content'] = 'center'
+      else properties['align-items'] = 'center'
     }
 
     delete properties.center
@@ -40,7 +44,7 @@ function parseStyle (style: string): CssProperties {
   const properties: CssProperties = {}
 
   style.split(';').forEach((chunk) => {
-    if (chunk.includes(':')) {
+    if (chunk.length > 0) {
       const [name, value] = chunk.split(':')
 
       properties[name.trim()] = value.trim()
