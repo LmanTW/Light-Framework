@@ -31,7 +31,7 @@ function createSvgElement (src: string, attributes?: ElementAttributes, wait?: b
 
   const element = createElement('div', attributes)
 
-  if (wait === undefined && wait === false) {
+  if (wait === undefined || wait === false) {
     fetch(src).then(async (response) => element.innerHTML = await response.text())
 
     return element
