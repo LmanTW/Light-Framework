@@ -31,7 +31,12 @@ export default class {
     }, { id })
 
     return components[id]
-  } 
+  }
+
+  // Get All Components
+  public static getAllComponents (): Core_[] {
+    return Object.keys(components).map((id) => components[id])
+  }
 
   // Get Component From Parent
   public static getComponentFromParent (element: HTMLElement): undefined | string {

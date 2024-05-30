@@ -37,6 +37,13 @@ export default class {
     if (update) this._Core.Observer.checkChildren(this._Core.element)
   }
 
+  // Delete All Attributes
+  public deleteAllAttributes (update?: boolean): void {
+    this._attributes = {}
+
+    if (update) this._Core.Observer.checkChildren(this._Core.element)
+  }
+
   // Get Attribute
   public getAttribute (name: string): undefined | ((element: HTMLElement, value: string) => any) {
     Tools.checkParameters({

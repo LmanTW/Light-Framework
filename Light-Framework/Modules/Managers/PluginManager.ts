@@ -13,6 +13,10 @@ class PluginManager {
     plugins[Plugin.id] = Plugin
 
     if (Plugin.register !== undefined) Plugin.register(Light, { PluginManager: this, ComponentManager, Tools })
+
+    const components = ComponentManager.getAllComponents()
+
+    for (let component of components) PluginManager.initializePlugins(component)
   }
 
   // Remove Plugin
@@ -31,6 +35,9 @@ class PluginManager {
     Tools.checkParameters({
       Core: { instanceOf: { instance: Core_, name: 'Core' }}
     }, { Core })
+
+    Core.AttributeManager.deleteAllAttributes()
+    Core.UnitManager.deleteAllUnits()
 
     Object.keys(plugins).forEach((id) => {
       if (plugins[id].init !== undefined) plugins[id].init!(Core)

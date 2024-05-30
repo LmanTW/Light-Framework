@@ -77,7 +77,7 @@ class Light {
   }
 }
 
-export { Light, Plugin }
+export { Light, Core, Plugin }
 
 import { PluginManager, Plugin } from './Modules/Managers/PluginManager.ts'
 import { createElement, createSvgElement } from './Modules/Element.ts'
@@ -86,6 +86,6 @@ import TimerManager from './Modules/Managers/TimerManager.ts'
 import { createStyle, parseStyle } from './Modules/Style.ts'
 import DefaultPlugin from './Modules/DefaultPlugin.ts'
 import Tools from './Modules/Tools/Main.ts'
+import Core from './Modules/Core.ts'
 
 Light.use(DefaultPlugin)
-import Core from './Modules/Core.ts'

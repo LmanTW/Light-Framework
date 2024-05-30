@@ -37,6 +37,13 @@ export default class {
     if (update) this._Core.Observer.checkChildren(this._Core.element)
   }
 
+  // Delete All Units
+  public deleteAllUnits (update?: boolean): void {
+    this._units = {}
+
+    if (update) this._Core.Observer.checkChildren(this._Core.element)
+  }
+
   // Parse Style Value
   public parseStyleValue (value: string): string {
     if (value.includes('[') && value.includes(']')) {
