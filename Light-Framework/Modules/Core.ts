@@ -40,9 +40,7 @@ export default class {
 
     element.setAttribute('light', this._id)
 
-    PluginManager.initializePlugins(this)
-
-    this.Observer.checkChildren(this._element)
+    PluginManager.initializePlugins(this) 
   }
 
   public get id () {return this._id}

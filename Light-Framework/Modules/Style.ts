@@ -394,7 +394,7 @@ interface CssProperties {
   [key: string]: undefined | string
 }
 
-type CssBorderStyle = 'none' | 'hidden' | 'dotted' | 'dashed' | 'solid' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'initial' | 'inherit'
+type CssBorderStyle = 'none' | 'hidden' | 'dotted' | 'dashed' | 'solid' | 'double' | 'groove' | 'ridge' | 'inset' | 'outset' | 'initial' | 'inherit' | string
 
 export { createStyle, applySpecialProperties, parseStyle, CssProperties }
 

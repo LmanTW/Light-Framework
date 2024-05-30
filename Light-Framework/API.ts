@@ -38,6 +38,8 @@ class Light {
 
     this.ListenerManager = this._Core.ListenerManager 
     this.TimerManager = this._Core.TimerManager
+
+    this._Core.Observer.checkChildren(this._Core.element)
   }
 
   public get id () {return this._Core.id}
