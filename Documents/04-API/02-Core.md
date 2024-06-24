@@ -49,7 +49,7 @@ The private API of Light-Framework. Core is the hidden API under the [Component 
 You can only access the Core instance via the plugin API.
 
 ## Getters
-* `id <string>` | The ID of the component
+* `id <string>` | The ID of the component.
 * `element <HTMLElement>` | The element that the component is mounted onto.
 * `API` | The upper [Component API](/document?page=API%2FLight&header=light3).
 * `data` | Extra data held by the component.
