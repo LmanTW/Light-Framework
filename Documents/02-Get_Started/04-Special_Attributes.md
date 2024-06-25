@@ -15,7 +15,7 @@ Both attributes can only set once, and may have some problems when changing the 
 
 * Before the attribute is computed:
 ```html
-<div light:trigger="https://google.com">
+<div light:trigger:goto="https://google.com">
   <h1>Open Google</h1>
 <div>
 ```
