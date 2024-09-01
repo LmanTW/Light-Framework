@@ -28,10 +28,13 @@ export default async () => {
     minify: 'terser',
 
     outDir: path.join(__dirname, 'Cache'),
-    format: 'esm'
+    format: 'esm',
+
+    dts: true 
   })
 
   fs.renameSync(path.join(__dirname, 'Cache', 'API.mjs'), path.resolve(__dirname, '../../Assets/Light.mjs'))
+  fs.renameSync(path.join(__dirname, 'Cache', 'API.d.mts'), path.resolve(__dirname, '../../Assets/Light.d.ts'))
 
   console.log(` 📦 Bundling Light-Framework (IIFE)`)
 

@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "allowImportingTsExtensions": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "module": "nodenext",
+    "module": "node16",
     "strict": true,
 
     "lib": ["dom"]
